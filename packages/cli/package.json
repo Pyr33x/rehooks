@@ -57,7 +57,6 @@
     "axios": "^1.7.7",
     "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",
-    "node-fetch": "^3.3.2",
     "ora": "^8.1.0",
     "package-json": "^10.0.1",
     "semver": "^7.6.3"
