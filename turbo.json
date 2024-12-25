@@ -6,6 +6,10 @@
   ],
   "tasks": {
     "build": {
+      "env": [
+        "UPSTASH_REDIS_REST_URL",
+        "UPSTASH_REDIS_REST_TOKEN"
+      ],
       "dependsOn": [
         "^build"
       ],
