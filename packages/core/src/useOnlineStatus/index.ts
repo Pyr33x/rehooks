@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 const description =
   "Custom hook that returns the current online/offline status of the browser.";
@@ -13,27 +13,32 @@ const description =
 export function useOnlineStatus(
   callback?: (isOnline: boolean) => void,
 ): boolean {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-
-  useEffect(() => {
-    const handleOnline = () => {
-      setIsOnline(true);
-      if (callback) callback(true);
-    };
-
-    const handleOffline = () => {
-      setIsOnline(false);
-      if (callback) callback(false);
-    };
-
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, [callback]);
-
-  return isOnline;
+  return useSyncExternalStore(
+    (cb) => {
+      const abortController = new AbortController();
+      window.addEventListener(
+        "online",
+        () => {
+          cb();
+          callback?.(true);
+        },
+        { signal: abortController.signal },
+      );
+      window.addEventListener(
+        "offline",
+        () => {
+          cb();
+          callback?.(false);
+        },
+        {
+          signal: abortController.signal,
+        },
+      );
+      return () => {
+        abortController.abort();
+      };
+    },
+    () => navigator.onLine,
+    () => true,
+  );
 }

@@ -1,6 +1,7 @@
 import {
   useCallback,
   useState,
+  useMemo,
   type SetStateAction,
   type Dispatch,
 } from "react";
@@ -40,11 +41,16 @@ export function useCounter(initialValue?: number): CounterReturnType {
     setCount(initialValue ?? 0);
   }, [initialValue]);
 
-  return {
-    increment,
-    decrement,
-    reset,
-    count,
-    setCount,
-  };
+  const returnObject = useMemo(
+    () => ({
+      increment,
+      decrement,
+      reset,
+      count,
+      setCount,
+    }),
+    [increment, decrement, reset, count, setCount],
+  );
+
+  return returnObject;
 }

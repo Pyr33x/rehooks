@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type DeviceDetect = {
   isMobile: boolean;
@@ -12,26 +12,17 @@ type DeviceDetect = {
 const description =
   "A hook that detects the device type and returns a boolean value for each device type.";
 
-/**
- * A hook that detects the device type and returns a boolean value for each device type.
- *
- * @returns {DeviceDetect} - An object containing boolean values for each device type.
- */
-export function useDevice(): DeviceDetect {
-  const [deviceType, setDeviceType] = useState<string | null>(null);
+// Device type is constant and never changes
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    const userAgent = navigator.userAgent;
-
-    if (/tablet/i.test(userAgent)) {
-      setDeviceType("tablet");
-    } else if (/mobile/i.test(userAgent)) {
-      setDeviceType("mobile");
-    } else {
-      setDeviceType("desktop");
-    }
-  }, []);
-
+const getDeviceTypeClient = (): DeviceDetect => {
+  const userAgent = navigator.userAgent;
+  let deviceType = "desktop";
+  if (/tablet/i.test(userAgent)) {
+    deviceType = "tablet";
+  } else if (/mobile/i.test(userAgent)) {
+    deviceType = "mobile";
+  }
   const isMobile = deviceType === "mobile";
   const isDesktop = deviceType === "desktop";
   const isTablet = deviceType === "tablet";
@@ -48,4 +39,26 @@ export function useDevice(): DeviceDetect {
     MobileView,
     TabletView,
   };
+};
+
+const getDeviceTypeServer = (): DeviceDetect => ({
+  isMobile: false,
+  isDesktop: true,
+  isTablet: false,
+  DesktopView: () => true,
+  MobileView: () => false,
+  TabletView: () => false,
+});
+
+/**
+ * A hook that detects the device type and returns a boolean value for each device type.
+ *
+ * @returns {DeviceDetect} - An object containing boolean values for each device type.
+ */
+export function useDevice(): DeviceDetect {
+  return useSyncExternalStore(
+    emptySubscribe,
+    getDeviceTypeClient,
+    getDeviceTypeServer,
+  );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 type WindowSize = {
   width: number;
@@ -8,28 +8,32 @@ type WindowSize = {
 const description =
   "Custom hook that tracks and returns the current window size.";
 
+const subscribeToResizeEvent = (cb: () => void) => {
+  window.addEventListener("resize", cb);
+  return () => {
+    window.removeEventListener("resize", cb);
+  };
+};
+
+const getWindowSizeClient = () => ({
+  width: window.innerWidth,
+  height: window.innerHeight,
+});
+
+// on the server window is undefined, so assume FullHD screen
+const getWindowSizeServer = () => ({
+  width: 1920,
+  height: 1080,
+});
+
 /**
  * Custom hook that tracks and returns the current window size.
  * @returns {WindowSize} An object containing the current width and height of the window.
  */
 export function useWindowSize(): WindowSize {
-  const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowSize;
+  return useSyncExternalStore(
+    subscribeToResizeEvent,
+    getWindowSizeClient,
+    getWindowSizeServer,
+  );
 }
