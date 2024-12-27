@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getClientIp, type Hook } from "@rehooks/utils";
 import { ratelimit } from "@/lib/ratelimit";
-import type { Hook } from "@rehooks/utils";
 import path from "path";
 import fs from "fs";
 
@@ -22,10 +22,7 @@ async function loadData(): Promise<Hook[]> {
 }
 
 export async function GET(req: NextRequest) {
-  const clientIp = (req.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
-    ",",
-  )[0];
-
+  const clientIp = await getClientIp();
   const identifier = clientIp;
   const rateLimitResult = await ratelimit.limit(identifier);
 

@@ -1,6 +1,6 @@
+import { getClientIp, type Hook } from "@rehooks/utils";
 import { ratelimit } from "@/lib/ratelimit";
 import { NextResponse } from "next/server";
-import type { Hook } from "@rehooks/utils";
 import path from "path";
 import fs from "fs";
 
@@ -25,9 +25,7 @@ export async function GET(
 ) {
   const { title } = params;
 
-  const clientIp = (
-    request.headers.get("x-forwarded-for") ?? "127.0.0.1"
-  ).split(",")[0];
+  const clientIp = await getClientIp();
 
   const identifier = clientIp;
   const rateLimitResult = await ratelimit.limit(identifier);
