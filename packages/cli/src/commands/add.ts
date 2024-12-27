@@ -58,7 +58,6 @@ export const add = new Command()
           let { content } = selectedHookResponse.data;
           fs.writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
-          // log.info(cyan(`Successfully added ${green(hook)}.`));
         }
 
         outro(
@@ -88,7 +87,7 @@ export const add = new Command()
       const selectedHookArray = selectedHooks as string[];
 
       log.success(
-        `Selected ${selectedHookArray.length.toString()} ${selectedHookArray.length > 1 ? "files" : "file"}.`,
+        `Selected ${selectedHookArray.length.toString()} ${selectedHookArray.length > 1 ? "hooks" : "hook"}.`,
       );
 
       log.info(`Hooks Directory: ${directory}`);
