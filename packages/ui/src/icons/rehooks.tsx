@@ -1,12 +1,12 @@
 export function RehooksIcon({ className }: { className?: string }) {
   return (
     <svg
-      width="463"
+      className={className}
+      fill="none"
       height="590"
       viewBox="0 0 463 590"
-      fill="none"
+      width="463"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
     >
       <path
         d="M221.367 12.1552C227.513 0.862 241.646 -3.30973 252.936 2.83744C264.226 8.98462 268.396 23.1229 262.251 34.4161L43.7203 436.013C37.5751 447.306 23.4412 451.478 12.1515 445.331C0.861717 439.183 -3.3087 425.045 2.83657 413.752L221.367 12.1552Z"

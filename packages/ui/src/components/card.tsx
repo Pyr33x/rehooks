@@ -1,4 +1,5 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
+import React from "react";
 import { highlight } from "sugar-high";
 import { cn } from "@rehooks/utils";
 
@@ -7,11 +8,11 @@ const Card = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
-    ref={ref}
     className={cn(
       "bg-fd-card text-fd-foreground border-fd-border rounded-2xl border",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -22,8 +23,8 @@ const CardHeader = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
-    ref={ref}
     className={cn("border-b-fd-border flex flex-col border-b-2 p-4", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -34,11 +35,11 @@ const CardLabel = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
-    ref={ref}
     className={cn(
       "text-fd-muted-foreground select-none text-sm font-normal",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -49,11 +50,11 @@ const CardTitle = React.forwardRef<
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h2
-    ref={ref}
     className={cn(
       "text-fd-foreground select-none text-lg font-bold leading-none",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -64,14 +65,14 @@ const CardContent = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
-    ref={ref}
     className={cn("relative text-pretty rounded-md p-4 text-sm", className)}
+    ref={ref}
     {...props}
   />
 ));
 CardContent.displayName = "CardContent";
 
-type CodeBlockProps = {
+interface CodeBlockProps {
   children: string;
   cls?: string;
   sign?: string;
@@ -82,9 +83,9 @@ type CodeBlockProps = {
   jsxliterals?: string;
   property?: string;
   entity?: string;
-};
+}
 
-const CodeBlock = ({
+function CodeBlock({
   children,
   cls = "#4686FF",
   sign = "#666666",
@@ -96,11 +97,13 @@ const CodeBlock = ({
   property = "#c4b5fd",
   entity = "#8b5cf6",
   ...props
-}: CodeBlockProps & ComponentPropsWithoutRef<"code">) => {
+}: CodeBlockProps & ComponentPropsWithoutRef<"code">) {
   const codeHTML = highlight(children as string);
   return (
     <pre>
       <code
+        className={cn("font-mono text-sm")}
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
         style={
           {
             "--sh-class": cls,
@@ -114,12 +117,10 @@ const CodeBlock = ({
             "--sh-entity": entity,
           } as React.CSSProperties
         }
-        className={cn("font-mono text-sm")}
-        dangerouslySetInnerHTML={{ __html: codeHTML }}
         {...props}
       />
     </pre>
   );
-};
+}
 
 export { Card, CardHeader, CardTitle, CardLabel, CardContent, CodeBlock };

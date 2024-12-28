@@ -38,4 +38,10 @@ export const keywords = [
   "rehooks-ts",
   "pyr33x",
   "pyrex",
+  "rehooks cli",
+  "rehooks-cli",
+  "react hooks library",
+  "react-hooks",
+  "rehooks ts",
+  "rehooks typescript",
 ];

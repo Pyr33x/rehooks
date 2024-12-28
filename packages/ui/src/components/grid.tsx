@@ -6,7 +6,7 @@ interface GridProps {
   height?: number;
   x?: number;
   y?: number;
-  squares?: Array<[x: number, y: number]>;
+  squares?: [x: number, y: number][];
   strokeDasharray?: string;
   className?: string;
   [key: string]: unknown;
@@ -35,10 +35,10 @@ export function Grid({
     >
       <defs>
         <pattern
-          id={id}
-          width={width}
           height={height}
+          id={id}
           patternUnits="userSpaceOnUse"
+          width={width}
           x={x}
           y={y}
         >
@@ -49,21 +49,19 @@ export function Grid({
           />
         </pattern>
       </defs>
-      <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
-      {squares && (
-        <svg x={x} y={y} className="overflow-visible">
+      <rect fill={`url(#${id})`} height="100%" strokeWidth={0} width="100%" />
+      {squares ? <svg className="overflow-visible" x={x} y={y}>
           {squares.map(([x, y]) => (
             <rect
-              strokeWidth="0"
-              key={`${x}-${y}`}
-              width={width - 1}
               height={height - 1}
+              key={`${x}-${y}`}
+              strokeWidth="0"
+              width={width - 1}
               x={x * width + 1}
               y={y * height + 1}
             />
           ))}
-        </svg>
-      )}
+        </svg> : null}
     </svg>
   );
 }

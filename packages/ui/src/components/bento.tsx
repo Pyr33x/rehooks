@@ -31,13 +31,13 @@ function BentoCard({
 }: BentoCardProps) {
   return (
     <div
-      key={name}
       className={cn(
         "group relative col-span-3 flex flex-col justify-between overflow-hidden",
         "bg-white",
         "transform-gpu dark:bg-neutral-950",
         className,
       )}
+      key={name}
     >
       <div>{background}</div>
       <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-4">

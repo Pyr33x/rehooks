@@ -1,5 +1,5 @@
 {
-  "name": "rehooks-ts",
+  "name": "rehooks",
   "private": true,
   "description": "A CLI to insert hooks directly to your project.",
   "scripts": {

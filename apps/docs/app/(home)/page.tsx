@@ -27,8 +27,8 @@ export default function HomePage() {
       </div>
       <Star
         className="absolute inset-0 -z-50"
-        quantity={50}
-        ease={200}
+        quantity={100}
+        ease={50}
         refresh
       />
     </div>

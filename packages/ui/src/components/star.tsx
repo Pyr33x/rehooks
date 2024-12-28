@@ -110,7 +110,7 @@ export function Star({
     }
   };
 
-  type Circle = {
+  interface Circle {
     x: number;
     y: number;
     translateX: number;
@@ -121,7 +121,7 @@ export function Star({
     dx: number;
     dy: number;
     magnetism: number;
-  };
+  }
 
   const resizeCanvas = () => {
     if (canvasContainerRef.current && canvasRef.current && context.current) {
@@ -264,11 +264,11 @@ export function Star({
 
   return (
     <div
+      aria-hidden="true"
       className={cn("pointer-events-none", className)}
       ref={canvasContainerRef}
-      aria-hidden="true"
     >
-      <canvas ref={canvasRef} className="size-full" />
+      <canvas className="size-full" ref={canvasRef} />
     </div>
   );
 }
