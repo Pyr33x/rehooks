@@ -1,6 +1,6 @@
 {
   "name": "rehooks-cli",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "A CLI to insert hooks directly to your project.",
   "publishConfig": {
     "access": "public"
