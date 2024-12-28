@@ -44,7 +44,7 @@ export function Shine({
             "--background-radial-gradient": `radial-gradient(transparent,transparent, ${color instanceof Array ? color.join(",") : color},transparent,transparent)`,
           } as React.CSSProperties
         }
-       />
+      />
       {children}
     </div>
   );

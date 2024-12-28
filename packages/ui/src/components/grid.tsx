@@ -50,7 +50,8 @@ export function Grid({
         </pattern>
       </defs>
       <rect fill={`url(#${id})`} height="100%" strokeWidth={0} width="100%" />
-      {squares ? <svg className="overflow-visible" x={x} y={y}>
+      {squares ? (
+        <svg className="overflow-visible" x={x} y={y}>
           {squares.map(([x, y]) => (
             <rect
               height={height - 1}
@@ -61,7 +62,8 @@ export function Grid({
               y={y * height + 1}
             />
           ))}
-        </svg> : null}
+        </svg>
+      ) : null}
     </svg>
   );
 }

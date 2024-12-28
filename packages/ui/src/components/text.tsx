@@ -34,9 +34,15 @@ export function Text({
     <svg
       className={cn("select-none", className)}
       height="100%"
-      onMouseEnter={() => { setHovered(true); }}
-      onMouseLeave={() => { setHovered(false); }}
-      onMouseMove={(e) => { setCursor({ x: e.clientX, y: e.clientY }); }}
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
+      onMouseMove={(e) => {
+        setCursor({ x: e.clientX, y: e.clientY });
+      }}
       ref={svgRef}
       viewBox="0 0 300 100"
       width="100%"
