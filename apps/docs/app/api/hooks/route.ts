@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getClientIp, type Hook } from "@rehooks/utils";
-import { ratelimit } from "@/lib/ratelimit";
+import { ratelimit } from "@/lib/redis/ratelimit";
 import path from "path";
 import fs from "fs";
 

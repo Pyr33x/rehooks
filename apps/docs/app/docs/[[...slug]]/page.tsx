@@ -7,7 +7,7 @@ import {
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { metadataImage } from "@/lib/metadata";
 import { notFound } from "next/navigation";
-import { source } from "@/lib/source";
+import { source } from "@/lib/fuma/source";
 
 export default async function Page({
   params,
