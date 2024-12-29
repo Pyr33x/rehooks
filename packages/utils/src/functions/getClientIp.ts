@@ -1,5 +1,8 @@
+import { fetcher } from "./api";
+
 export async function getClientIp() {
-  const res = await fetch("https://api.ipify.org?format=json");
-  const data = await res.json();
-  return data?.ip;
+  const res = await fetcher<{ ip: string }>(
+    "https://api.ipify.org?format=json",
+  );
+  return res.ip;
 }
