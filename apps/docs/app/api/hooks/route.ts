@@ -4,6 +4,8 @@ import { ratelimit } from "@/lib/redis/ratelimit";
 import path from "path";
 import fs from "fs";
 
+export const dynamic = "force-dynamic";
+
 const filePath = path.join(process.cwd(), "lib", "hooks.json");
 
 async function loadData(): Promise<Hook[]> {
