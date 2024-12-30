@@ -8,7 +8,7 @@ export const meta = {
     siteName: "Rehooks",
     url: "https://rehooks.pyr33x.ir",
     locale: "en_US",
-    images: "/og.png",
+    images: "https://rehooks.pyr33x.ir/og.png",
   },
   twitter: {
     title: "Rehooks",
