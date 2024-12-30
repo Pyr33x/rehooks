@@ -3,13 +3,13 @@
 import { Globe as GlobeIcon, Braces, Layers, Zap } from "@rehooks/ui/icons";
 import { Retro, Marquee, Text } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
+import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
-import React from "react";
 
 export const Globe = ({ className }: { className?: string }) => {
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let phi = 0;
 
     if (!canvasRef.current) return;
