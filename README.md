@@ -43,5 +43,5 @@ Check out the <a href="https://rehooks.pyr33x.ir">documentation</a> for more inf
 <h1 align="center">🧾 License</h1>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/rehooks-ts">Rehooks</a> is licensed under the MIT License.
+<a href="https://www.npmjs.com/package/rehooks-ts">Rehooks</a> is licensed under the Apache License 2.0.
 </p>
