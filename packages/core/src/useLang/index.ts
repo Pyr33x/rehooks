@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
 
 const description =
-  "Custom hook that returns the current language of the user's browser, based on their browser settings.";
+  "Returns the user’s current browser language based on their settings.";
 
 /**
  * Subscribes to the `languagechange` event on the `window` object to detect changes in the user's preferred language.
@@ -23,7 +23,7 @@ function langSubscribe(callback: () => void) {
 const getLang = (): string => navigator.language;
 
 /**
- * Custom hook that returns the current language of the user's browser, automatically updating when the language changes.
+ * Returns the user’s current browser language based on their settings.
  *
  * @returns {string} The current browser language.
  */

@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 
-const description = "Custom hook that implements a countdown functionality.";
+const description =
+  "Implements countdown functionality with configurable options.";
 
 type CountdownOptions = {
   countStart: number;
@@ -15,7 +16,7 @@ type CountdownControllers = {
 };
 
 /**
- * Custom hook that implements a countdown functionality.
+ * Implements countdown functionality with configurable options.
  *
  * @param {CountdownOptions} options - The options for the countdown.
  * @param {number} options.countStart - The starting count value.

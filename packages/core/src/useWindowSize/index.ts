@@ -5,8 +5,7 @@ type WindowSize = {
   height: number;
 };
 
-const description =
-  "Custom hook that tracks and returns the current window size.";
+const description = "Tracks and returns the current window size.";
 
 const subscribeToResizeEvent = (cb: () => void) => {
   window.addEventListener("resize", cb);
@@ -27,7 +26,7 @@ const getWindowSizeServer = () => ({
 });
 
 /**
- * Custom hook that tracks and returns the current window size.
+ * Tracks and returns the current window size.
  * @returns {WindowSize} An object containing the current width and height of the window.
  */
 export function useWindowSize(): WindowSize {
