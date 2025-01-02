@@ -1,4 +1,4 @@
-import type { HomeLayoutProps } from "fumadocs-ui/home-layout";
+import type { HomeLayoutProps } from "fumadocs-ui/layouts/home";
 import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
 
 export const baseOptions: HomeLayoutProps = {
