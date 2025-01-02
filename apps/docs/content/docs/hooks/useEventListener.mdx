@@ -37,7 +37,7 @@ function Component() {
 
 ### useEventListener
 
-```ts
+```ts title="useEventListener.ts"
 function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
