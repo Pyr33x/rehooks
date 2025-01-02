@@ -44,11 +44,17 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-fd-border mt-8 flex flex-col items-center justify-between border-t pt-8 sm:flex-row">
           <div className="flex flex-row gap-4">
-            <Link href={GITHUB_LINK} className={TEXT_STYLE}>
+            <Link
+              href={GITHUB_LINK}
+              className="text-fd-muted-foreground hover:text-fd-foreground"
+            >
               <GithubIcon className="size-5" />
               <span className="sr-only">Github</span>
             </Link>
-            <Link href={REHOOKS_NPM} className={TEXT_STYLE}>
+            <Link
+              href={REHOOKS_NPM}
+              className="text-fd-muted-foreground hover:text-fd-foreground"
+            >
               <NpmIcon className="size-5" />
               <span className="sr-only">NPM</span>
             </Link>
