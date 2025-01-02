@@ -1,12 +1,12 @@
 ---
 title: Guide
-description: Learn how to install and interact with Rehooks CLI
+description: Learn how to interact with the CLI
 icon: "Compass"
 ---
 
 # Installation
 
-To use the CLI, you can execute it directly with the latest version:
+To use the CLI, you can execute it directly within the latest version:
 
 ```bash title="Terminal"
 npx rehooks-cli@latest
@@ -14,45 +14,40 @@ npx rehooks-cli@latest
 
 # Guide
 
-At first, you must `initialize` the Rehooks configuration. To do this, run the following command:
+At first, you must `initialize` the Rehooks configuration. To do this, run the following command into your project's directory:
 
 ```bash title="Terminal"
 npx rehooks-cli init
 ```
 
-If your project includes a `src` directory, you must select yes whenever you use `init`.
-It will create a `rehooks.json` in the root of your project. This file contains the directory where the hooks will be imported.
+You'll be prompted to choose a path for the hooks to be imported. If you want use a custom path for the hooks directory, you can pass it as an argument to the `init` command.
 
-<Callout type="info">
-  If you want to use a custom path for the hooks directory, you can pass it as
-  an argument to the `init` command.
-</Callout>
+```bash title="Terminal"
+npx rehooks-cli init ./path/somewhere
+```
 
 <Callout type="warn">
-  Rehooks CLI requires React version 18 or higher. If your project uses a lower
-  version, you may encounter compatibility issues. Also your project must
+  Rehooks requires React version 18 or higher. If your project uses a lower
+  version, you will encounter compatibility issues. Also your project must
   include `package.json` file.
 </Callout>
 
-Now It's time to add hooks into your project. To achieve this you must use the
-`add` command.
+Now It's time to import hooks into your project. To achieve this you must run the `add` command.
 
 ```bash title="Terminal"
 npx rehooks-cli add
 ```
 
-This command will ask you to select the hooks you want to add. You can select multiple hooks by pressing the `space` key.
+This command will ask you to select the hooks you want to import from the list of available hooks through the [API](/docs/api#limitations). You can select multiple hooks by pressing the `space` key.
 
-# Usage
+<Callout type="info">
+  You can pick hooks up to 10 at a time, due to the limitation of the API.
+</Callout>
 
-```bash title="Terminal"
-npx rehooks-cli [options] [command]
-```
-
-> Arguments are optional. You may want to leave args empty, so by running `npx rehooks-cli add` you'll access to the list of hooks.
+If you want to pass hooks manually, you can do so by running the following command:
 
 ```bash title="Terminal"
-npx rehooks-cli add useFocus useFetch useWindowSize
+npx rehooks-cli add useFocus useFetch useWindowSize useEventListener
 ```
 
 ## Options
@@ -74,6 +69,14 @@ These are the options available in the CLI.
 
 ### Init
 
+#### Arguments
+
+| Argument | Description                               |
+| -------- | ----------------------------------------- |
+| `path`   | Specify a custom path for hooks directory |
+
+#### Options
+
 | Option                | Description                                           |
 | --------------------- | ----------------------------------------------------- |
 | `-f, --force`         | Force overwrite existing configuration without prompt |
@@ -81,6 +84,14 @@ These are the options available in the CLI.
 | `-h, --help`          | Displays help for command                             |
 
 ### Add
+
+#### Arguments
+
+| Argument | Description          |
+| -------- | -------------------- |
+| `hooks`  | Specify hooks to add |
+
+#### Options
 
 | Option        | Description                                        |
 | ------------- | -------------------------------------------------- |
