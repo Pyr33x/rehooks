@@ -5,7 +5,7 @@ import { Star } from "@rehooks/ui/components";
 
 export default function HomePage() {
   return (
-    <div className="h-full w-full">
+    <>
       <div className="mx-8 my-28 flex min-h-screen flex-col items-center justify-center lg:my-36">
         <Hero />
         <Editor />
@@ -17,7 +17,7 @@ export default function HomePage() {
         ease={50}
         refresh
       />
-    </div>
+    </>
   );
 }
 

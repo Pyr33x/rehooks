@@ -22,7 +22,7 @@ export function Hero() {
         </span>{" "}
         Hooks
       </h1>
-      <p className="text-fd-muted-foreground font-norma; mt-2 max-w-2xl text-balance text-center text-lg lg:text-2xl">
+      <p className="text-fd-muted-foreground mt-2 max-w-2xl text-balance text-center text-lg font-normal lg:text-2xl">
         Avoid repetitive hook patterns, a source for making your own hooks.
       </p>
       <div className="mt-5 grid grid-cols-2 gap-y-2.5">
