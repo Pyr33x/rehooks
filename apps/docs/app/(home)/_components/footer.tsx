@@ -4,16 +4,13 @@ import Link from "next/link";
 
 export default function Footer() {
   const legal = [
-    { title: "Privacy Policy", link: "/docs/legal/privacy-policy" },
     { title: "Terms of Service", link: "/docs/legal/terms" },
+    { title: "Privacy Policy", link: "/docs/legal/privacy-policy" },
     { title: "Code Policy", link: "/docs/legal/code-policy" },
   ];
 
   const TEXT_STYLE =
     "text-sm hover:underline text-fd-muted-foreground transition-colors";
-
-  const GITHUB_LINK = "https://github.com/rehooks";
-  const REHOOKS_NPM = "https://www.npmjs.com/package/rehooks";
 
   return (
     <footer className="border-t-fd-border border-t py-12">
