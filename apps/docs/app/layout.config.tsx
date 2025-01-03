@@ -1,25 +1,10 @@
 import {
   ChevronRight,
   Component,
-  NpmIcon,
   RehooksIcon,
   Server,
 } from "@rehooks/ui/icons";
 import type { HomeLayoutProps } from "fumadocs-ui/layouts/home";
-import type { LinkItemType } from "fumadocs-ui/layouts/links";
-import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
-
-export const linkItems: LinkItemType[] = [
-  {
-    text: "GitHub",
-    url: GITHUB_LINK,
-  },
-  {
-    text: "NPM",
-    url: REHOOKS_NPM,
-    icon: <NpmIcon />,
-  },
-];
 
 export const baseOptions: HomeLayoutProps = {
   githubUrl: "https://github.com/Pyr33x/rehooks",
@@ -54,10 +39,9 @@ export const baseOptions: HomeLayoutProps = {
           text: "API Reference",
           description:
             "Learn how to use the API to get the details of the available hooks.",
-          url: "/docs/api",
+          url: "/docs/api-reference",
         },
       ],
     },
-    ...linkItems,
   ],
 };
