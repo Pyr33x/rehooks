@@ -1,11 +1,8 @@
 {
   "pages": [
-    "---Getting Started---",
     "index",
     "contributing",
-    "---Setup---",
-    "guide",
-    "configuration",
+    "getting-started",
     "---API Reference---",
     "api",
     "---Components---",
