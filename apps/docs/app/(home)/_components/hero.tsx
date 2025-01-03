@@ -9,10 +9,6 @@ import Link from "next/link";
 export function Hero() {
   const { copy, isCopied } = useClipboard();
 
-  const handleCopy = () => {
-    copy("npx rehooks-cli@latest init");
-  };
-
   return (
     <>
       <h1 className="max-w-lg text-balance bg-gradient-to-t from-black to-black bg-clip-text text-center text-4xl font-black text-transparent lg:text-6xl dark:from-violet-200 dark:from-75% dark:to-white">
@@ -51,7 +47,7 @@ export function Hero() {
         >
           <Button
             className="w-full rounded-full border-[1.5px] font-mono"
-            onClick={handleCopy}
+            onClick={() => copy("npx rehooks-cli@latest init")}
             variant="outline"
           >
             {isCopied
