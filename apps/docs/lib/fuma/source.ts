@@ -1,3 +1,4 @@
+import { createOpenAPI, attachFile } from "fumadocs-openapi/server";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import { icons } from "@rehooks/ui/icons";
@@ -13,4 +14,9 @@ export const source = loader({
     }
     if (icon in icons) return createElement(icons[icon as keyof typeof icons]);
   },
+  pageTree: {
+    attachFile,
+  },
 });
+
+export const openapi = createOpenAPI();

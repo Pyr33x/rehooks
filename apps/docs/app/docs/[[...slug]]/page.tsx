@@ -4,10 +4,10 @@ import {
   DocsTitle,
   DocsDescription,
 } from "fumadocs-ui/page";
+import { source, openapi } from "@/lib/fuma/source";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { metadataImage } from "@/lib/metadata";
 import { notFound } from "next/navigation";
-import { source } from "@/lib/fuma/source";
 
 export default async function Page({
   params,
@@ -24,7 +24,9 @@ export default async function Page({
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents }} />
+        <MDX
+          components={{ ...defaultMdxComponents, APIPage: openapi.APIPage }}
+        />
       </DocsBody>
     </DocsPage>
   );
