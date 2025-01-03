@@ -230,6 +230,9 @@ importers:
       postcss:
         specifier: ^8.4.35
         version: 8.4.47
+      rehooks-ts:
+        specifier: workspace:*
+        version: link:../core
       sugar-high:
         specifier: ^0.7.5
         version: 0.7.5

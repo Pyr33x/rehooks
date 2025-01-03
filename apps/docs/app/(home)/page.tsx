@@ -1,7 +1,6 @@
 import { Editor } from "@/app/(home)/_components/editor";
 import { Grid } from "@/app/(home)/_components/bento";
 import { Hero } from "@/app/(home)/_components/hero";
-import { Star } from "@rehooks/ui/components";
 
 export default function HomePage() {
   return (
@@ -11,12 +10,6 @@ export default function HomePage() {
         <Editor />
         <Features />
       </div>
-      <Star
-        className="absolute inset-0 -z-50"
-        quantity={100}
-        ease={50}
-        refresh
-      />
     </>
   );
 }

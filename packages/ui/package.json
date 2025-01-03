@@ -27,6 +27,7 @@
     "@rehooks/eslint-config": "workspace:*",
     "@rehooks/tsconfig": "workspace:*",
     "@rehooks/utils": "workspace:*",
+    "rehooks-ts": "workspace:*",
     "@types/node": "22.5.4",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",

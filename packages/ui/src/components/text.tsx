@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState, useMemo } from "react";
+import { useDebounceCallback } from "rehooks-ts";
 import { motion } from "framer-motion";
 import { cn } from "@rehooks/utils";
 
@@ -16,33 +17,40 @@ export function Text({
   const svgRef = useRef<SVGSVGElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-  const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
 
-  useEffect(() => {
+  const handleMouseMove = useDebounceCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      if (svgRef.current) {
+        const svgRect = svgRef.current.getBoundingClientRect();
+        setCursor({
+          x: e.clientX,
+          y: e.clientY,
+        });
+      }
+    },
+    16,
+  );
+
+  const maskPosition = useMemo(() => {
     if (svgRef.current) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
       const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
+      return {
         cx: `${cxPercentage}%`,
         cy: `${cyPercentage}%`,
-      });
+      };
     }
+    return { cx: "50%", cy: "50%" };
   }, [cursor]);
 
   return (
     <svg
       className={cn("select-none", className)}
       height="100%"
-      onMouseEnter={() => {
-        setHovered(true);
-      }}
-      onMouseLeave={() => {
-        setHovered(false);
-      }}
-      onMouseMove={(e) => {
-        setCursor({ x: e.clientX, y: e.clientY });
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onMouseMove={handleMouseMove}
       ref={svgRef}
       viewBox="0 0 300 100"
       width="100%"
