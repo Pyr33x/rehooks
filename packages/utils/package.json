@@ -7,6 +7,7 @@
     "./constants": "./src/constants/index.ts",
     "./types": "./src/types/index.ts",
     "./functions": "./src/functions/index.ts",
+    "./api": "./src/api/index.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
@@ -19,11 +20,13 @@
     "functions"
   ],
   "devDependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.0",
     "@rehooks/tsconfig": "workspace:*",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.3",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "zod": "^3.23.8"
   },
   "dependencies": {
     "next": "^14.2.8"

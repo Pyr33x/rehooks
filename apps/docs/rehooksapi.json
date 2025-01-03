@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rehooks API",
+    "version": "1.0.0",
+    "description": "The API for Rehooks"
+  },
+  "servers": [
+    {
+      "url": "https://rehooks.pyr33x.ir/api",
+      "description": "Production server"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Hook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true,
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "example": "Example Hook Title"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "example": "This is an example hook description."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "example": "This is the content of the hook."
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "content"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/hooks": {
+      "get": {
+        "summary": "Get a list of hooks",
+        "description": "Returns a list of hooks, optionally filtered by search and limited by count.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter hooks by title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of hooks returned",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of hooks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Hook"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input (e.g., invalid limit)"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/hooks/{title}": {
+      "get": {
+        "summary": "Get a hook by title",
+        "description": "Returns a single hook by its title.",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "Title of the hook to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single hook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hook not found"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
