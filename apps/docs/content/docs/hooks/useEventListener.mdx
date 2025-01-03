@@ -1,6 +1,6 @@
 ---
 title: useEventListener
-description: A custom hook to add and clean up an event listener on any target element.
+description: Adds and cleans up an event listener on a specified target element.
 ---
 
 # useEventListener
@@ -37,7 +37,7 @@ function Component() {
 
 ### useEventListener
 
-```ts
+```ts title="useEventListener.ts"
 function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,

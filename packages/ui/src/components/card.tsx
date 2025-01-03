@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
-import React from "react";
 import { highlight } from "sugar-high";
 import { cn } from "@rehooks/utils";
+import React from "react";
 
 const Card = React.forwardRef<
   HTMLDivElement,

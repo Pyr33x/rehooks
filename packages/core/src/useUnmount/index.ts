@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 
-const description =
-  "A custom React hook that executes a callback function when the component unmounts.";
+const description = "Executes a callback function when the component unmounts.";
 
 /**
- * A custom React hook that executes a callback function when the component unmounts.
+ * Executes a callback function when the component unmounts.
  *
  * @param {() => void} fn - The callback function to be executed on unmount.
  */

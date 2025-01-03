@@ -1,10 +1,10 @@
 import { useRef, useEffect, useCallback } from "react";
 
 const description =
-  "A hook that returns a memoized version of a callback that is stable between renders.";
+  "Returns a memoized callback that remains stable across renders.";
 
 /**
- * A hook that returns a memoized version of a callback that is stable between renders.
+ * Returns a memoized callback that remains stable across renders.
  *
  * @param fn The callback function that depends on external values.
  * @returns A stable version of the provided callback.

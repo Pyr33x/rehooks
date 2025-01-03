@@ -1,15 +1,13 @@
 {
   "pages": [
-    "---Getting Started---",
     "index",
     "contributing",
-    "---Setup---",
-    "guide",
-    "config",
-    "---API Reference---",
-    "api",
-    "---Hooks---",
+    "getting-started",
+    "---API---",
+    "api-reference",
+    "---Components---",
     "hooks",
-    "..."
+    "---Rights---",
+    "legal"
   ]
 }

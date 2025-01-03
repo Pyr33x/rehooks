@@ -1,6 +1,6 @@
 ---
 title: useSessionStorage
-description: A React hook that allows you to persist data across browser sessions.
+description: Manages a state variable synchronized with session storage.
 ---
 
 # useSessionStorage
@@ -37,7 +37,7 @@ function Component() {
 
 ### useSessionStorage
 
-```ts
+```ts title="useSessionStorage.ts"
 function useSessionStorage<T>(
   key: string,
   initialValue: T,

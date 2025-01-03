@@ -6,8 +6,8 @@ import { features } from "@/app/(home)/_components/cards";
 export function Grid() {
   return (
     <BentoGrid>
-      {features.map((feature, idx) => (
-        <BentoCard key={idx} {...feature} />
+      {features.map((features, index) => (
+        <BentoCard key={index} {...features} />
       ))}
     </BentoGrid>
   );

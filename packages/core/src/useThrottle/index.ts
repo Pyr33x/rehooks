@@ -1,7 +1,6 @@
 import { useCallback, useRef, useEffect } from "react";
 
-const description =
-  "Custom React hook that returns a throttled version of the provided function.";
+const description = "Returns a throttled version of the provided function.";
 
 /**
  * Type for throttle options
@@ -18,7 +17,7 @@ type ThrottleOptions = {
 };
 
 /**
- * Custom React hook that returns a throttled version of the provided function.
+ * Returns a throttled version of the provided function.
  * The throttled function will only execute at most once per every `wait` milliseconds.
  *
  * @template T - Generic type extending function

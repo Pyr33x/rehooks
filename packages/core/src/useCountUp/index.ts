@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 
-const description = "Custom hook that implements a count-up functionality.";
+const description =
+  "Implements count-up functionality with customizable settings.";
 
 type CountupOptions = {
   countStart: number;
@@ -15,7 +16,7 @@ type CountupControllers = {
 };
 
 /**
- * Custom hook that implements a count-up functionality.
+ * Implements count-up functionality with customizable settings.
  *
  * @param {CountupOptions} options - The options for the count-up.
  * @param {number} options.countStart - The starting count value.

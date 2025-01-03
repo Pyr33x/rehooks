@@ -50,7 +50,7 @@ export function Editor() {
 
   return (
     <div className="my-12">
-      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[350px] flex-col overflow-hidden rounded-2xl border bg-neutral-950 shadow-[0_0px_100px_rgba(91,33,182,.15)] sm:max-w-full">
+      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-950 shadow-[0_0px_100px_rgba(91,33,182,.15)] sm:max-w-full">
         <div className="flex select-none border-neutral-800">
           <TabButton
             active={activeTab === "hook"}
@@ -74,11 +74,6 @@ export function Editor() {
 
         <div className="flex w-full flex-1 flex-col md:flex-row">
           <div className="min-h-[300px] max-w-[600px] flex-1 overflow-auto p-4">
-            <div className="text-fd-muted-foreground mb-2 select-none rounded-md bg-neutral-900 p-2 font-mono text-sm tracking-tight">
-              {activeTab === "hook"
-                ? "src > hooks > useToggle"
-                : "src > components > Settings"}
-            </div>
             <CodeBlock className="text-sm md:text-base lg:text-lg">
               {activeTab === "hook" ? hookCode : settingCode}
             </CodeBlock>

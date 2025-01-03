@@ -15,10 +15,11 @@ type CounterReturnType = {
 };
 
 const description =
-  "Hook that returns a tuple containing increment, decrement, reset functions, and the current value of the counter.";
+  "Returns a tuple with counter value and increment, decrement, reset functions.";
 
 /**
- * Hook that returns a tuple containing the following:
+ * Returns a tuple with counter value and increment, decrement, reset functions.
+ *
  * - `increment`: A function that increments the counter by 1.
  * - `decrement`: A function that decrements the counter by 1.
  * - `reset`: A function that sets the counter to 0.

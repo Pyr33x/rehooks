@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
 const description =
-  "Custom React hook that returns a function to check if the component is currently mounted.";
+  "Returns a function to check if the component is currently mounted.";
 
 type UseIsMountedReturnType = () => boolean;
 
 /**
- * A custom React hook that returns a function to check if the component is currently mounted.
+ * A Returns a function to check if the component is currently mounted.
  *
  * This hook can be useful for preventing state updates on unmounted components,
  * which can lead to memory leaks and errors in your application.

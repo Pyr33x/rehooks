@@ -14,6 +14,7 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
     "./mdx-components.{ts,tsx}",
     "./node_modules/fumadocs-ui/dist/**/*.js",
     "../../packages/ui/src/**/*.{ts,tsx}",
+    "./node_modules/fumadocs-openapi/dist/**/*.js",
   ],
   theme: {
     extend: {

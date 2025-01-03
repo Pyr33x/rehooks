@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const description = "A custom hook to track whether an element is hovered.";
+const description = "Tracks the hover state of a specified element.";
 
 /**
  * Adds an event listener to a given target.
@@ -24,7 +24,7 @@ function useEventListener<K extends keyof HTMLElementEventMap>(
 }
 
 /**
- * A custom hook to track whether an element is hovered.
+ * Tracks the hover state of a specified element.
  *
  * @returns A tuple containing a ref to attach to the element and a boolean indicating if it's hovered.
  */

@@ -1,0 +1,9 @@
+{
+  "title": "Legal",
+  "defaultOpen": true,
+  "pages": [
+    "terms",
+    "privacy-policy",
+    "code-policy"
+  ]
+}

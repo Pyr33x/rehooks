@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 
 const description =
-  "Custom hook that tracks and returns the current scroll position, and provides a method to scroll to specific coordinates.";
+  "Tracks and returns the current scroll position, with a method to scroll to specific coordinates.";
 
 /**
  * Represents the scroll position in the x and y directions.
@@ -12,8 +12,7 @@ type ScrollPosition = {
 };
 
 /**
- * Custom hook that tracks and returns the current scroll position,
- * and provides a method to scroll to specific coordinates.
+ * Tracks and returns the current scroll position, with a method to scroll to specific coordinates.
  *
  * @returns {{ position: ScrollPosition; scrollTo: (options: ScrollToOptions) => void }}
  */

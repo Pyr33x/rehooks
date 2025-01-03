@@ -1,10 +1,10 @@
 import { useEffect, useRef, type RefObject } from "react";
 
 const description =
-  "A custom hook to add and clean up an event listener on any target element.";
+  "Adds and cleans up an event listener on a specified target element.";
 
 /**
- * A custom hook to add and clean up an event listener on any target element.
+ * Adds and cleans up an event listener on a specified target element.
  *
  * @param eventName The event type (e.g. 'click', 'scroll', 'resize', etc.).
  * @param handler The event handler function.

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const description = "Custom hook to retrieve battery information and status.";
+const description =
+  "Fetches and monitors device battery level and charging state.";
 
 type BatteryManager = {
   level: number;
@@ -33,7 +34,7 @@ type NavigatorWithBattery = Navigator & {
 };
 
 /**
- * Custom hook to retrieve battery information and status.
+ * Fetches and monitors device battery level and charging state.
  *
  * @description Provides battery information including level, charging status, and estimated time for charging and discharging.
  * Handles unsupported environments by setting `supported` to `false`.

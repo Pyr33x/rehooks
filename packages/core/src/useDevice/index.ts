@@ -10,7 +10,7 @@ type DeviceDetect = {
 };
 
 const description =
-  "A hook that detects the device type and returns a boolean value for each device type.";
+  "Detects device type and returns a boolean for each detected type.";
 
 // Device type is constant and never changes
 const emptySubscribe = () => () => {};
@@ -51,7 +51,7 @@ const getDeviceTypeServer = (): DeviceDetect => ({
 });
 
 /**
- * A hook that detects the device type and returns a boolean value for each device type.
+ * Detects device type and returns a boolean for each detected type.
  *
  * @returns {DeviceDetect} - An object containing boolean values for each device type.
  */

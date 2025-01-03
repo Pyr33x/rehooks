@@ -1,6 +1,6 @@
 ---
 title: useThrottle
-description: Custom hook that throttles a callback function.
+description: Returns a throttled version of the provided function.
 ---
 
 # useThrottle
@@ -67,7 +67,7 @@ function Component() {
 
 ### useThrottle
 
-```ts
+```ts title="useThrottle.ts"
 function useThrottle<T extends (...args: any[]) => any>(
   fn: T,
   options: ThrottleOptions = {},

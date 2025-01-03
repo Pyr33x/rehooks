@@ -1,6 +1,6 @@
 ---
 title: useScroll
-description: Custom hook that tracks and returns the current scroll position, and provides a method to scroll to specific coordinates.
+description: Tracks and returns the current scroll position, with a method to scroll to specific coordinates.
 ---
 
 # useScoll
@@ -28,7 +28,7 @@ function Component() {
 
 ### useScroll
 
-```ts
+```ts title="useScroll.ts"
 function useScroll(): {
   position: ScrollPosition;
   scrollTo: (options: ScrollToOptions) => void;

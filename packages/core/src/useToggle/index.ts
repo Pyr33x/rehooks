@@ -5,10 +5,10 @@ import {
   type SetStateAction,
 } from "react";
 
-const description = "Returns a stateful value and two functions to update it.";
+const description = "Returns a stateful value with two functions to update it.";
 
 /**
- * Returns a stateful value and two functions to update it.
+ * Returns a stateful value with two functions to update it.
  *
  * @param defaultValue - The initial value of the state. Defaults to `false`.
  *

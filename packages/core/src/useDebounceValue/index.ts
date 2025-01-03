@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
-const description =
-  "Custom hook that debounces a value, returning the value after the specified delay.";
+const description = "Debounces a value, updating it after a specified delay.";
 
 /**
- * Custom hook that debounces a value, returning the value after the specified delay.
+ * Debounces a value, updating it after a specified delay.
  * Useful for cases where you want to prevent frequent updates (e.g., input fields).
  *
  * @template T - The type of the value being debounced.

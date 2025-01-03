@@ -8,7 +8,7 @@ type KeyConfig = {
   meta?: boolean;
 };
 
-const description = "Custom hook to detect if a specified key is pressed.";
+const description = "Detects the press state of a specified key.";
 
 /**
  * Key configuration object for the useKeyPress hook.
@@ -21,7 +21,7 @@ const description = "Custom hook to detect if a specified key is pressed.";
  */
 
 /**
- * Custom hook to detect if a specified key is pressed.
+ * Detects the press state of a specified key.
  *
  * @param {KeyConfig} config - The configuration for the key press detection.
  * @returns {boolean} - A boolean value indicating whether the specified key combination is currently pressed.

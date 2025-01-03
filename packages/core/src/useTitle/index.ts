@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const description = "Custom hook to change the page title.";
+const description = "Changes the page title dynamically.";
 
 /**
- * Custom hook to change the page title.
+ * Changes the page title dynamically.
  *
  * @description Provides a stateful title and a function to update both the state and the document title.
  *

@@ -10,6 +10,10 @@ import {
   Braces,
   Layers,
   Zap,
+  ChevronRight,
+  Server,
+  Scale,
+  Component,
 } from "lucide-react";
 
 export {
@@ -24,6 +28,10 @@ export {
   Braces,
   Layers,
   Zap,
+  ChevronRight,
+  Server,
+  Scale,
+  Component,
 };
 export * from "./rehooks";
 export * from "./github";

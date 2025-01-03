@@ -10,7 +10,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "api:generate": "tsx ./src/api/openapi.ts"
   },
   "keywords": [
     "rehooks",
@@ -19,11 +20,14 @@
     "functions"
   ],
   "devDependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.0",
     "@rehooks/tsconfig": "workspace:*",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.3",
-    "typescript": "^5.6.3"
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "zod": "^3.23.8"
   },
   "dependencies": {
     "next": "^14.2.8"

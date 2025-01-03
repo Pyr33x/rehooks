@@ -2,15 +2,22 @@ import { NpmIcon, GithubIcon, RehooksIcon } from "@rehooks/ui/icons";
 import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
 import Link from "next/link";
 
-const TEXT_STYLE =
-  "text-fd-muted-foreground hover:text-fd-foreground/90 transition ease-in-out";
-
 export default function Footer() {
+  const legal = [
+    { title: "Terms of Service", link: "/docs/legal/terms" },
+    { title: "Privacy Policy", link: "/docs/legal/privacy-policy" },
+    { title: "Code Policy", link: "/docs/legal/code-policy" },
+  ];
+
+  const TEXT_STYLE =
+    "text-sm hover:underline text-fd-muted-foreground transition-colors";
+
   return (
     <footer className="border-t-fd-border border-t py-12">
-      <div className="container mx-auto max-w-7xl">
-        <div className="space-y-16">
-          <div>
+      <div className="container mx-auto max-w-7xl px-8">
+        {/* Top Section */}
+        <div className="flex flex-col justify-between gap-8 sm:flex-row">
+          <div className="flex flex-col">
             <div className="mb-4 flex items-center gap-2">
               <RehooksIcon className="size-6" />
               <span className="text-xl font-semibold">Rehooks</span>
@@ -21,49 +28,43 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* <div className="flex justify-start gap-24">
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold">Legal</h3>
-              <div className="flex flex-col space-y-2">
-                <Link
-                  href="#"
-                  className={TEXT_STYLE}
-                >
-                  Terms of Service
+          {/* Legal Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold">Legal</h3>
+            <div className="flex flex-col space-y-2">
+              {legal.map((item) => (
+                <Link className={TEXT_STYLE} key={item.title} href={item.link}>
+                  {item.title}
                 </Link>
-                <Link
-                  href="#"
-                  className={TEXT_STYLE}
-                >
-                  Privacy Policy
-                </Link>
-                <Link
-                  href="#"
-                  className={TEXT_STYLE}
-                >
-                  Code Policy
-                </Link>
-              </div>
+              ))}
             </div>
-          </div> */}
-
-          <div className="border-fd-border flex flex-col items-center justify-between border-t pt-8 sm:flex-row">
-            <div className="text-fd-muted-foreground flex flex-row gap-4">
-              <Link href={GITHUB_LINK} className={TEXT_STYLE}>
-                <GithubIcon className="size-5" />
-                <span className="sr-only">Github</span>
-              </Link>
-              <Link href={REHOOKS_NPM} className={TEXT_STYLE}>
-                <NpmIcon className="size-5" />
-                <span className="sr-only">NPM</span>
-              </Link>
-            </div>
-
-            <p className="text-fd-muted-foreground mt-4 text-sm">
-              Copyright © {new Date().getFullYear()} Rehooks. All Rights
-              Reserved.
-            </p>
           </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-fd-border mt-8 flex flex-col items-center justify-between border-t pt-8 sm:flex-row">
+          <div className="flex flex-row gap-4">
+            <Link
+              href={GITHUB_LINK}
+              className="text-fd-muted-foreground hover:text-fd-foreground"
+            >
+              <GithubIcon className="size-5" />
+              <span className="sr-only">Github</span>
+            </Link>
+            <Link
+              href={REHOOKS_NPM}
+              className="text-fd-muted-foreground hover:text-fd-foreground"
+            >
+              <NpmIcon className="size-5" />
+              <span className="sr-only">NPM</span>
+            </Link>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-fd-muted-foreground mt-4 text-sm sm:mt-0">
+            Copyright © {new Date().getFullYear()} Rehooks. All Rights
+            Reserved.
+          </p>
         </div>
       </div>
     </footer>

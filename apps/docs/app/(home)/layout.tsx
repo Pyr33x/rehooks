@@ -1,5 +1,5 @@
+import { HomeLayout } from "fumadocs-ui/layouts/home";
 import Footer from "@/app/(home)/_components/footer";
-import { HomeLayout } from "fumadocs-ui/home-layout";
 import { baseOptions } from "@/app/layout.config";
 import { Grid } from "@rehooks/ui/components";
 import type { ReactNode } from "react";
