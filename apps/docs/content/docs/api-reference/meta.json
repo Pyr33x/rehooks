@@ -1,6 +1,7 @@
 {
   "name": "API Reference",
   "icon": "Server",
+  "defaultOpen": true,
   "pages": [
     "..."
   ]

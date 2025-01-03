@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "https://rehooks.pyr33x.ir/api",
-      "description": "Production server"
+      "description": "Production Server"
     }
   ],
   "components": {
@@ -25,12 +25,12 @@
           "title": {
             "type": "string",
             "minLength": 1,
-            "example": "Example Hook Title"
+            "example": "useExample"
           },
           "description": {
             "type": "string",
             "minLength": 1,
-            "example": "This is an example hook description."
+            "example": "This is an example description."
           },
           "content": {
             "type": "string",
@@ -44,6 +44,74 @@
           "description",
           "content"
         ]
+      },
+      "InvalidLimitError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid limit. It must be a positive number."
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "RateLimitError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 429
+          },
+          "message": {
+            "type": "string",
+            "example": "Rate limit exceeded"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "InternalServerError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 500
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 404
+          },
+          "message": {
+            "type": "string",
+            "example": "Hook not found"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
       }
     },
     "parameters": {}
@@ -51,8 +119,11 @@
   "paths": {
     "/hooks": {
       "get": {
-        "summary": "Get a list of hooks",
-        "description": "Returns a list of hooks, optionally filtered by search and limited by count.",
+        "summary": "Get list of available hooks",
+        "description": "Returns the list of available hooks, optionally filtered by search and limited by count.",
+        "tags": [
+          "Hooks"
+        ],
         "parameters": [
           {
             "name": "search",
@@ -66,7 +137,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Limit the number of hooks returned",
+            "description": "Limit the number of hooks returned. Default is all.",
             "required": false,
             "schema": {
               "type": "integer",
@@ -76,7 +147,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of hooks",
+            "description": "Success.",
             "content": {
               "application/json": {
                 "schema": {
@@ -89,21 +160,45 @@
             }
           },
           "400": {
-            "description": "Invalid input (e.g., invalid limit)"
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidLimitError"
+                }
+              }
+            }
           },
           "429": {
-            "description": "Rate limit exceeded"
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
           }
         }
       }
     },
     "/hooks/{title}": {
       "get": {
-        "summary": "Get a hook by title",
-        "description": "Returns a single hook by its title.",
+        "summary": "Get a specific hook by title",
+        "description": "Returns a specific hook by its title.",
+        "tags": [
+          "Hooks"
+        ],
         "parameters": [
           {
             "name": "title",
@@ -117,7 +212,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A single hook",
+            "description": "Success.",
             "content": {
               "application/json": {
                 "schema": {
@@ -127,13 +222,34 @@
             }
           },
           "404": {
-            "description": "Hook not found"
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
           },
           "429": {
-            "description": "Rate limit exceeded"
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
           }
         }
       }

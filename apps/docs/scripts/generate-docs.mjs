@@ -1,4 +1,4 @@
-import * as OpenAPI from "fumadocs-openapi";
+import { generateFiles } from "fumadocs-openapi";
 import { rimrafSync } from "rimraf";
 
 const out = "./content/docs/api-reference";
@@ -9,7 +9,7 @@ rimrafSync(out, {
   },
 });
 
-void OpenAPI.generateFiles({
+void generateFiles({
   input: ["./rehooksapi.json"],
   output: out,
   groupBy: "tag",
