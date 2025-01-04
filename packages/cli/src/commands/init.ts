@@ -1,5 +1,5 @@
+import { intro, log, outro, confirm, text } from "@clack/prompts";
 import { SRC_HOOKS_DIR, HOOKS_DIR } from "~/utils/constants";
-import { intro, log, outro, confirm } from "@clack/prompts";
 import { green, red, cyan, bold, yellow } from "colorette";
 import { getConfig } from "~/utils/config";
 import { Command } from "commander";
@@ -110,11 +110,24 @@ export const init = new Command()
     let directory = customPath || HOOKS_DIR;
 
     if (!customPath) {
-      const choice = await confirm({
+      const hasSrc = await confirm({
         message: `Does your project have a ${bold(cyan("src"))} folder?`,
         initialValue: true,
       });
-      directory = choice ? SRC_HOOKS_DIR : HOOKS_DIR;
+
+      if (hasSrc) {
+        directory = SRC_HOOKS_DIR;
+      } else {
+        const customDir = await text({
+          message:
+            "Where would you like to create the hooks directory? (e.g., 'hooks', 'src/hooks', 'custom/path')",
+          placeholder: HOOKS_DIR,
+        });
+
+        if (typeof customDir === "string" && customDir.trim()) {
+          directory = customDir.trim();
+        }
+      }
     }
 
     log.info(cyan("Creating rehooks.json configuration file..."));
