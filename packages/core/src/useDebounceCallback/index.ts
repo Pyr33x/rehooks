@@ -15,7 +15,7 @@ const description =
  *   console.log("Saving data:", value);
  * }, 500);
  */
-export function useDebounceCallback<T extends (...args: any[]) => void>(
+export function useDebounceCallback<T extends (...args: unknown[]) => void>(
   callback: T,
   delay: number,
 ): (...args: Parameters<T>) => void {

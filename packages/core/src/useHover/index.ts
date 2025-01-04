@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const description = "Tracks the hover state of a specified element.";
 
@@ -11,7 +11,7 @@ const description = "Tracks the hover state of a specified element.";
  */
 function useEventListener<K extends keyof HTMLElementEventMap>(
   eventType: K,
-  listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+  listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
   target: React.RefObject<HTMLElement>,
 ): void {
   useEffect(() => {
@@ -19,7 +19,9 @@ function useEventListener<K extends keyof HTMLElementEventMap>(
     if (!element) return;
 
     element.addEventListener(eventType, listener);
-    return () => element.removeEventListener(eventType, listener);
+    return () => {
+      element.removeEventListener(eventType, listener);
+    };
   }, [eventType, listener, target]);
 }
 
@@ -35,8 +37,12 @@ export function useHover<T extends HTMLElement>(): [
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef<T>(null);
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   useEventListener("mouseenter", handleMouseEnter, ref);
   useEventListener("mouseleave", handleMouseLeave, ref);

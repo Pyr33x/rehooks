@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const description =
   "Provides a function to copy text to the clipboard effortlessly.";
@@ -16,7 +16,7 @@ const description =
  *   the user's clipboard. If the copy action is successful, it sets the
  *   `isCopied` state to `true`.
  */
-export function useClipboard(timeout: number = 1500) {
+export function useClipboard(timeout = 1500) {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function useClipboard(timeout: number = 1500) {
         .then(() => {
           setIsCopied(true);
         })
-        .catch((err) => {
+        .catch((err: unknown) => {
           console.error("Failed to copy: ", err);
           alert("Failed to copy text");
         });

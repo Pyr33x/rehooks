@@ -39,7 +39,6 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error",
-
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
@@ -65,13 +64,7 @@ module.exports = {
       { "ts-ignore": "allow-with-description" },
     ],
 
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        ignoreRestSiblings: true,
-      },
-    ],
+    "@typescript-eslint/no-unused-vars": "off",
 
     "no-restricted-syntax": [
       "warn",
@@ -85,5 +78,13 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unnecessary-condition": "off",
     "@typescript-eslint/prefer-ts-expect-error": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
   },
 };

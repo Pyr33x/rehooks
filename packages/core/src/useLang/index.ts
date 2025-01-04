@@ -12,7 +12,9 @@ const description =
  */
 function langSubscribe(callback: () => void) {
   window.addEventListener("languagechange", callback);
-  return () => window.removeEventListener("languagechange", callback);
+  return () => {
+    window.removeEventListener("languagechange", callback);
+  };
 }
 
 /**

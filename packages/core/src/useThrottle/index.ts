@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const description = "Returns a throttled version of the provided function.";
 
@@ -29,7 +29,7 @@ type ThrottleOptions = {
  *
  * @returns {(...args: Parameters<T>) => void} A throttled version of the provided function
  */
-export function useThrottle<T extends (...args: any[]) => any>(
+export function useThrottle<T extends (...args: unknown[]) => void>(
   fn: T,
   options: ThrottleOptions = {},
 ): (...args: Parameters<T>) => void {
@@ -55,7 +55,9 @@ export function useThrottle<T extends (...args: any[]) => any>(
       lastArgsRef.current = args;
 
       const execute = () => {
-        fn(...(lastArgsRef.current as Parameters<T>));
+        if (lastArgsRef.current) {
+          fn(...lastArgsRef.current);
+        }
         lastRunRef.current = Date.now();
       };
 

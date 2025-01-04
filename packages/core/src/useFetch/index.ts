@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type UseFetchResult<T, E> = {
   data: T | null;
@@ -69,7 +69,9 @@ export function useFetch<T, E = string>(
       setisPending(false);
     }
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+    };
   }, [url, reqOpt]);
 
   useEffect(() => {
