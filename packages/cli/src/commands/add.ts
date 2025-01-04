@@ -6,7 +6,7 @@ import {
   spinner,
   outro,
 } from "@clack/prompts";
-import { API_ENDPOINT } from "~/utils/constants";
+import { BASE_URL } from "~/utils/constants";
 import { cyan, green, red } from "colorette";
 import { getConfig } from "~/utils/config";
 import type { Hook } from "~/types/hook";
@@ -52,7 +52,7 @@ export const add = new Command()
           }
 
           const selectedHookResponse = await axios.get<Hook>(
-            `${API_ENDPOINT}/${hook}`,
+            `${BASE_URL}/hooks/${hook}`,
           );
 
           let { content } = selectedHookResponse.data;
@@ -71,7 +71,7 @@ export const add = new Command()
 
       const fetchSpinner = spinner();
       fetchSpinner.start("Fetching hooks...");
-      const res = await axios.get<Hook[]>(API_ENDPOINT);
+      const res = await axios.get<Hook[]>(`${BASE_URL}/hooks`);
       const hooksData = res.data;
       fetchSpinner.stop("Done.");
 
@@ -107,7 +107,9 @@ export const add = new Command()
           }
         }
 
-        const selectedHookResponse = await axios.get(`${API_ENDPOINT}/${hook}`);
+        const selectedHookResponse = await axios.get(
+          `${BASE_URL}/hooks/${hook}`,
+        );
         let { content } = selectedHookResponse.data;
         fs.writeFileSync(hookFilePath, content);
 
