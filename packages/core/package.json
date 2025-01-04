@@ -25,7 +25,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "lint": "eslint './src/**/*.{ts,tsx}'"
   },
   "keywords": [
     "rehooks",
@@ -39,6 +40,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@rehooks/eslint-config": "workspace:*",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@rehooks/tsconfig": "workspace:*",
