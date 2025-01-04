@@ -1,5 +1,6 @@
 {
   "title": "Getting Started",
+  "defaultOpen": true,
   "pages": [
     "initialization",
     "configuration"

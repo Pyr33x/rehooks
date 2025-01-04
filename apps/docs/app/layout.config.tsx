@@ -1,9 +1,4 @@
-import {
-  ChevronRight,
-  Component,
-  RehooksIcon,
-  Server,
-} from "@rehooks/ui/icons";
+import { ChevronRight, Cuboid, RehooksIcon, Server } from "@rehooks/ui/icons";
 import type { HomeLayoutProps } from "fumadocs-ui/layouts/home";
 
 export const baseOptions: HomeLayoutProps = {
@@ -29,7 +24,7 @@ export const baseOptions: HomeLayoutProps = {
           url: "/docs/getting-started",
         },
         {
-          icon: <Component />,
+          icon: <Cuboid />,
           text: "Hooks",
           description: "Explore the hooks available in Rehooks.",
           url: "/docs/hooks",

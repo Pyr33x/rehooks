@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Server,
   Scale,
-  Component,
+  Cuboid,
 } from "lucide-react";
 
 export {
@@ -31,7 +31,7 @@ export {
   ChevronRight,
   Server,
   Scale,
-  Component,
+  Cuboid,
 };
 export * from "./rehooks";
 export * from "./github";

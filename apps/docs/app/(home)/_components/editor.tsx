@@ -131,7 +131,7 @@ function Stat({ name, component }: { name: string; component?: string }) {
         <span className="text-base font-medium text-white">{component}</span>
       </div>
       <div className="flex flex-row text-white">
-        <span className="mr-2 text-sm text-violet-500">→</span>
+        <span className="mr-2 text-sm text-violet-500">○</span>
         <span className="flex-1 text-sm text-white">{name}</span>
       </div>
     </div>
