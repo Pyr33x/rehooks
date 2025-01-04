@@ -13,7 +13,7 @@ async function main() {
       "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
     )
     .version(
-      packageInfo.version || "4.2.1",
+      packageInfo.version || "4.2.2",
       "-v, --version",
       "Displays the version number",
     );
