@@ -27,7 +27,7 @@ pub fn import_hooks_from_src(src_dir: &str) -> Result<Vec<Hook>, String> {
                     let description = extract_description(&content).ok()?;
 
                     return Some(Ok(Hook {
-                        id: id as u32,
+                        id: (id - 1) as u16,
                         title,
                         content,
                         description,
