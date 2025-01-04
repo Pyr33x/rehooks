@@ -18,14 +18,13 @@ export const rehooksSchema = z.object({
 export type RehooksConfig = z.infer<typeof rehooksSchema>;
 
 export async function getConfig(cwd: string): Promise<RehooksConfig | null> {
-  const config = await getRawConfig(cwd);
-
-  if (!config) {
-    log.error("Configuration not found.");
+  try {
+    const config = await getRawConfig(cwd);
+    return rehooksSchema.parse(config);
+  } catch (error) {
+    log.error(`Error loading configuration: ${error}`);
     return null;
   }
-
-  return validateConfig(config);
 }
 
 export async function getRawConfig(cwd: string): Promise<unknown | null> {
@@ -38,14 +37,10 @@ export async function getRawConfig(cwd: string): Promise<unknown | null> {
 
     return configResult.config;
   } catch (error) {
-    const errMsg = `Error loading configuration from ${cwd}/rehooks.json: ${error}`;
-    log.error(errMsg);
-    throw handleError(errMsg);
+    const errorMessage = `Error loading configuration from ${cwd}/rehooks.json: ${error}`;
+    log.error(errorMessage);
+    throw handleError(errorMessage);
   }
-}
-
-export function validateConfig(config: unknown): RehooksConfig {
-  return rehooksSchema.parse(config);
 }
 
 export async function resolveConfigPaths(cwd: string, config: RehooksConfig) {
@@ -64,7 +59,7 @@ export async function resolveConfigPaths(cwd: string, config: RehooksConfig) {
   };
 }
 
-async function getTsConfig(cwd: string): Promise<any | null> {
+async function getTsConfig(cwd: string): Promise<unknown | null> {
   const tsConfigPath = path.resolve(cwd, "tsconfig.json");
 
   try {
