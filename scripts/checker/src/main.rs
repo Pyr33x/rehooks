@@ -26,7 +26,7 @@ fn check_hooks_health(hook_directory: &str) -> Vec<checker::HookHealth> {
 }
 
 fn main() {
-    let hook_directory = "../core/src";
+    let hook_directory = "../../packages/core/src";
     let health_reports = check_hooks_health(hook_directory);
     report_health(health_reports);
 }
