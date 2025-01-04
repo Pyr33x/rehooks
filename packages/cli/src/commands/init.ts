@@ -1,7 +1,7 @@
-import { intro, log, outro, confirm, text } from "@clack/prompts";
 import { SRC_DIR_PLACEHOLDER, DIR_PLACEHOLDER } from "~/utils/constants";
+import { intro, log, outro, confirm, text } from "@clack/prompts";
 import { green, red, cyan, bold, yellow } from "colorette";
-import { getConfig } from "~/utils/config";
+import { getConfig, getTsConfig } from "~/utils/config";
 import { Command } from "commander";
 import semver from "semver";
 import path from "path";
@@ -166,6 +166,19 @@ export const init = new Command()
       }
     } catch (error) {
       log.error(red("Failed to load configuration."));
+    }
+
+    try {
+      const tsConfig = await getTsConfig(process.cwd());
+      log.success(green("TypeScript configuration loaded successfully."));
+
+      if (!tsConfig) {
+        log.warn(
+          yellow("TypeScript configuration loaded, but may be incomplete."),
+        );
+      }
+    } catch (error) {
+      log.error(red("Failed to load TypeScript configuration."));
     }
 
     outro("Initialization complete!");
