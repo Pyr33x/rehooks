@@ -1,5 +1,5 @@
 import { intro, log, outro, confirm, text } from "@clack/prompts";
-import { SRC_HOOKS_DIR, HOOKS_DIR } from "~/utils/constants";
+import { SRC_DIR_PLACEHOLDER, DIR_PLACEHOLDER } from "~/utils/constants";
 import { green, red, cyan, bold, yellow } from "colorette";
 import { getConfig } from "~/utils/config";
 import { Command } from "commander";
@@ -107,7 +107,7 @@ export const init = new Command()
       }
     }
 
-    let directory = customPath || HOOKS_DIR;
+    let directory = customPath || DIR_PLACEHOLDER;
 
     if (!customPath) {
       const hasSrc = await confirm({
@@ -116,12 +116,12 @@ export const init = new Command()
       });
 
       if (hasSrc) {
-        directory = SRC_HOOKS_DIR;
+        directory = SRC_DIR_PLACEHOLDER;
       } else {
         const customDir = await text({
           message:
             "Where would you like to create the hooks directory? (e.g., 'hooks', 'src/hooks', 'custom/path')",
-          placeholder: HOOKS_DIR,
+          placeholder: DIR_PLACEHOLDER,
         });
 
         if (typeof customDir === "string" && customDir.trim()) {
