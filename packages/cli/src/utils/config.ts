@@ -1,26 +1,19 @@
+import { configSchema, type RehooksConfig } from "~/schema/config.schema";
 import { resolveImport } from "./resolver";
 import { cosmiconfig } from "cosmiconfig";
 import { handleError } from "./error";
 import { log } from "@clack/prompts";
 import path from "path";
-import { z } from "zod";
 import fs from "fs";
 
 const explorer = cosmiconfig("rehooks", {
   searchPlaces: ["rehooks.json"],
 });
 
-export const rehooksSchema = z.object({
-  directory: z.string(),
-  forceOverwrite: z.boolean().default(false),
-});
-
-export type RehooksConfig = z.infer<typeof rehooksSchema>;
-
 export async function getConfig(cwd: string): Promise<RehooksConfig | null> {
   try {
     const config = await getRawConfig(cwd);
-    return rehooksSchema.parse(config);
+    return configSchema.parse(config);
   } catch (error) {
     log.error(`Error loading configuration: ${error}`);
     return null;

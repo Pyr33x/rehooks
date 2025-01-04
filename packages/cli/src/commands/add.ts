@@ -6,10 +6,10 @@ import {
   spinner,
   outro,
 } from "@clack/prompts";
+import type { Hook } from "~/schema/config.schema";
 import { BASE_URL } from "~/utils/constants";
 import { cyan, green, red } from "colorette";
 import { getConfig } from "~/utils/config";
-import type { Hook } from "~/types/hook";
 import { Command } from "commander";
 import axios from "axios";
 import path from "path";
