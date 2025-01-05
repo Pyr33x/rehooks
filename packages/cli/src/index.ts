@@ -15,7 +15,7 @@ async function main() {
     .version(
       packageInfo.version || "4.2.2",
       "-v, --version",
-      "Displays the version number",
+      "Displays the current version of the CLI",
     );
   program.addCommand(init);
   program.addCommand(add);
