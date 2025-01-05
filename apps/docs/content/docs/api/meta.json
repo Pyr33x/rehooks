@@ -2,7 +2,9 @@
   "name": "API Reference",
   "icon": "Server",
   "defaultOpen": true,
+  "root": true,
   "pages": [
-    "..."
+    "index",
+    "list"
   ]
 }

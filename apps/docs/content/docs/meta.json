@@ -1,13 +1,6 @@
 {
   "pages": [
-    "index",
-    "contributing",
-    "getting-started",
-    "---API---",
-    "api-reference",
-    "---Components---",
-    "hooks",
-    "---Rights---",
-    "legal"
+    "cli",
+    "api"
   ]
 }

@@ -15,6 +15,7 @@ import {
   Scale,
   Cuboid,
   ArrowUpRight,
+  Terminal,
 } from "lucide-react";
 
 export {
@@ -34,6 +35,7 @@ export {
   Scale,
   Cuboid,
   ArrowUpRight,
+  Terminal,
 };
 export * from "./rehooks";
 export * from "./github";

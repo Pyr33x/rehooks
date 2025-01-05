@@ -1,0 +1,9 @@
+---
+title: API Reference
+description: Rehooks API is a RESTFul API that allows you to get the details of the available hooks in the repository.
+icon: "Server"
+---
+
+# Limitation
+
+The API is currently open to everyone and does not require authentication. However, to prevent abusive use, there is a rate limit of 10 requests per 5 seconds for each IP address. If you exceed this limit, you will receive a 429 status code. This means that when you use the CLI to retrieve the list of hooks, you can only pick 10 hooks at a time.
