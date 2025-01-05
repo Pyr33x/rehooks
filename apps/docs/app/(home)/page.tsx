@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 export default function HomePage() {
   return (
     <>
-      <div className="mx-8 my-20 flex min-h-screen flex-col items-center justify-center">
+      <div className="mx-8 my-16 flex min-h-screen flex-col items-center justify-center">
         <div className="mb-6">
           <Badge
             icon={
@@ -43,12 +43,12 @@ function Badge({ children, icon }: { children: ReactNode; icon?: ReactNode }) {
       href="#"
       className="divide-fd-border border-fd-border bg-fd-background hover:bg-fd-secondary/50 group flex items-center rounded-full border text-xs font-medium drop-shadow-sm backdrop-blur-sm transition-colors duration-75 sm:divide-x"
     >
-      <span className="text-fd-foreground py-1.5 pl-4 sm:pr-2.5">
+      <span className="text-fd-foreground py-1.5 pl-4 text-sm sm:pr-2.5">
         {children}
       </span>
       <div className="text-fd-muted-foreground flex items-center gap-1.5 p-1.5 pl-2.5">
-        <span className="hidden sm:block">Read more</span>
-        <div className="bg-fd-secondary rounded-full p-1">{icon}</div>
+        <span className="hidden text-sm sm:block">Read more</span>
+        <div className="rounded-full bg-blue-600 p-1 text-white">{icon}</div>
       </div>
     </a>
   );
