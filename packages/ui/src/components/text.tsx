@@ -64,9 +64,7 @@ export function Text({
           id="textGradient"
           r="25%"
         >
-          {hovered ? (
-            <stop offset="100%" stopColor="var(--violet-500)" />
-          ) : null}
+          {hovered ? <stop offset="100%" stopColor="var(--blue-500)" /> : null}
         </linearGradient>
 
         <motion.radialGradient

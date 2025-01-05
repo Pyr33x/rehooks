@@ -11,9 +11,9 @@ export function Hero() {
 
   return (
     <>
-      <h1 className="max-w-lg text-balance bg-gradient-to-t from-black to-black bg-clip-text text-center text-4xl font-black text-transparent lg:text-6xl dark:from-violet-200 dark:from-75% dark:to-white">
+      <h1 className="max-w-lg text-balance bg-gradient-to-t from-black to-black bg-clip-text text-center text-4xl font-black text-transparent lg:text-6xl dark:from-blue-200 dark:from-75% dark:to-blue-100">
         Streamline Your{" "}
-        <span className="animate-background-shine inline-flex transform bg-[linear-gradient(110deg,#8b5cf6,45%,#a78bfa,55%,#8b5cf6)] bg-[length:250%_100%] bg-clip-text text-transparent">
+        <span className="animate-background-shine inline-flex transform bg-[linear-gradient(110deg,#2563eb,45%,#3b82f6,55%,#2563eb)] bg-[length:250%_100%] bg-clip-text text-transparent">
           React
         </span>{" "}
         Hooks
@@ -43,7 +43,7 @@ export function Hero() {
           borderRadius={9999}
           borderWidth={1.5}
           className="col-span-2"
-          color={["#8b5cf6", "#5b21b6"]}
+          color={["#2563eb", "#3b82f6"]}
         >
           <Button
             className="w-full rounded-full border-[1.5px] font-mono"

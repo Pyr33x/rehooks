@@ -6,7 +6,7 @@ export const baseOptions: HomeLayoutProps = {
   nav: {
     title: (
       <div className="flex flex-row items-center justify-center gap-x-2">
-        <RehooksIcon className="size-5" />
+        <RehooksIcon className="size-6" />
         <p className="font-sans text-lg">Rehooks</p>
       </div>
     ),

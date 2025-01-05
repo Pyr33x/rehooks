@@ -10,7 +10,7 @@ const hookCode = `export function useToggle(
   const [value, setValue] = useState(!!defaultValue);
 
   const toggle = () => {
-    setValue((x) => !x);
+    setValue((prev) => !prev);
   };
 
   // ...
@@ -50,7 +50,7 @@ export function Editor() {
 
   return (
     <div className="my-12">
-      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-950 shadow-[0_0px_100px_rgba(91,33,182,.15)] sm:max-w-full">
+      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-950 shadow-[0_0px_100px_rgba(38,99,235,0.2)] sm:max-w-full">
         <div className="flex select-none border-neutral-800">
           <TabButton
             active={activeTab === "hook"}
@@ -89,6 +89,8 @@ export function Editor() {
         </div>
         <BorderBeam
           className="absolute inset-0 z-10 rounded-2xl"
+          colorFrom="#2563eb"
+          colorTo="#3b82f6"
           duration={4}
         />
       </div>
@@ -115,7 +117,7 @@ function TabButton({
       onClick={onClick}
       className={`inline-flex w-full items-center justify-center border-b border-neutral-800 px-4 py-2 text-sm font-medium ${className} ${
         active
-          ? "border-b-violet-500 bg-neutral-900/80 text-white"
+          ? "border-b-blue-600 bg-neutral-900/80 text-white"
           : "text-fd-muted-foreground"
       }`}
     >
@@ -131,7 +133,7 @@ function Stat({ name, component }: { name: string; component?: string }) {
         <span className="text-base font-medium text-white">{component}</span>
       </div>
       <div className="flex flex-row text-white">
-        <span className="mr-2 text-sm text-violet-500">○</span>
+        <span className="mr-2 text-sm text-blue-500">○</span>
         <span className="flex-1 text-sm text-white">{name}</span>
       </div>
     </div>

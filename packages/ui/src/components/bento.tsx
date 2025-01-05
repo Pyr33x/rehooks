@@ -41,7 +41,7 @@ function BentoCard({
     >
       <div>{background}</div>
       <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-4">
-        <Icon className="size-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-[.8] group-hover:text-violet-600" />
+        <Icon className="size-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-[.8] group-hover:text-blue-600" />
         <h3 className="text-fd-foreground mt-2 text-xl font-semibold">
           {name}
         </h3>
