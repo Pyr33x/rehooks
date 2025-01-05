@@ -117,7 +117,7 @@ function TabButton({
       onClick={onClick}
       className={`border-fd-border inline-flex w-full items-center justify-center border-b px-4 py-2 text-sm font-medium ${className} ${
         active
-          ? "bg-fd-background text-fd-foreground border-b-blue-600"
+          ? "text-fd-foreground bg-fd-background border-b-blue-600 dark:bg-neutral-900/70"
           : "text-fd-muted-foreground"
       }`}
     >

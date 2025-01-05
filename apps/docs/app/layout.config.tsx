@@ -18,23 +18,34 @@ export const baseOptions: HomeLayoutProps = {
       url: "/docs",
       items: [
         {
-          icon: <ChevronRight />,
-          text: "Getting Started",
-          description: "Learn how to interact with the CLI.",
-          url: "/docs/getting-started",
-        },
-        {
-          icon: <Cuboid />,
-          text: "Hooks",
-          description: "Explore the hooks available in Rehooks.",
-          url: "/docs/hooks",
-        },
-        {
-          icon: <Server />,
-          text: "API Reference",
+          menu: {
+            banner: (
+              <div className="flex h-20 w-full items-center justify-center gap-x-1">
+                <RehooksIcon className="size-8" />
+                <h1 className="text-2xl font-bold text-white">Rehooks CLI</h1>
+              </div>
+            ),
+          },
+          icon: <RehooksIcon className="size-6" />,
+          text: "Rehooks CLI",
           description:
-            "Learn how to use the API to get the details of the available hooks.",
-          url: "/docs/api-reference",
+            "Learn how does Rehooks works and interact with the Rehooks CLI.",
+          url: "/docs/cli",
+        },
+        {
+          menu: {
+            banner: (
+              <div className="flex h-20 w-full items-center justify-center gap-x-1">
+                <RehooksIcon className="size-8" stroke="#2563eb" />
+                <h1 className="text-2xl font-bold text-white">Rehooks API</h1>
+              </div>
+            ),
+          },
+          icon: <RehooksIcon className="size-6" stroke="#2563eb" />,
+          text: "Rehooks API",
+          description:
+            "Explore the Rehooks API to get the details of the available hooks.",
+          url: "/docs/api",
         },
       ],
     },

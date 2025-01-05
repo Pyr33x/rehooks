@@ -11,16 +11,14 @@ const docsOptions: DocsLayoutProps = {
     tabs: [
       {
         title: "Rehooks CLI",
-        icon: <RehooksIcon className="mb-7 size-6" />,
-        description:
-          "Learn how does Rehooks works and interact with the Rehooks CLI.",
+        icon: <RehooksIcon className="m-0 size-6 md:mb-7" />,
+        description: "Learn how to interact with the Rehooks CLI.",
         url: "/docs/cli",
       },
       {
         title: "Rehooks API",
-        icon: <RehooksIcon className="mb-7 size-6" stroke="#2563eb" />,
-        description:
-          "Explore the Rehooks API to get the details of the available hooks.",
+        icon: <RehooksIcon className="m-0 size-6 md:mb-7" stroke="#2563eb" />,
+        description: "Explore the Rehooks API to get the available hooks.",
         url: "/docs/api",
       },
     ],

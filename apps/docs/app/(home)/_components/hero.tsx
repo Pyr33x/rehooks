@@ -20,7 +20,7 @@ export function Hero() {
         Avoid repetitive hook patterns, a source for making your own hooks.
       </p>
       <div className="mt-5 grid grid-cols-2 gap-y-2.5">
-        <Link href="/docs" className="group outline-none ring-0">
+        <Link href="/docs/cli" className="group outline-none ring-0">
           <Button className="group rounded-full">
             <ArrowRight className="size-6 transform transition duration-300 group-hover:translate-x-0.5" />
             Get Started
@@ -39,7 +39,7 @@ export function Hero() {
         </a>
         <Shine
           borderRadius={9999}
-          borderWidth={1.5}
+          borderWidth={1}
           className="col-span-2"
           color={["#2563eb", "#3b82f6"]}
         >
@@ -55,7 +55,7 @@ function CopyButton() {
 
   return (
     <Button
-      className="w-full rounded-full border-[1.5px] font-mono"
+      className="w-full rounded-full border-[1px] font-mono"
       onClick={() => copy("npx rehooks-cli@latest init")}
       variant="outline"
     >
