@@ -1,5 +1,6 @@
 "use client";
 
+import { ReactNode, useMemo, memo, CSSProperties } from "react";
 import { cn } from "@rehooks/utils";
 
 type TColorProp = string | string[];
@@ -10,10 +11,10 @@ interface ShineProps {
   duration?: number;
   color?: TColorProp;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export function Shine({
+export const Shine = memo(function Shine({
   borderRadius = 8,
   borderWidth = 1,
   duration = 14,
@@ -21,6 +22,13 @@ export function Shine({
   className,
   children,
 }: ShineProps) {
+  const backgroundRadialGradient = useMemo(() => {
+    const colors = Array.isArray(color) ? color.join(",") : color;
+    return `radial-gradient(transparent, transparent, ${colors}, transparent, transparent)`;
+  }, [color]);
+
+  const maskLinearGradient = `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`;
+
   return (
     <div
       className={cn(
@@ -30,7 +38,7 @@ export function Shine({
       style={
         {
           "--border-radius": `${borderRadius}px`,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       <div
@@ -38,14 +46,13 @@ export function Shine({
         style={
           {
             "--border-width": `${borderWidth}px`,
-            "--border-radius": `${borderRadius}px`,
             "--duration": `${duration}s`,
-            "--mask-linear-gradient": `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-            "--background-radial-gradient": `radial-gradient(transparent,transparent, ${color instanceof Array ? color.join(",") : color},transparent,transparent)`,
-          } as React.CSSProperties
+            "--mask-linear-gradient": maskLinearGradient,
+            "--background-radial-gradient": backgroundRadialGradient,
+          } as CSSProperties
         }
       />
       {children}
     </div>
   );
-}
+});

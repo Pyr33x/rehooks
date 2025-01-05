@@ -7,8 +7,6 @@ import { useClipboard } from "rehooks-ts";
 import Link from "next/link";
 
 export function Hero() {
-  const { copy, isCopied } = useClipboard();
-
   return (
     <>
       <h1 className="max-w-lg text-balance bg-gradient-to-t from-black to-black bg-clip-text text-center text-4xl font-black text-transparent lg:text-6xl dark:from-blue-200 dark:from-75% dark:to-blue-100">
@@ -45,17 +43,23 @@ export function Hero() {
           className="col-span-2"
           color={["#2563eb", "#3b82f6"]}
         >
-          <Button
-            className="w-full rounded-full border-[1.5px] font-mono"
-            onClick={() => copy("npx rehooks-cli@latest init")}
-            variant="outline"
-          >
-            {isCopied
-              ? "Copied to Clipboard!"
-              : "$ npx rehooks-cli@latest init"}
-          </Button>
+          <CopyButton />
         </Shine>
       </div>
     </>
+  );
+}
+
+function CopyButton() {
+  const { copy, isCopied } = useClipboard();
+
+  return (
+    <Button
+      className="w-full rounded-full border-[1.5px] font-mono"
+      onClick={() => copy("npx rehooks-cli@latest init")}
+      variant="outline"
+    >
+      {isCopied ? "Copied to Clipboard!" : "$ npx rehooks-cli@latest init"}
+    </Button>
   );
 }

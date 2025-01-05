@@ -71,7 +71,11 @@ export const features = [
       "Rehooks is written in TypeScript, ensuring type safety and maintainability throughout the codebase.",
     className:
       "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-2 lg:rounded-br-2xl lg:rounded-tr-none border-b-[0.5px] lg:border-b-[1px] border-r-[1px] border-t-[0.5px] border-l-[1px] lg:border-l-[0.5px]",
-    background: <Text text="<T>" className="absolute -top-16" />,
+    background: (
+      <div className="flex h-full w-full items-center justify-center">
+        <Text text="<T>" className="absolute top-16" />
+      </div>
+    ),
   },
   {
     Icon: Layers,

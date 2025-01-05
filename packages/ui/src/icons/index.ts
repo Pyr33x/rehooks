@@ -14,6 +14,7 @@ import {
   Server,
   Scale,
   Cuboid,
+  ArrowUpRight,
 } from "lucide-react";
 
 export {
@@ -32,6 +33,7 @@ export {
   Server,
   Scale,
   Cuboid,
+  ArrowUpRight,
 };
 export * from "./rehooks";
 export * from "./github";
