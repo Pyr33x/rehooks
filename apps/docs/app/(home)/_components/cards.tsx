@@ -25,7 +25,7 @@ export const Globe = ({ className }: { className?: string }) => {
       mapSamples: 16000,
       mapBrightness: 6,
       baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.545, 0.361, 0.965],
+      markerColor: [0.145, 0.388, 0.922],
       glowColor: [0.1, 0.1, 0.1],
       markers: [
         { location: [37.7595, -122.4367], size: 0.04 },

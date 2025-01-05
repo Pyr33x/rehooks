@@ -50,7 +50,7 @@ export function Editor() {
 
   return (
     <div className="my-12">
-      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-950 shadow-[0_0px_100px_rgba(38,99,235,0.2)] sm:max-w-full">
+      <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-100 shadow-[0_0px_100px_rgba(38,99,235,0.2)] sm:max-w-full dark:bg-neutral-950">
         <div className="flex select-none border-neutral-800">
           <TabButton
             active={activeTab === "hook"}
@@ -73,13 +73,13 @@ export function Editor() {
         </div>
 
         <div className="flex w-full flex-1 flex-col md:flex-row">
-          <div className="min-h-[300px] max-w-[600px] flex-1 overflow-auto p-4">
+          <div className="min-h-[300px] max-w-[600px] flex-1 overflow-auto p-4 outline-none ring-0">
             <CodeBlock className="text-sm md:text-base lg:text-lg">
               {activeTab === "hook" ? hookCode : settingCode}
             </CodeBlock>
           </div>
 
-          <div className="max-w-full select-none border-t border-neutral-800 p-4 md:border-l md:border-t-0 lg:w-[300px]">
+          <div className="border-fd-border max-w-full select-none border-t p-4 md:border-l md:border-t-0 lg:w-[300px]">
             <div className="space-y-2">
               {list.map((stat) => {
                 return <Stat key={stat.name} {...stat} />;
@@ -115,9 +115,9 @@ function TabButton({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`inline-flex w-full items-center justify-center border-b border-neutral-800 px-4 py-2 text-sm font-medium ${className} ${
+      className={`border-fd-border inline-flex w-full items-center justify-center border-b px-4 py-2 text-sm font-medium ${className} ${
         active
-          ? "border-b-blue-600 bg-neutral-900/80 text-white"
+          ? "bg-fd-background text-fd-foreground border-b-blue-600"
           : "text-fd-muted-foreground"
       }`}
     >
@@ -130,11 +130,13 @@ function Stat({ name, component }: { name: string; component?: string }) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row gap-x-4">
-        <span className="text-base font-medium text-white">{component}</span>
+        <span className="text-fd-foreground text-base font-medium">
+          {component}
+        </span>
       </div>
-      <div className="flex flex-row text-white">
+      <div className="flex flex-row">
         <span className="mr-2 text-sm text-blue-500">○</span>
-        <span className="flex-1 text-sm text-white">{name}</span>
+        <span className="text-fd-foreground flex-1 text-sm">{name}</span>
       </div>
     </div>
   );

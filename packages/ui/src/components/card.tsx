@@ -87,15 +87,15 @@ interface CodeBlockProps {
 
 function CodeBlock({
   children,
-  cls = "#2563eb",
-  sign = "#666666",
-  string = "#93c5fd",
-  keyword = "#bfdbfe",
-  comment = "#666666",
-  identifier = "#60a5fa",
-  jsxliterals = "#d6dffe",
-  property = "#b5c5fd",
-  entity = "#2563eb",
+  cls = "#3b82f6",
+  sign = "#a0a0a0",
+  string = "#bbdefb",
+  keyword = "#64b5f6",
+  comment = "#a0a0a0",
+  identifier = "#1e88e5",
+  jsxliterals = "#e1f5fe",
+  property = "#90caf9",
+  entity = "#3b82f6",
   ...props
 }: CodeBlockProps & ComponentPropsWithoutRef<"code">) {
   const codeHTML = highlight(children as string);
