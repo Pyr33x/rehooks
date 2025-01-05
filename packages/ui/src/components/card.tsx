@@ -89,11 +89,11 @@ function CodeBlock({
   children,
   cls = "#3b82f6",
   sign = "#a0a0a0",
-  string = "#bbdefb",
+  string = "#60a5fa",
   keyword = "#64b5f6",
   comment = "#a0a0a0",
   identifier = "#1e88e5",
-  jsxliterals = "#e1f5fe",
+  jsxliterals = "#60a5fa",
   property = "#90caf9",
   entity = "#3b82f6",
   ...props

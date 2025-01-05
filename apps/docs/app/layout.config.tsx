@@ -22,7 +22,9 @@ export const baseOptions: HomeLayoutProps = {
             banner: (
               <div className="flex h-20 w-full items-center justify-center gap-x-1">
                 <RehooksIcon className="size-8" />
-                <h1 className="text-2xl font-bold text-white">Rehooks CLI</h1>
+                <h1 className="text-fd-foreground text-2xl font-bold">
+                  Rehooks CLI
+                </h1>
               </div>
             ),
           },
@@ -37,7 +39,9 @@ export const baseOptions: HomeLayoutProps = {
             banner: (
               <div className="flex h-20 w-full items-center justify-center gap-x-1">
                 <RehooksIcon className="size-8" stroke="#2563eb" />
-                <h1 className="text-2xl font-bold text-white">Rehooks API</h1>
+                <h1 className="text-fd-foreground text-2xl font-bold">
+                  Rehooks API
+                </h1>
               </div>
             ),
           },
