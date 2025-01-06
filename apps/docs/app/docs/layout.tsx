@@ -1,7 +1,7 @@
 import { DocsLayout, type DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import { baseOptions } from "@/app/layout.config";
 import { RehooksIcon, Server } from "@rehooks/ui/icons";
-import { source } from "@/lib/fuma/source";
+import { source } from "@/lib/docs/source";
 import type { ReactNode } from "react";
 
 const docsOptions: DocsLayoutProps = {

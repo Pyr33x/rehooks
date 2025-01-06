@@ -53,5 +53,9 @@ export const baseOptions: HomeLayoutProps = {
         },
       ],
     },
+    {
+      text: "Blog",
+      url: "/blog",
+    },
   ],
 };

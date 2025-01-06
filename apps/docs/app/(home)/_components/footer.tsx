@@ -13,7 +13,7 @@ export default function Footer() {
     "text-sm hover:underline text-fd-muted-foreground transition-colors";
 
   return (
-    <footer className="border-t-fd-border border-t py-12">
+    <footer className="border-t-fd-border bg-fd-background border-t py-12">
       <div className="container mx-auto max-w-7xl px-8">
         {/* Top Section */}
         <div className="flex flex-col justify-between gap-8 sm:flex-row">

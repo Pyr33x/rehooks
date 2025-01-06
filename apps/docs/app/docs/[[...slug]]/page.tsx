@@ -4,9 +4,9 @@ import {
   DocsTitle,
   DocsDescription,
 } from "fumadocs-ui/page";
-import { source, openapi } from "@/lib/fuma/source";
+import { source, openapi } from "@/lib/docs/source";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import { metadataImage } from "@/lib/metadata";
+import { metadataImage } from "@/lib/docs/metadata";
 import { notFound } from "next/navigation";
 
 export default async function Page({

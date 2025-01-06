@@ -1,8 +1,8 @@
 import { createOpenAPI, attachFile } from "fumadocs-openapi/server";
+import { docs, meta, blogPosts } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import { icons } from "@rehooks/ui/icons";
-import { docs, meta } from "@/.source";
 import { createElement } from "react";
 
 export const source = loader({
@@ -15,6 +15,11 @@ export const source = loader({
   pageTree: {
     attachFile,
   },
+});
+
+export const blog = loader({
+  baseUrl: "/blog",
+  source: createMDXSource(blogPosts, meta),
 });
 
 export const openapi = createOpenAPI({
