@@ -13,7 +13,6 @@ import {
   ChevronRight,
   Server,
   Scale,
-  Cuboid,
   ArrowUpRight,
   Terminal,
 } from "lucide-react";
@@ -33,7 +32,6 @@ export {
   ChevronRight,
   Server,
   Scale,
-  Cuboid,
   ArrowUpRight,
   Terminal,
 };

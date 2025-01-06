@@ -1,5 +1,5 @@
-import { ChevronRight, Cuboid, RehooksIcon, Server } from "@rehooks/ui/icons";
 import type { HomeLayoutProps } from "fumadocs-ui/layouts/home";
+import { RehooksIcon } from "@rehooks/ui/icons";
 
 export const baseOptions: HomeLayoutProps = {
   githubUrl: "https://github.com/Pyr33x/rehooks",
@@ -15,7 +15,7 @@ export const baseOptions: HomeLayoutProps = {
     {
       type: "menu",
       text: "Documentation",
-      url: "/docs",
+      url: "/docs/cli",
       items: [
         {
           menu: {
