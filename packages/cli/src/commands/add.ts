@@ -9,8 +9,8 @@ import {
 import axios from "axios";
 import { cyan, green, red } from "colorette";
 import { Command } from "commander";
-import fs from "fs";
-import path from "path";
+import { existsSync, writeFileSync } from "fs";
+import { join } from "path";
 
 import type { Hook } from "~/schema/config.schema";
 import { getConfig } from "~/utils/config";
@@ -40,9 +40,9 @@ export const add = new Command()
     try {
       if (hooks.length > 0) {
         for (const hook of hooks) {
-          const hookFilePath = path.join(directory, `${hook}.ts`);
+          const hookFilePath = join(directory, `${hook}.ts`);
 
-          if (fs.existsSync(hookFilePath) && !shouldForceOverwrite) {
+          if (existsSync(hookFilePath) && !shouldForceOverwrite) {
             const overwrite = await confirm({
               message: `${hook}.ts already exists. Do you want to overwrite it?`,
               initialValue: false,
@@ -59,7 +59,7 @@ export const add = new Command()
           );
 
           const { content } = selectedHookResponse.data;
-          fs.writeFileSync(hookFilePath, content);
+          writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
         }
 
@@ -96,9 +96,9 @@ export const add = new Command()
       log.info(`Hooks Directory: ${directory}`);
 
       for (const hook of selectedHookArray) {
-        const hookFilePath = path.join(directory, `${hook}.ts`);
+        const hookFilePath = join(directory, `${hook}.ts`);
 
-        if (fs.existsSync(hookFilePath) && !shouldForceOverwrite) {
+        if (existsSync(hookFilePath) && !shouldForceOverwrite) {
           const overwrite = await confirm({
             message: `${hook}.ts already exists. Do you want to overwrite it?`,
             initialValue: false,
@@ -114,7 +114,7 @@ export const add = new Command()
           `${BASE_URL}/hooks/${hook}`,
         );
         const { content } = selectedHookResponse.data;
-        fs.writeFileSync(hookFilePath, content);
+        writeFileSync(hookFilePath, content);
 
         addedHooks.push(hook);
       }
@@ -129,6 +129,8 @@ export const add = new Command()
         outro(red("No hooks were added."));
       }
     } catch (error) {
-      log.error(`Error adding hooks: ${error}`);
+      outro(
+        red(`Error adding hooks: make sure that ${cyan(directory)} exists`),
+      );
     }
   });
