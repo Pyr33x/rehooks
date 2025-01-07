@@ -35,6 +35,11 @@
     },
     "clean": {
       "cache": true
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
     }
   }
 }
