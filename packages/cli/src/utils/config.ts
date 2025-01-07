@@ -1,8 +1,11 @@
-import { configSchema, type RehooksConfig } from "~/schema/config.schema";
-import { tsConfigSchema, type TsConfig } from "~/schema/tsconfig.schema";
-import { cosmiconfig } from "cosmiconfig";
-import { handleError } from "./error";
 import { log } from "@clack/prompts";
+import { cosmiconfig } from "cosmiconfig";
+
+import { handleError } from "./error";
+import type { RehooksConfig } from "~/schema/config.schema";
+import { configSchema } from "~/schema/config.schema";
+import type { TsConfig } from "~/schema/tsconfig.schema";
+import { tsConfigSchema } from "~/schema/tsconfig.schema";
 
 const configExplorer = cosmiconfig("rehooks", {
   searchPlaces: ["rehooks.json"],

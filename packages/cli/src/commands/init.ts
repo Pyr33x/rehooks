@@ -1,3 +1,6 @@
+import { confirm, intro, log, outro, text } from "@clack/prompts";
+import { bold, cyan, green, red, yellow } from "colorette";
+import { Command } from "commander";
 import {
   existsSync,
   mkdirSync,
@@ -6,13 +9,11 @@ import {
   statSync,
   writeFileSync,
 } from "fs";
-import { SRC_DIR_PLACEHOLDER, DIR_PLACEHOLDER } from "~/utils/constants";
-import { intro, log, outro, confirm, text } from "@clack/prompts";
-import { green, red, cyan, bold, yellow } from "colorette";
-import { getConfig, getTsConfig } from "~/utils/config";
-import { checkReactVersion } from "~/utils/checker";
-import { Command } from "commander";
 import { resolve } from "path";
+
+import { checkReactVersion } from "~/utils/checker";
+import { getConfig, getTsConfig } from "~/utils/config";
+import { DIR_PLACEHOLDER, SRC_DIR_PLACEHOLDER } from "~/utils/constants";
 
 export const init = new Command()
   .name("init")
@@ -24,7 +25,7 @@ export const init = new Command()
     intro("Initializing Rehooks...");
 
     // Check if project is compatible with Rehooks
-    const isReactCompatible = await checkReactVersion();
+    const isReactCompatible = checkReactVersion();
     if (!isReactCompatible) {
       outro(red("Initialization aborted due to React compatibility issues."));
       return;

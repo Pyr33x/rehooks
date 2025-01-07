@@ -3,17 +3,18 @@ import {
   intro,
   log,
   multiselect,
-  spinner,
   outro,
+  spinner,
 } from "@clack/prompts";
-import type { Hook } from "~/schema/config.schema";
-import { BASE_URL } from "~/utils/constants";
-import { cyan, green, red } from "colorette";
-import { getConfig } from "~/utils/config";
-import { Command } from "commander";
 import axios from "axios";
-import path from "path";
+import { cyan, green, red } from "colorette";
+import { Command } from "commander";
 import fs from "fs";
+import path from "path";
+
+import type { Hook } from "~/schema/config.schema";
+import { getConfig } from "~/utils/config";
+import { BASE_URL } from "~/utils/constants";
 
 export const add = new Command()
   .name("add")
@@ -57,7 +58,7 @@ export const add = new Command()
             `${BASE_URL}/hooks/${hook}`,
           );
 
-          let { content } = selectedHookResponse.data;
+          const { content } = selectedHookResponse.data;
           fs.writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
         }
@@ -112,7 +113,7 @@ export const add = new Command()
         const selectedHookResponse = await axios.get(
           `${BASE_URL}/hooks/${hook}`,
         );
-        let { content } = selectedHookResponse.data;
+        const { content } = selectedHookResponse.data;
         fs.writeFileSync(hookFilePath, content);
 
         addedHooks.push(hook);

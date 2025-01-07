@@ -14,5 +14,5 @@ type Hook = Readonly<{
   content: string;
 }>;
 
-export type { RehooksConfig, Hook };
+export type { Hook, RehooksConfig };
 export { configSchema };

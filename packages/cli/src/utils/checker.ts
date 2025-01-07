@@ -1,10 +1,10 @@
-import { existsSync, readFileSync } from "fs";
-import { minVersion, lt } from "semver";
 import { log } from "@clack/prompts";
 import { red } from "colorette";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
+import { lt, minVersion } from "semver";
 
-export async function checkReactVersion() {
+export function checkReactVersion() {
   const packageJsonPath = resolve(process.cwd(), "package.json");
 
   if (!existsSync(packageJsonPath)) {
@@ -29,7 +29,7 @@ export async function checkReactVersion() {
   if (!cleanedVersion || lt(cleanedVersion, "18.0.0")) {
     log.error(
       red(
-        `React version (${cleanedVersion || reactVersion}) is lower than 18. Please upgrade.`,
+        `React version (${cleanedVersion ?? reactVersion}) is lower than 18. Please upgrade.`,
       ),
     );
     return false;

@@ -40,7 +40,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
-    "start": "node dist/index.js "
+    "start": "node dist/index.js ",
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@clack/prompts": "^0.9.0",
@@ -51,10 +52,10 @@
     "tsup": "^8.3.0",
     "type-fest": "^4.26.1",
     "typescript": "^5.6.3",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@rehooks/eslint-config": "workspace:*"
   },
   "dependencies": {
-    "react": "^18.2.0",
     "axios": "^1.7.7",
     "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",
