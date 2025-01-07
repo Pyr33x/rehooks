@@ -21,6 +21,12 @@ const docsOptions: DocsLayoutProps = {
         description: "Explore the Rehooks API to get the available hooks.",
         url: "/docs/api",
       },
+      {
+        title: "Rehooks Blog",
+        icon: <RehooksIcon className="m-0 size-6 md:mb-7" stroke="#8b5cf6" />,
+        description: "Read the latest news and updates from Rehooks.",
+        url: "/blog",
+      },
     ],
   },
 };

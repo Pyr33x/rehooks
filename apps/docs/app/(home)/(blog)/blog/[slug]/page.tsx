@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { blog } from "@/lib/docs/source";
 import Link from "next/link";
 
-export default async function Page(props: {
+export default async function BlogPost(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
@@ -16,8 +16,12 @@ export default async function Page(props: {
   return (
     <>
       <div className="bg-fd-background container mt-8 rounded-xl border p-8">
-        <h1 className="mb-2 text-3xl font-bold">{page.data.title}</h1>
-        <p className="text-fd-muted-foreground mb-4">{page.data.description}</p>
+        <h1 className="mg:text-3xl mb-2 text-xl font-bold">
+          {page.data.title}
+        </h1>
+        <p className="text-fd-muted-foreground mb-4 text-base md:text-lg">
+          {page.data.description}
+        </p>
         <div className="flex items-center">
           <Link
             href="/blog"

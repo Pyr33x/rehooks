@@ -54,8 +54,27 @@ export const baseOptions: HomeLayoutProps = {
       ],
     },
     {
+      type: "menu",
       text: "Blog",
       url: "/blog",
+      items: [
+        {
+          menu: {
+            banner: (
+              <div className="flex h-20 w-full items-center justify-center gap-x-1">
+                <h1 className="text-fd-foreground text-2xl font-bold">
+                  Why Rehooks?
+                </h1>
+              </div>
+            ),
+          },
+          icon: <RehooksIcon className="size-6" />,
+          text: "How does Rehooks work?",
+          description:
+            "Introducing Rehooks and the decisions made in the creation of Rehooks.",
+          url: "/blog/rehooks",
+        },
+      ],
     },
   ],
 };

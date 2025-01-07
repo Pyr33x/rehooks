@@ -6,34 +6,32 @@ import { ReactNode } from "react";
 
 export default function HomePage() {
   return (
-    <>
-      <div className="mx-8 my-16 flex min-h-screen flex-col items-center justify-center">
-        <div className="mb-6">
-          <Badge
-            icon={
-              <ArrowUpRight className="size-3 transition-transform duration-100 group-hover:-translate-y-px group-hover:translate-x-px" />
-            }
-          >
-            Rehooks v5 Released!
-          </Badge>
-        </div>
-        <Hero />
-        <Editor />
-        <h2 className="text-fd-muted-foreground select-none text-xl font-medium uppercase">
-          Features
-        </h2>
-        <h3 className="text-fd-foreground my-1 text-wrap text-center text-3xl font-semibold">
-          Crafted for Efficiency
-        </h3>
-        <h4 className="text-fd-muted-foreground mt-1.5 max-w-lg text-pretty text-center text-xl italic">
-          I've created Rehooks to streamline the process of creating custom
-          hooks, and get rid of heavy packages.
-        </h4>
-        <div className="mt-10 max-w-6xl">
-          <Grid />
-        </div>
+    <div className="mx-8 my-16 flex min-h-screen flex-col items-center justify-center">
+      <div className="mb-6">
+        <Badge
+          icon={
+            <ArrowUpRight className="size-3 transition-transform duration-100 group-hover:-translate-y-px group-hover:translate-x-px" />
+          }
+        >
+          Rehooks v5 Released!
+        </Badge>
       </div>
-    </>
+      <Hero />
+      <Editor />
+      <h2 className="text-fd-muted-foreground select-none text-xl font-medium uppercase">
+        Features
+      </h2>
+      <h3 className="text-fd-foreground my-1 text-wrap text-center text-3xl font-semibold">
+        Crafted for Efficiency
+      </h3>
+      <h4 className="text-fd-muted-foreground mt-1.5 max-w-lg text-pretty text-center text-xl italic">
+        I've created Rehooks to streamline the process of creating custom hooks,
+        and get rid of heavy packages.
+      </h4>
+      <div className="mt-10 max-w-6xl">
+        <Grid />
+      </div>
+    </div>
   );
 }
 

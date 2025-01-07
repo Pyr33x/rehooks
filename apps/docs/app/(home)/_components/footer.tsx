@@ -1,8 +1,9 @@
 import { NpmIcon, GithubIcon, RehooksIcon } from "@rehooks/ui/icons";
-import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
+import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils/constants";
+import { cn } from "@rehooks/utils/functions";
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ className }: { className?: string }) {
   const legal = [
     { title: "Terms of Service", link: "/docs/legal/terms" },
     { title: "Privacy Policy", link: "/docs/legal/privacy-policy" },
@@ -13,7 +14,12 @@ export default function Footer() {
     "text-sm hover:underline text-fd-muted-foreground transition-colors";
 
   return (
-    <footer className="border-t-fd-border bg-fd-background border-t py-12">
+    <footer
+      className={cn(
+        "border-t-fd-border bg-fd-background border-t py-12",
+        className,
+      )}
+    >
       <div className="container mx-auto max-w-7xl px-8">
         {/* Top Section */}
         <div className="flex flex-col justify-between gap-8 sm:flex-row">
