@@ -1,44 +1,18 @@
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "fs";
 import { SRC_DIR_PLACEHOLDER, DIR_PLACEHOLDER } from "~/utils/constants";
 import { intro, log, outro, confirm, text } from "@clack/prompts";
 import { green, red, cyan, bold, yellow } from "colorette";
 import { getConfig, getTsConfig } from "~/utils/config";
+import { checkReactVersion } from "~/utils/checker";
 import { Command } from "commander";
-import semver from "semver";
-import path from "path";
-import fs from "fs";
-
-async function checkReactVersion() {
-  const packageJsonPath = path.resolve(process.cwd(), "package.json");
-
-  if (!fs.existsSync(packageJsonPath)) {
-    log.error(red("Error: package.json not found in the project directory."));
-    return false;
-  }
-
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-  const reactVersion =
-    packageJson.dependencies?.react || packageJson.peerDependencies?.react;
-
-  if (!reactVersion) {
-    log.error(
-      red(
-        "React is not listed as a dependency or peer dependency in package.json.",
-      ),
-    );
-    return false;
-  }
-
-  const cleanedVersion = semver.minVersion(reactVersion);
-  if (!cleanedVersion || semver.lt(cleanedVersion, "18.0.0")) {
-    log.error(
-      red(
-        `React version (${cleanedVersion || reactVersion}) is lower than 18. Please upgrade.`,
-      ),
-    );
-    return false;
-  }
-  return true;
-}
+import { resolve } from "path";
 
 export const init = new Command()
   .name("init")
@@ -49,17 +23,19 @@ export const init = new Command()
   .action(async (customPath, options) => {
     intro("Initializing Rehooks...");
 
+    // Check if project is compatible with Rehooks
     const isReactCompatible = await checkReactVersion();
     if (!isReactCompatible) {
       outro(red("Initialization aborted due to React compatibility issues."));
       return;
     }
 
+    // Organize the configuration file
     const configPath = options.config
-      ? path.resolve(process.cwd(), options.config)
-      : path.resolve(process.cwd(), "rehooks.json");
+      ? resolve(process.cwd(), options.config)
+      : resolve(process.cwd(), "rehooks.json");
 
-    if (fs.existsSync(configPath) && fs.statSync(configPath).isDirectory()) {
+    if (existsSync(configPath) && statSync(configPath).isDirectory()) {
       log.error(red(`Error: ${configPath} is a directory, not a file.`));
       return;
     }
@@ -67,9 +43,10 @@ export const init = new Command()
     let hooksDirExists = false;
     let currentDirectory: string | undefined;
 
-    if (fs.existsSync(configPath)) {
+    // Check if rehooks.json exists
+    if (existsSync(configPath)) {
       log.warn(yellow("Rehooks configuration already exists."));
-      const currentConfig = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+      const currentConfig = JSON.parse(readFileSync(configPath, "utf-8"));
       currentDirectory = currentConfig.directory;
 
       if (currentDirectory && currentDirectory === customPath) {
@@ -81,6 +58,7 @@ export const init = new Command()
         return;
       }
 
+      // Check if force overwrite is enabled
       if (options.force) {
         log.info(cyan("Forcing overwrite of rehooks.json..."));
       } else {
@@ -96,9 +74,10 @@ export const init = new Command()
         }
       }
 
-      if (currentDirectory && fs.existsSync(currentDirectory)) {
+      // Check if hooks directory exists
+      if (currentDirectory && existsSync(currentDirectory)) {
         hooksDirExists = true;
-        fs.rmSync(currentDirectory, { recursive: true, force: true });
+        rmSync(currentDirectory, { recursive: true, force: true });
         log.info(
           green(
             `Previous hooks directory at ${bold(currentDirectory)} has been removed.`,
@@ -107,6 +86,7 @@ export const init = new Command()
       }
     }
 
+    // Get directory path
     let directory = customPath || DIR_PLACEHOLDER;
 
     if (!customPath) {
@@ -130,11 +110,12 @@ export const init = new Command()
       }
     }
 
+    // Write rehooks.json file
     log.info(cyan("Creating rehooks.json configuration file..."));
     const defaultConfig = { directory, forceOverwrite: false };
 
     try {
-      fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2));
+      writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2));
       log.success(
         green(`Rehooks configuration file created at ${bold(configPath)}.`),
       );
@@ -146,7 +127,7 @@ export const init = new Command()
           directory !== currentDirectory)
       ) {
         log.info(cyan("Creating hooks directory..."));
-        fs.mkdirSync(directory, { recursive: true });
+        mkdirSync(directory, { recursive: true });
         log.success(green(`Hooks directory created at ${bold(directory)}.`));
       }
     } catch (error) {
@@ -157,6 +138,7 @@ export const init = new Command()
       return;
     }
 
+    // Check if configuration file exists
     try {
       const config = await getConfig(process.cwd());
       log.success(green("Configuration loaded successfully."));
@@ -168,6 +150,7 @@ export const init = new Command()
       log.error(red("Failed to load configuration."));
     }
 
+    // Check if TypeScript configuration exists
     try {
       const tsConfig = await getTsConfig(process.cwd());
       log.success(green("TypeScript configuration loaded successfully."));
@@ -181,5 +164,5 @@ export const init = new Command()
       log.error(red("Failed to load TypeScript configuration."));
     }
 
-    outro("Initialization complete!");
+    outro(green("Initialization complete!"));
   });

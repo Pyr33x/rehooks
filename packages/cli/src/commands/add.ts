@@ -23,16 +23,18 @@ export const add = new Command()
   .action(async (hooks, options) => {
     intro("Adding hooks...");
 
+    // Check if project has rehooks.json
     const config = await getConfig(process.cwd());
-
     if (!config) {
       outro(red("Rehooks configuration not found or invalid."));
       return;
     }
 
+    // Get properties from rehooks.json
     const { directory, forceOverwrite } = config;
     const shouldForceOverwrite = options.force || forceOverwrite;
 
+    // Adding hooks
     const addedHooks: string[] = [];
     try {
       if (hooks.length > 0) {
