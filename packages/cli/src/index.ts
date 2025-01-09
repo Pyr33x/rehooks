@@ -9,7 +9,9 @@ async function main() {
   const packageInfo = await getPackageInfo();
   const program = new Command()
     .name("rehooks")
-    .description("A CLI to insert hooks directly to your project.")
+    .description(
+      "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
+    )
     .version(
       packageInfo.version || "4.2.1",
       "-v, --version",

@@ -6,7 +6,7 @@
 
 <div align="center">
   <h1>Rehooks CLI</h1>
-  <p>A CLI to insert hooks directly to your project.</p>
+  <p>A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.</p>
 </div>
 
 <div align="center">
