@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function Footer({ className }: { className?: string }) {
   const legal = [
-    { title: "Terms of Service", link: "/docs/legal/terms" },
-    { title: "Privacy Policy", link: "/docs/legal/privacy-policy" },
-    { title: "Code Policy", link: "/docs/legal/code-policy" },
+    { title: "Terms of Service", link: "/docs/cli/legal/terms" },
+    { title: "Privacy Policy", link: "/docs/cli/legal/privacy-policy" },
+    { title: "Code Policy", link: "/docs/cli/legal/code-policy" },
   ];
 
   const TEXT_STYLE =
