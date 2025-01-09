@@ -16,8 +16,9 @@ export function Hero() {
         </span>{" "}
         Hooks
       </h1>
-      <p className="text-fd-muted-foreground mt-2 max-w-2xl text-balance text-center text-lg font-normal lg:text-2xl">
-        Avoid repetitive hook patterns, a source for making your own hooks.
+      <p className="text-fd-muted-foreground mt-2 max-w-xs text-pretty text-center text-lg font-normal lg:max-w-xl lg:text-xl">
+        A CLI to scaffold your react custom hooks, with a focus on performance,
+        reusability, and type-safety.
       </p>
       <div className="mt-5 grid grid-cols-2 gap-y-2.5">
         <Link href="/docs/cli" className="group outline-none ring-0">
