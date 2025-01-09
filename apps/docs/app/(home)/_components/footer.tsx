@@ -29,8 +29,8 @@ export default function Footer({ className }: { className?: string }) {
               <span className="text-xl font-semibold">Rehooks</span>
             </div>
             <p className="text-fd-muted-foreground">
-              Avoid repetitive hook patterns, a source for making your own
-              hooks.
+              A CLI to scaffold your react custom hooks, with a focus on
+              performance, reusability, and type-safety.
             </p>
           </div>
 
