@@ -30,7 +30,6 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         beam: "beam calc(var(--duration)*1s) infinite linear",
-        "background-shine": "background-shine 1.5s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         shine: "shine var(--duration) infinite linear",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -56,14 +55,6 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
-        },
-        "background-shine": {
-          from: {
-            backgroundPosition: "0 0",
-          },
-          to: {
-            backgroundPosition: "-200% 0",
-          },
         },
         gradient: {
           to: { "background-position": "200% center" },

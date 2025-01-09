@@ -1,7 +1,7 @@
 "use client";
 
 import { GithubIcon, ArrowRight } from "@rehooks/ui/icons";
-import { Button, Shine } from "@rehooks/ui/components";
+import { Button, Shine, Shimmer } from "@rehooks/ui/components";
 import { GITHUB_LINK } from "@rehooks/utils";
 import { useClipboard } from "rehooks-ts";
 import Link from "next/link";
@@ -9,13 +9,18 @@ import Link from "next/link";
 export function Hero() {
   return (
     <>
-      <h1 className="max-w-lg text-balance bg-gradient-to-t from-black to-black bg-clip-text text-center text-4xl font-black text-transparent lg:text-6xl dark:from-blue-200 dark:from-75% dark:to-blue-100">
-        Streamline Your{" "}
-        <span className="animate-background-shine inline-flex transform bg-[linear-gradient(110deg,#2563eb,45%,#3b82f6,55%,#2563eb)] bg-[length:250%_100%] bg-clip-text text-transparent">
-          React
-        </span>{" "}
-        Hooks
-      </h1>
+      <div className="inline-flex">
+        <h1 className="max-w-lg text-balance text-center text-4xl font-black lg:text-6xl">
+          Streamline Your{" "}
+          <Shimmer
+            className="text-4xl font-black lg:text-6xl"
+            text="React"
+            color="#2563eb"
+            midColor="#60a5fa"
+          />{" "}
+          Hooks
+        </h1>
+      </div>
       <p className="text-fd-muted-foreground mt-2 max-w-xs text-pretty text-center text-lg font-normal lg:max-w-xl lg:text-xl">
         A CLI to scaffold your react custom hooks, with a focus on performance,
         reusability, and type-safety.

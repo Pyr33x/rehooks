@@ -9,7 +9,7 @@ import {
   Sparkles,
   Hammer,
 } from "@rehooks/ui/icons";
-import { Retro, Marquee, Text } from "@rehooks/ui/components";
+import { Retro, Marquee, Text, Shimmer } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
 import type { ReactNode } from "react";
 
@@ -30,7 +30,7 @@ function CommitCard({
       )}
     >
       <span>{icon}</span>
-      <span className="text-fd-foreground/80 font-mono text-xs">{comment}</span>
+      <Shimmer color="#888" className="font-mono text-xs" text={comment} />
     </div>
   );
 }
