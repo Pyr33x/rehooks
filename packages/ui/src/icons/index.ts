@@ -16,6 +16,8 @@ import {
   ArrowUpRight,
   Terminal,
   CornerDownLeft,
+  Sparkles,
+  Hammer,
 } from "lucide-react";
 
 export {
@@ -36,6 +38,8 @@ export {
   ArrowUpRight,
   Terminal,
   CornerDownLeft,
+  Sparkles,
+  Hammer,
 };
 export * from "./rehooks";
 export * from "./github";

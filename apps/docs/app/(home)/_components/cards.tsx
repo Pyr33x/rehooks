@@ -1,19 +1,77 @@
 "use client";
 
-import { Globe as GlobeIcon, Braces, Layers, Zap } from "@rehooks/ui/icons";
-import { Retro, Marquee, Text, Grid } from "@rehooks/ui/components";
+import {
+  Globe,
+  Braces,
+  Layers,
+  Zap,
+  Wrench,
+  Sparkles,
+  Hammer,
+} from "@rehooks/ui/icons";
+import { Retro, Marquee, Text } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
+import type { ReactNode } from "react";
+
+function CommitCard({
+  className,
+  comment,
+  icon,
+}: {
+  className?: string;
+  comment: string;
+  icon: ReactNode;
+}) {
+  return (
+    <div
+      className={cn(
+        "dark:bg-fd-muted/25 bg-fd-muted border-fd-border/50 absolute inline-flex h-10 w-80 transform select-none items-center rounded-full border px-3 transition-all group-hover:-right-4 lg:w-72",
+        className,
+      )}
+    >
+      <span>{icon}</span>
+      <span className="text-fd-foreground/80 font-mono text-xs">{comment}</span>
+    </div>
+  );
+}
+
+const commits = [
+  {
+    comment: "fix(cli): no args passed",
+    icon: <Wrench className="text-fd-foreground/50 mr-2 size-4" />,
+    className: "-right-4",
+  },
+  {
+    comment: "feat(core): health checker",
+    icon: <Sparkles className="text-fd-foreground/50 mr-2 size-4" />,
+    className: "-right-12 top-12",
+  },
+  {
+    comment: "ref(docs): add missing props",
+    icon: <Hammer className="text-fd-foreground/50 mr-2 size-4" />,
+    className: "-right-24 top-24",
+  },
+];
 
 export const features = [
   {
-    Icon: GlobeIcon,
+    Icon: Globe,
     name: "Open-Source Codebase",
     description:
       "Rehooks is an open-source project, licensed under Apache 2.0.",
     className:
       "lg:row-start-1 lg:row-end-1 lg:col-start-1 lg:col-end-2 rounded-t-2xl lg:rounded-tl-2xl lg:rounded-tr-none border-b-[0.5px] border-r-[1px] lg:border-r-[0.5px] border-t-[1px] border-l-[1px]",
     background: (
-      <Grid className="absolute -bottom-80 -right-10 [mask-image:linear-gradient(to_top,transparent_40%,#66666680_100%)] md:-bottom-72 md:-right-10" />
+      <div className="absolute right-0 top-9">
+        {commits.map((commit, index) => (
+          <CommitCard
+            className={commit.className}
+            key={index}
+            icon={commit.icon}
+            comment={commit.comment}
+          />
+        ))}
+      </div>
     ),
   },
   {
