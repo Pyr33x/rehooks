@@ -28,7 +28,7 @@ export default function Footer({ className }: { className?: string }) {
               <RehooksIcon className="size-6" />
               <span className="text-xl font-semibold">Rehooks</span>
             </div>
-            <p className="text-fd-muted-foreground">
+            <p className="text-fd-muted-foreground max-w-lg text-balance">
               A CLI to scaffold your react custom hooks, with a focus on
               performance, reusability, and type-safety.
             </p>

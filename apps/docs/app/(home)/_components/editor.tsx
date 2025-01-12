@@ -44,8 +44,10 @@ const componentsList = [
   { name: "useFetch", component: "List" },
 ];
 
+type Tab = "hook" | "settings";
+
 export function Editor() {
-  const [activeTab, setActiveTab] = useState("hook");
+  const [activeTab, setActiveTab] = useState<Tab>("hook");
   const list = activeTab === "hook" ? hooksList : componentsList;
 
   return (

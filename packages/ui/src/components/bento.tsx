@@ -29,7 +29,7 @@ const BentoCard = memo(
         className={cn(
           "group relative col-span-3 flex flex-col justify-between overflow-hidden",
           "bg-white",
-          "transform-gpu dark:bg-neutral-950",
+          "transform-gpu dark:bg-[#0E0C0B]",
           className,
         )}
         key={name}
@@ -46,5 +46,6 @@ const BentoCard = memo(
     );
   },
 );
+BentoCard.displayName = "BentoCard";
 
 export { BentoCard, BentoGrid };

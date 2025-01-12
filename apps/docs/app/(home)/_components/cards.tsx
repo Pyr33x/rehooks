@@ -43,7 +43,9 @@ const commits = [
   },
   {
     comment: "feat(core): health checker",
-    icon: <Sparkles className="text-fd-foreground/50 mr-2 size-4" />,
+    icon: (
+      <Sparkles className="text-fd-foreground/50 mr-2 size-4 transform transition group-hover:rotate-180" />
+    ),
     className: "-right-12 top-12",
   },
   {
