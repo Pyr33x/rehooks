@@ -1,7 +1,7 @@
-import { useOnlineStatus } from "./index";
+import { useStatus } from "./index";
 
 function Component() {
-  const isOnline = useOnlineStatus();
+  const isOnline = useStatus();
 
   return <p>Is online: {isOnline ? "Yes" : "No"}</p>;
 }

@@ -16,7 +16,7 @@ export * from "./useIsMounted";
 export * from "./useKeyPress";
 export * from "./useLang";
 export * from "./useLocalStorage";
-export * from "./useOnlineStatus";
+export * from "./useStatus";
 export * from "./useScroll";
 export * from "./useSessionStorage";
 export * from "./useThrottle";
