@@ -1,7 +1,7 @@
 import { usePrevious } from "./index";
 import { useState } from "react";
 
-export default function Demo() {
+function Component() {
   const [value, setValue] = useState(0);
   const previousValue = usePrevious(value);
 
