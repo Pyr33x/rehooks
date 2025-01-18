@@ -4,7 +4,8 @@ const description = "Resolves after a specified delay.";
 
 /**
  * Resolves after a specified delay.
- * @returns {Function}
+ * @param {number} ms - The number of milliseconds to wait before resolving.
+ * @returns {Promise<void>} - A promise that resolves after the specified delay.
  *
  */
 export function useSleep(): (ms: number) => Promise<void> {
