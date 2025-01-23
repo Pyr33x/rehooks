@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 
 export default function HomePage() {
   return (
-    <div className="mx-8 my-16 flex min-h-screen flex-col items-center justify-center">
+    <div className="mx-8 my-12 flex min-h-screen flex-col items-center justify-center">
       <div className="mb-6">
         <Badge
           icon={
