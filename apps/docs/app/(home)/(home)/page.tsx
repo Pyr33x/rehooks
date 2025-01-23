@@ -13,7 +13,7 @@ export default function HomePage() {
             <ArrowUpRight className="size-3 transition-transform duration-100 group-hover:-translate-y-px group-hover:translate-x-px" />
           }
         >
-          Rehooks v5 Released!
+          Rehooks v4.5 Released!
         </Badge>
       </div>
       <Hero />
