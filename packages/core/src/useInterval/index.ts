@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const description =
-  "Manages intervals with imperative controls. Returns start/stop methods and running state.";
+  "Sets up an interval with imperative controls. Returns start/stop methods and running state.";
 
 type IntervalOptions = {
   immediate?: boolean;
@@ -16,7 +16,7 @@ type IntervalReturn = {
 };
 
 /**
- * Manages intervals with imperative controls. Returns start/stop methods and running state.
+ * Sets up an interval with imperative controls. Returns start/stop methods and running state.
  *
  * @template {() => void} T - Function type for the interval callback
  * @param {T} callback - Function to execute at each interval tick (automatically uses latest version)
