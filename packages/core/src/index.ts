@@ -27,3 +27,4 @@ export * from "./useUnmount";
 export * from "./useWindowSize";
 export * from "./useSleep";
 export * from "./useStep";
+export * from "./useInterval";
