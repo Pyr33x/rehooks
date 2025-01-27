@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 
+const description =
+  "Manages step-based navigation with imperative controls. Returns step navigation methods and state.";
+
 type UseStepProps<T = number> = {
   totalSteps?: number;
   steps?: T[];
@@ -14,6 +17,24 @@ type UseStepReturn<T> = {
   isFirstStep: boolean;
   isLastStep: boolean;
 };
+
+/**
+ * Manages step-based navigation with imperative controls. Returns step navigation methods and state.
+ *
+ * @template T - Type for step identifiers (default: number)
+ * @param {Object} config - Configuration object for step management
+ * @param {number} [config.totalSteps] - Total number of steps (required if steps not provided)
+ * @param {T[]} [config.steps] - Array of custom step identifiers (required if totalSteps not provided)
+ * @param {T} [config.initialStep] - Initial step identifier (defaults to first step)
+ *
+ * @returns {UseStepReturn<T>} An object containing:
+ * - `currentStep`: Currently active step identifier
+ * - `nextStep`: Advances to the next step if available
+ * - `prevStep`: Returns to the previous step if available
+ * - `jumpTo`: Jumps directly to a specific step identifier
+ * - `isFirstStep`: True if current step is the first step
+ * - `isLastStep`: True if current step is the final step
+ */
 
 export function useStep<T = number>(config: UseStepProps<T>): UseStepReturn<T> {
   const {
