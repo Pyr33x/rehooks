@@ -3,7 +3,7 @@ import { Trace } from "@rehooks/ui/components";
 
 export function Tracer() {
   return (
-    <div className="mb-12 text-center">
+    <section className="mb-10 text-center">
       <h2 className="text-fd-muted-foreground select-none text-xl font-medium uppercase">
         Compatibility
       </h2>
@@ -28,6 +28,6 @@ export function Tracer() {
           <ReactIcon className="size-8" />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

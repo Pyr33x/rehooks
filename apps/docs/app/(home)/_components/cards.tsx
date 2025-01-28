@@ -45,7 +45,7 @@ const commits = [
   {
     comment: "feat(core): health checker",
     icon: (
-      <Sparkles className="text-fd-foreground/50 mr-2 size-4 transform transition group-hover:rotate-180" />
+      <Sparkles className="text-fd-foreground/50 mr-2 size-4 transform transition group-hover:rotate-180 group-hover:fill-amber-500 group-hover:stroke-amber-500" />
     ),
     className: "-right-12 top-12",
   },
@@ -55,11 +55,6 @@ const commits = [
     className: "-right-24 top-24",
   },
 ];
-
-type Sparkle = {
-  animate: number[];
-  className?: string;
-};
 
 export const features = [
   {
@@ -91,8 +86,7 @@ export const features = [
       "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-2 lg:rounded-br-2xl lg:rounded-tr-none border-b-[0.5px] lg:border-b-[1px] border-r-[1px] border-t-[0.5px] border-l-[1px] lg:border-l-[0.5px]",
     background: (
       <div className="flex h-full w-full items-center justify-center">
-        <Text text="<T>" className="absolute top-16" />
-        <SparkleIcon className="absolute right-32 top-14" />
+        <Text text="<T>" className="absolute top-14" />
       </div>
     ),
   },
