@@ -1,0 +1,67 @@
+---
+title: useHover
+description: Tracks the hover state of a specified element.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useHover
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useHover" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useHover } from "~/hooks/useHover";
+
+export default function Component() {
+  const [ref, isHovered] = useHover<HTMLDivElement>();
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        width: "200px",
+        height: "200px",
+        backgroundColor: isHovered ? "lightblue" : "lightcoral",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "background-color 0.3s",
+      }}
+    >
+      <p>{isHovered ? "Hovered!" : "Hover over me!"}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useHover
+
+```ts title="useHover.ts"
+function useHover<T extends HTMLElement>(): [Ref<T>, boolean];
+```
+
+Returns a boolean value indicating whether the user is hovering over the element.
+
+#### Parameters
+
+| Name | Type | Description                       |
+| ---- | ---- | --------------------------------- |
+| T    | `T`  | The type of the element to track. |
+
+#### Returns
+
+| Name       | Type      | Description                                                               |
+| ---------- | --------- | ------------------------------------------------------------------------- |
+| ref        | `Ref`     | A ref to the element to track.                                            |
+| isHovering | `boolean` | A boolean value indicating whether the user is hovering over the element. |

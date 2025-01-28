@@ -1,15 +1,6 @@
 {
   "pages": [
-    "---Getting Started---",
-    "index",
-    "contributing",
-    "---Setup---",
-    "guide",
-    "config",
-    "---API Reference---",
-    "api",
-    "---Hooks---",
-    "hooks",
-    "..."
+    "cli",
+    "api"
   ]
 }

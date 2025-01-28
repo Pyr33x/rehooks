@@ -2,10 +2,10 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 
 type UseFocusCallback = (isFocused: boolean) => void;
 
-const description = "A custom hook to track whether an element is focused.";
+const description = "Tracks the focus state of a specified element.";
 
 /**
- * Returns a ref and boolean indicating whether the element is currently focused.
+ * Tracks the focus state of a specified element.
  *
  * Optionally takes a callback function which is called whenever the element
  * gains or loses focus. The callback is called with a boolean indicating

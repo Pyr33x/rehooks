@@ -1,0 +1,62 @@
+---
+title: useFocus
+description: Tracks the focus state of a specified element.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useFocus
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useFocus" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useFocus } from "~/hooks/useFocus";
+
+function Component() {
+  const [ref, isFocused] = useFocus<HTMLInputElement>((focusState) => {
+    console.log("Focus state:", focusState);
+  });
+
+  return (
+    <div>
+      <input ref={ref} type="text" placeholder="Focus me!" />
+      <p>The input is currently {isFocused ? "focused" : "unfocused"}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useFocus
+
+```ts title="useFocus.ts"
+function useFocus<T extends HTMLElement>(
+  callback?: UseFocusCallback,
+): [RefObject<T>, boolean];
+```
+
+Returns a ref and boolean indicating whether the element is currently focused.
+
+#### Parameters
+
+| Name      | Type               | Description                                                                                                                                              |
+| --------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| callback? | `UseFocusCallback` | Optional callback to run in focus and blur HTML element mode. The callback is called with a boolean indicating whether the element is currently focused. |
+| T         | `HTMLElement`      | The type of the HTML element to focus.                                                                                                                   |
+
+#### Returns
+
+| Name      | Type           | Description                                                    |
+| --------- | -------------- | -------------------------------------------------------------- |
+| ref       | `RefObject<T>` | A ref object that can be used to access the HTML element.      |
+| isFocused | `boolean`      | A boolean indicating whether the element is currently focused. |

@@ -1,0 +1,68 @@
+---
+title: Introduction
+description: A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.
+icon: "ChevronRight"
+---
+
+import { PackageIcon, GithubIcon } from "@rehooks/ui/icons";
+
+# TL;DR
+
+Rehooks is a CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.
+It provides a wide range of hooks for common use cases, By using Rehooks CLI you can reduce the amount of code you need to write and focus on the core functionality of your application.
+
+<Callout type="info">
+  Rehooks is not a dependency to install, It is not available or distributed via
+  npm. Select the hooks you need to insert into your project. Use this as a
+  reference to build your own hooks.
+</Callout>
+
+# How does it work?
+
+Initially, we maintain a separate TypeScript library called `rehooks-ts`, which houses all our custom hooks. These hooks are then converted into a JSON file, effectively serving as an [API](/docs/api) for the `rehooks-cli`. In essence, when you need a hook, you simply choose from the curated list available through the [API](/docs/api), and the CLI handles the import directly into your project with ease. This streamlined process ensures seamless integration and rapid development.
+
+<Callout type="info">
+  This approach significantly accelerates the import process by eliminating the
+  need to manually download each hook from the GitHub repository before
+  integrating it into your codebase. Instead, you can directly access and import
+  the hooks via the streamlined API, saving valuable time and effort.
+</Callout>
+
+# Why use Rehooks?
+
+By leveraging the Rehooks CLI, you can significantly streamline your codebase by eliminating unused and duplicated code. This powerful tool empowers you to enhance the reusability and maintainability of your custom hooks, allowing you to focus on building efficient and scalable applications. With Rehooks, you'll not only optimize your development workflow but also ensure a cleaner, more organized code structure for long-term success.
+
+# Extensions
+
+Rehooks comes with a [Raycast extension](https://www.raycast.com/Pyr33x/rehooks) that allows you to quickly access the Hooks without leaving your IDE. This extension is a game-changer, as it enables you to access the hooks with ease, without the need to switch between applications or navigate through menus. The extension is designed to be developer-friendly, providing a seamless experience for developers with all the necessary functionality.
+Also there's a [Resources](/docs/cli/resources) page that lists useful resources for building custom hooks.
+
+# Key Features
+
+- Reusability: Rehooks is designed to be reusable, allowing you reuse the hooks you need.
+- SOLID: We follow SOLID principles, ensuring type-safety and maintainability throughout the codebase.
+- Performant: Rehooks is optimized for performance, ensuring fast and efficient execution of your hooks.
+- TypeScript: Hooks are written in TS, Ensuring type-safety and maintainability across your codebase.
+- API: Rehooks comes with a powerful API that allows you to access the hooks you need.
+- Documentation: Rehooks comes with detailed documentation and examples.
+
+# Ready to get started?
+
+Checkout the [Guide](/docs/guide) to start using Rehooks.
+
+<Cards>
+  <Card
+    icon={<PackageIcon />}
+    title="Official Rehooks CLI package"
+    href="https://npmjs.com/package/rehooks-cli"
+  >
+    Checkout on NPM
+  </Card>
+  <Card
+    icon={<GithubIcon />}
+    title="Want to contribute?"
+    href="https://github.com/Pyr33x/rehooks"
+  >
+    Report bugs, suggest features
+  </Card>
+</Cards>

@@ -1,0 +1,59 @@
+---
+title: useBattery
+description: Fetches and monitors device battery level and charging state.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useBattery
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useBattery"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useBattery } from "~/hooks/useBattery";
+
+function Component() {
+  const batteryState = useBattery();
+
+  return (
+    <div>
+      <h1>Battery State</h1>
+      <p>Battery level: {batteryState.level}</p>
+      <p>Battery charging: {batteryState.charging ? "yes" : "no"}</p>
+      <p>Battery charging time: {batteryState.chargingTime}</p>
+      <p>Battery discharging time: {batteryState.dischargingTime}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useBattery
+
+```ts title="useBattery.ts"
+function useBattery(): BatteryState;
+```
+
+#### Returns
+
+| Name                      | Type              | Description                                                            |
+| ------------------------- | ----------------- | ---------------------------------------------------------------------- |
+| batteryState              | `BatteryState`    | An object with battery state properties.                               |
+| batteryState.supported    | `boolean`         | Indicates if the Battery API is supported.                             |
+| batteryState.loading      | `boolean`         | True while fetching initial battery data.                              |
+| batteryState.level        | `number \| null`  | Battery level as a decimal (0.0 to 1.0), or null if unavailable.       |
+| batteryState.charging     | `boolean \| null` | Whether the battery is currently charging, or null if unavailable.     |
+| batteryState.chargingTime | `number \| null`  | Estimated time in seconds until fully charged, or null if unavailable. |

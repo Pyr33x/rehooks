@@ -1,0 +1,59 @@
+---
+title: useClipboard
+description: Provides a function to copy text to the clipboard effortlessly.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useClipboard
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useClipboard"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useClipboard } from "~/hooks/useClipboard";
+
+function Component() {
+  const { copy, isCopied } = useClipboard();
+
+  return (
+    <div>
+      <button onClick={() => copy("Hello, world!")}>
+        Copy "Hello, world!"
+      </button>
+      <p>Is copied: {isCopied ? "Yes" : "No"}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useClipboard
+
+```ts title="useClipboard.ts"
+function useClipboard(): {
+  copy: (text: string) => void;
+  isCopied: boolean;
+};
+```
+
+Returns a function to copy text to the clipboard and a boolean indicating whether the text has been copied.
+
+#### Returns
+
+| Name     | Type                     | Description                                            |
+| -------- | ------------------------ | ------------------------------------------------------ |
+| copy     | `(text: string) => void` | A function to copy text to the clipboard.              |
+| isCopied | `boolean`                | A boolean indicating whether the text has been copied. |

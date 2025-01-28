@@ -1,0 +1,63 @@
+---
+title: useToggle
+description: Returns a stateful value with two functions to update it.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Callout } from "fumadocs-ui/components/callout";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useToggle
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useToggle" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useToggle } from "~/hooks/useToggle";
+
+function Component() {
+  const [isOn, toggle, setToggle] = useToggle(false);
+
+  return (
+    <div>
+      <p>Current state: {isOn ? "On" : "Off"}</p>
+      <button onClick={toggle}>Toggle</button>
+      <button onClick={() => setToggle(true)}>Turn On</button>
+      <button onClick={() => setToggle(false)}>Turn Off</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useToggle
+
+```ts title="useToggle.ts"
+function useToggle(
+  defaultValue?: boolean,
+): [boolean, () => void, Dispatch<SetStateAction<boolean>>];
+```
+
+Returns a stateful value and two functions to update it.
+
+#### Parameters
+
+| Name         | Type      | Description                                         |
+| ------------ | --------- | --------------------------------------------------- |
+| defaultValue | `boolean` | The initial value of the state. Default is `false`. |
+
+#### Returns
+
+| Name      | Type         | Description                                 |
+| --------- | ------------ | ------------------------------------------- |
+| isOn      | `boolean`    | The current value of the state.             |
+| toggle    | `() => void` | A function to toggle the state.             |
+| setToggle | `Dispatch`   | A function to set the state to a new value. |

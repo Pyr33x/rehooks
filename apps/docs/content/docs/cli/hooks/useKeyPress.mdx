@@ -1,0 +1,58 @@
+---
+title: useKeyPress
+description: Detects the press state of a specified key.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useKeyPress
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useKeyPress"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useKeyPress } from "~/hooks/useKeyPress";
+
+function Component() {
+  const altS = useKeyPress({ key: "s", alt: true });
+  return <div>{altS ? "Saving document..." : "Type your text here..."}</div>;
+}
+```
+
+## API
+
+### useKeyPress
+
+```ts title="useKeyPress.ts"
+function useKeyPress(options: KeyConfig): boolean;
+```
+
+Returns boolean value indicating whether the specified key combination is currently pressed.
+
+#### Parameters
+
+| Name          | Type        | Description                                      |
+| ------------- | ----------- | ------------------------------------------------ |
+| options       | `KeyConfig` | The configuration for the key press detection.   |
+| options.key   | `string`    | The key to listen for.                           |
+| options.ctrl  | `boolean`   | Whether the Ctrl key must be pressed. Optional.  |
+| options.alt   | `boolean`   | Whether the Alt key must be pressed. Optional.   |
+| options.shift | `boolean`   | Whether the Shift key must be pressed. Optional. |
+| options.meta  | `boolean`   | Whether the Meta key must be pressed. Optional.  |
+
+#### Returns
+
+| Name       | Type      | Description                                                                                                                                                 |
+| ---------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| keyPressed | `boolean` | `true` if the specified key combination is currently pressed, `false` otherwise. This value is updated whenever the key combination is pressed or released. |

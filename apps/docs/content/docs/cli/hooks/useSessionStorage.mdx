@@ -1,0 +1,73 @@
+---
+title: useSessionStorage
+description: Manages a state variable synchronized with session storage.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useSessionStorage
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useSessionStorage"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useSessionStorage } from "~/hooks/useSessionStorage";
+import React from "react";
+
+function Component() {
+  const [name, setName] = useSessionStorage("name", "John Doe");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  return (
+    <div>
+      <h2>Session Storage Demo</h2>
+      <input
+        type="text"
+        value={name}
+        onChange={handleChange}
+        placeholder="Enter your name"
+      />
+      <p>Your name is: {name}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useSessionStorage
+
+```ts title="useSessionStorage.ts"
+function useSessionStorage<T>(
+  key: string,
+  initialValue: T,
+): [T, (value: T) => void];
+```
+
+#### Parameters
+
+| Name         | Type     | Description                                                                 |
+| ------------ | -------- | --------------------------------------------------------------------------- |
+| key          | `string` | The key of the item to be stored in session storage.                        |
+| initialValue | `T`      | The initial value to be used if the item does not exist in session storage. |
+
+#### Returns
+
+| Name     | Type                 | Description                                                    |
+| -------- | -------------------- | -------------------------------------------------------------- |
+| value    | `T`                  | The value of the item in session storage.                      |
+| setValue | `(value: T) => void` | A function that sets the value of the item in session storage. |

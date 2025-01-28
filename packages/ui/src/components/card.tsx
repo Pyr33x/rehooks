@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
-import React from "react";
 import { highlight } from "sugar-high";
 import { cn } from "@rehooks/utils";
+import React from "react";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -87,15 +87,15 @@ interface CodeBlockProps {
 
 function CodeBlock({
   children,
-  cls = "#4686FF",
-  sign = "#666666",
-  string = "#7c3aed",
-  keyword = "#a78bfa",
-  comment = "#666666",
-  identifier = "#f472b6",
-  jsxliterals = "#ddd6fe",
-  property = "#c4b5fd",
-  entity = "#8b5cf6",
+  cls = "#3b82f6",
+  sign = "#a0a0a0",
+  string = "#60a5fa",
+  keyword = "#64b5f6",
+  comment = "#a0a0a0",
+  identifier = "#1e88e5",
+  jsxliterals = "#60a5fa",
+  property = "#90caf9",
+  entity = "#3b82f6",
   ...props
 }: CodeBlockProps & ComponentPropsWithoutRef<"code">) {
   const codeHTML = highlight(children as string);

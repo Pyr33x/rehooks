@@ -1,0 +1,50 @@
+---
+title: useUnmount
+description: Executes a callback function when the component unmounts.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useUnmount
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useUnmount"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useUnmount } from "~/hooks/useUnmount";
+
+function Component() {
+  useUnmount(() => {
+    // Do something when the component is unmounted
+  });
+
+  return <div>Component</div>;
+}
+```
+
+## API
+
+### useUnmount
+
+```ts title="useUnmount.ts"
+function useUnmount(fn: () => void): void;
+```
+
+Executes a callback function when the component unmounts.
+
+#### Parameters
+
+| Name | Type         | Description                                      |
+| ---- | ------------ | ------------------------------------------------ |
+| fn   | `() => void` | The callback function to be executed on unmount. |

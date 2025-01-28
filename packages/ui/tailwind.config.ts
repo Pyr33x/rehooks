@@ -1,9 +1,6 @@
 import { createPreset } from "fumadocs-ui/tailwind-plugin";
 import tailwindcssAnimate from "tailwindcss-animate";
 import type { Config } from "tailwindcss";
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
   content: [
@@ -14,9 +11,17 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
     "./mdx-components.{ts,tsx}",
     "./node_modules/fumadocs-ui/dist/**/*.js",
     "../../packages/ui/src/**/*.{ts,tsx}",
+    "./node_modules/fumadocs-openapi/dist/**/*.js",
   ],
   theme: {
     extend: {
+      colors: {
+        "color-1": "hsl(var(--color-1))",
+        "color-2": "hsl(var(--color-2))",
+        "color-3": "hsl(var(--color-3))",
+        "color-4": "hsl(var(--color-4))",
+        "color-5": "hsl(var(--color-5))",
+      },
       container: {
         center: true,
         padding: "2rem",
@@ -29,7 +34,6 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         beam: "beam calc(var(--duration)*1s) infinite linear",
-        "background-shine": "background-shine 1.5s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         shine: "shine var(--duration) infinite linear",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -56,14 +60,6 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "background-shine": {
-          from: {
-            backgroundPosition: "0 0",
-          },
-          to: {
-            backgroundPosition: "-200% 0",
-          },
-        },
         gradient: {
           to: { "background-position": "200% center" },
         },
@@ -87,18 +83,7 @@ const confg: Pick<Config, "presets" | "plugins" | "content" | "theme"> = {
     },
   },
   presets: [createPreset()],
-  plugins: [tailwindcssAnimate, addVariablesForColors],
+  plugins: [tailwindcssAnimate],
 };
-
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-}
 
 export default confg;

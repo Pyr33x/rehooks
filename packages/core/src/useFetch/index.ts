@@ -9,10 +9,10 @@ type UseFetchResult<T, E> = {
   refetch: () => void;
 };
 
-const description = "Custom hook to fetch data from an API endpoint.";
+const description = "Fetches data from a specified API endpoint.";
 
 /**
- * Custom hook to fetch data from an API endpoint.
+ * Fetches data from a specified API endpoint.
  *
  * @template T - Type of the data returned by the API.
  * @template E - Type of the error returned by the API (default is `string`).

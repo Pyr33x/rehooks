@@ -1,7 +1,7 @@
 {
   "name": "rehooks-cli",
   "version": "4.2.2",
-  "description": "A CLI to insert hooks directly to your project.",
+  "description": "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   "publishConfig": {
     "access": "public"
   },

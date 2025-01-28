@@ -1,0 +1,89 @@
+---
+title: useCountUp
+description: Implements count-up functionality with customizable settings.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useCountUp
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useCountUp"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useCountup } from "~/hooks/useCountUp";
+
+function Component() {
+  const [counter, { startCountup, stopCountup, resetCountup }] = useCountup({
+    countStart: 10,
+    intervalMs: 1000,
+    countStop: Infinity,
+  });
+
+  return (
+    <div>
+      <h2>Countup Demo</h2>
+      <p>Current Count: {counter}</p>
+      <button onClick={startCountup}>Start Countup</button>
+      <button onClick={stopCountup}>Stop Countup</button>
+      <button onClick={resetCountup}>Reset Countup</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useCountup
+
+```ts title="useCountup.ts"
+function useCountup({
+  countStart,
+  countStop = Infinity,
+  intervalMs = 1000,
+}: CountupOptions): [number, CountupControllers];
+```
+
+Implements a count-up functionality.
+
+#### Parameters
+
+| Name       | Type     | Description                                                 |
+| ---------- | -------- | ----------------------------------------------------------- |
+| countStart | `number` | The starting count value.                                   |
+| intervalMs | `number` | The interval in milliseconds at which the count-up updates. |
+| countStop  | `number` | The count value at which the count-up stops.                |
+
+#### Returns
+
+| Name        | Type                 | Description                                                            |
+| ----------- | -------------------- | ---------------------------------------------------------------------- |
+| count       | `number`             | The current count value.                                               |
+| controllers | `CountupControllers` | An object containing functions to start, stop, and reset the count-up. |
+
+### CountupOptions
+
+| Name       | Type     | Description                                                 |
+| ---------- | -------- | ----------------------------------------------------------- |
+| countStart | `number` | The starting count value.                                   |
+| intervalMs | `number` | The interval in milliseconds at which the count-up updates. |
+| countStop  | `number` | The count value at which the count-up stops.                |
+
+### CountupControllers
+
+| Name         | Type         | Description                               |
+| ------------ | ------------ | ----------------------------------------- |
+| startCountup | `() => void` | Starts the count-up.                      |
+| stopCountup  | `() => void` | Stops the count-up.                       |
+| resetCountup | `() => void` | Resets the count-up to the initial value. |

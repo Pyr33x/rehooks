@@ -1,0 +1,73 @@
+---
+title: useLocalStorage
+description: Manages a state variable synchronized with local storage.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useLocalStorage
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useLocalStorage"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useLocalStorage } from "~/hooks/useLocalStorage";
+import React from "react";
+
+function Component() {
+  const [name, setName] = useLocalStorage("name", "John Doe");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  return (
+    <div>
+      <h2>Local Storage Demo</h2>
+      <input
+        type="text"
+        value={name}
+        onChange={handleChange}
+        placeholder="Enter your name"
+      />
+      <p>Your name is: {name}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useLocalStorage
+
+```ts title="useLocalStorage.ts"
+function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+): [T, (value: T) => void];
+```
+
+#### Parameters
+
+| Name         | Type     | Description                               |
+| ------------ | -------- | ----------------------------------------- |
+| key          | `string` | The key for the local storage item.       |
+| initialValue | `T`      | The initial value for the state variable. |
+
+#### Returns
+
+| Name        | Type                 | Description                                                    |
+| ----------- | -------------------- | -------------------------------------------------------------- |
+| storedValue | `T`                  | The current value synchronized with local storage.             |
+| setValue    | `(value: T) => void` | A function to update the state and sync it with local storage. |

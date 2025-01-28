@@ -1,0 +1,76 @@
+---
+title: useEventListener
+description: Adds and cleans up an event listener on a specified target element.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useEventListener
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useEventListener"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useEventListener } from "~/hooks/useEventListener";
+
+function Component() {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEventListener("click", () => {
+    console.log("Clicked on window");
+  });
+
+  useEventListener(
+    "mouseenter",
+    () => {
+      console.log("Mouse entered the div!");
+    },
+    divRef,
+  );
+
+  return (
+    <div>
+      <div ref={divRef}>Hover over this div</div>
+    </div>
+  );
+}
+```
+
+## API
+
+### useEventListener
+
+```ts title="useEventListener.ts"
+function useEventListener<K extends keyof WindowEventMap>(
+  eventName: K,
+  handler: (event: WindowEventMap[K]) => void,
+  element?: RefObject<HTMLElement> | Window,
+): void;
+```
+
+Adds an event listener to the target element.
+
+#### Parameters
+
+| Name      | Type                                 | Description                                                              |
+| --------- | ------------------------------------ | ------------------------------------------------------------------------ |
+| eventName | `K`                                  | The event type (e.g. 'click', 'scroll', 'resize', etc.).                 |
+| handler   | `(event: WindowEventMap[K]) => void` | The event handler function.                                              |
+| element   | `RefObject<HTMLElement> \| Window`   | The target element to attach the event listener to. Default is `window`. |
+
+#### Returns
+
+| Name      | Type   | Description |
+| --------- | ------ | ----------- |
+| undefined | `void` |             |

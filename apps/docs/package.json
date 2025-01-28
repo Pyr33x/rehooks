@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "build:docs": "node ./scripts/generate-docs.mjs"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.5",
@@ -14,10 +15,15 @@
     "@vercel/analytics": "^1.3.2",
     "fumadocs-core": "14.6.1",
     "fumadocs-mdx": "10.0.2",
-    "fumadocs-ui": "13.4.10",
+    "fumadocs-openapi": "^5.10.6",
+    "fumadocs-ui": "14.6.8",
+    "motion": "^11.16.2",
     "next": "^14.2.8",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "rimraf": "^6.0.1",
+    "shiki": "^1.26.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@fumadocs/cli": "^0.0.4",
@@ -28,7 +34,6 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
-    "cobe": "^0.6.3",
     "postcss": "^8.4.45",
     "rehooks-ts": "workspace:*",
     "tailwindcss": "^3.4.1",

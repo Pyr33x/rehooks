@@ -1,0 +1,40 @@
+---
+title: Configuration
+description: How to configure Rehooks
+---
+
+# Configuration
+
+By using `init` command, which initializes the configuration file and generates the `rehooks.json` file, you can customize the configuration of Rehooks.
+
+## Usage
+
+```bash title="Terminal"
+npx rehooks-cli@latest init
+```
+
+## Configuration
+
+The `rehooks.json` file, includes a `directory` and `overwrite` property.
+
+### Directory
+
+The `directory` property specifies the directory where the hooks will be imported. By default, it is set to `src/hooks`.
+
+### forceOverwrite
+
+The `forceOverwrite` property specifies whether to overwrite existing hook files without prompt. By default, it is set to `false`.
+
+<Callout type="info">
+  If you want to use a custom path for the hooks directory, you can pass it as
+  an argument to the `init` command.
+</Callout>
+
+## Example
+
+```json title="rehooks.json"
+{
+  "directory": "src/hooks",
+  "forceOverwrite": false
+}
+```

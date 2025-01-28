@@ -10,6 +10,14 @@ import {
   Braces,
   Layers,
   Zap,
+  ChevronRight,
+  Server,
+  Scale,
+  ArrowUpRight,
+  Terminal,
+  CornerDownLeft,
+  Sparkles,
+  Hammer,
 } from "lucide-react";
 
 export {
@@ -24,7 +32,17 @@ export {
   Braces,
   Layers,
   Zap,
+  ChevronRight,
+  Server,
+  Scale,
+  ArrowUpRight,
+  Terminal,
+  CornerDownLeft,
+  Sparkles,
+  Hammer,
 };
+export * from "./sparkle";
 export * from "./rehooks";
 export * from "./github";
+export * from "./react";
 export * from "./npm";

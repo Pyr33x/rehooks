@@ -1,0 +1,45 @@
+---
+title: useLang
+description: Returns the user’s current browser language based on their settings.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useLang
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useLang" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useLang } from "~/hooks/useLang";
+
+function Component() {
+  const lang = useLang();
+
+  return <p>Current Language: {lang}</p>;
+}
+```
+
+## API
+
+### useLang
+
+```ts title="useLang.ts"
+function useLang(): string;
+```
+
+Returns the current language of the user's browser.
+
+#### Returns
+
+| Name | Type     | Description                                            |
+| ---- | -------- | ------------------------------------------------------ |
+| lang | `string` | The current language code (e.g., 'en-US', 'fr', etc.). |

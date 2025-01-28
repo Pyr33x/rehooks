@@ -1,0 +1,85 @@
+---
+title: useCountdown
+description: Implements countdown functionality with configurable options.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useCountdown
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useCountDown"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useCountdown } from "~/hooks/useCountDown";
+
+function Component() {
+  const [counter, { startCountdown, stopCountdown, resetCountdown }] =
+    useCountdown({
+      countStart: 10,
+      intervalMs: 1000,
+      countStop: 0,
+    });
+
+  return (
+    <div>
+      <h2>Countdown Demo</h2>
+      <p>Current Count: {counter}</p>
+      <button onClick={startCountdown}>Start Countdown</button>
+      <button onClick={stopCountdown}>Stop Countdown</button>
+      <button onClick={resetCountdown}>Reset Countdown</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useCountdown
+
+```ts title="useCountdown.ts"
+function useCountdown({
+  countStart,
+  countStop = 0,
+  intervalMs = 1000,
+}: {
+  countStart: number;
+  countStop?: number;
+  intervalMs?: number;
+}): [
+  number,
+  {
+    startCountdown: () => void;
+    stopCountdown: () => void;
+    resetCountdown: () => void;
+  },
+];
+```
+
+#### Parameters
+
+| Name       | Type     | Description                                                             |
+| ---------- | -------- | ----------------------------------------------------------------------- |
+| countStart | `number` | The countdown's initial value.                                          |
+| countStop  | `number` | The value at which the countdown ends (default is `0`).                 |
+| intervalMs | `number` | The time in milliseconds between countdown updates (default is `1000`). |
+
+#### Returns
+
+| Name           | Type         | Description                                                      |
+| -------------- | ------------ | ---------------------------------------------------------------- |
+| count          | `number`     | The current countdown value.                                     |
+| startCountdown | `() => void` | A function to begin the countdown.                               |
+| stopCountdown  | `() => void` | A function to pause the countdown.                               |
+| resetCountdown | `() => void` | A function to reset the countdown to the initial starting value. |

@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "pages": [
+    "index",
+    "resources",
+    "getting-started",
+    "---Components---",
+    "hooks",
+    "---Rights---",
+    "legal"
+  ]
+}

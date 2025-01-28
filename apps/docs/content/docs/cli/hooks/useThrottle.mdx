@@ -1,0 +1,115 @@
+---
+title: useThrottle
+description: Returns a throttled version of the provided function.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useThrottle
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useThrottle"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useThrottle } from "~/hooks/useThrottle";
+
+function Component() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [results, setResults] = useState<string[]>([]);
+
+  const searchAPI = async (term: string) => {
+    console.log("🔍 Searching for:", term);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return [
+      `Result 1 for ${term}`,
+      `Result 2 for ${term}`,
+      `Result 3 for ${term}`,
+    ];
+  };
+
+  const handleSearch = useThrottle(
+    async (term: string) => {
+      if (term.trim() === "") {
+        setResults([]);
+        return;
+      }
+      const searchResults = await searchAPI(term);
+      setResults(searchResults);
+    },
+    { wait: 1000 },
+  );
+
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            handleSearch(e.target.value);
+          }}
+        />
+        <div>
+          Try typing quickly - the search is throttled to once per second
+        </div>
+      </div>
+
+      <div>
+        {results.map((result, index) => (
+          <div key={index}>{result}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## API
+
+### useThrottle
+
+```ts title="useThrottle.ts"
+function useThrottle<T extends (...args: any[]) => any>(
+  fn: T,
+  options: ThrottleOptions = {},
+): (...args: Parameters<T>) => void;
+```
+
+Custom hook that throttles a callback function.
+
+#### Parameters
+
+| Name             | Type              | Description                                            |
+| ---------------- | ----------------- | ------------------------------------------------------ |
+| fn               | `T`               | The callback function to throttle.                     |
+| options          | `ThrottleOptions` | The configuration options.                             |
+| options.wait     | `number`          | The number of milliseconds to throttle invocations to. |
+| options.leading  | `boolean`         | Specify invoking on the leading edge of the timeout.   |
+| options.trailing | `boolean`         | Specify invoking on the trailing edge of the timeout.  |
+
+#### Returns
+
+| Name     | Type                               | Description                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| callback | `(...args: Parameters<T>) => void` | A throttled version of the provided callback function. The throttled function will only execute at most once per every `wait` milliseconds. The callback function will be invoked with the same arguments as the original function, except that the last argument will be an object containing the `cancel` method, which can be called to cancel the execution of the throttled function. |
+
+### ThrottleOptions
+
+| Name     | Type      | Description                                            |
+| -------- | --------- | ------------------------------------------------------ |
+| wait     | `number`  | The number of milliseconds to throttle invocations to. |
+| leading  | `boolean` | Specify invoking on the leading edge of the timeout.   |
+| trailing | `boolean` | Specify invoking on the trailing edge of the timeout.  |

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const description =
-  "Custom hook that manages a state variable with session storage.";
+  "Manages a state variable synchronized with session storage.";
 
 /**
- * Custom hook that manages a state variable with session storage.
+ * Manages a state variable synchronized with session storage.
  *
  * @param {string} key - The key for the session storage item.
  * @param {T} initialValue - The initial value for the state variable.

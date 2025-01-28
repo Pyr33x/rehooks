@@ -1,0 +1,75 @@
+---
+title: useDevice
+description: Detects device type and returns a boolean for each detected type.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useDevice
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useDevice" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useDevice } from "~/hooks/useDevice";
+
+function Component() {
+  const { isMobile, isDesktop, isTablet, DesktopView, MobileView, TabletView } =
+    useDevice();
+
+  return (
+    <div>
+      <div>
+        {isMobile && <div>Mobile View</div>}
+        {isDesktop && <div>Desktop View</div>}
+        {isTablet && <div>Tablet View</div>}
+      </div>
+      <button onClick={DesktopView}>
+        {isDesktop ? "Hide" : "Show"} Desktop View
+      </button>
+      <button onClick={MobileView}>
+        {isMobile ? "Hide" : "Show"} Mobile View
+      </button>
+      <button onClick={TabletView}>
+        {isTablet ? "Hide" : "Show"} Tablet View
+      </button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useDevice
+
+```ts title="useDevice.ts"
+function useDevice(): {
+  isMobile: boolean;
+  isDesktop: boolean;
+  isTablet: boolean;
+  DesktopView: () => void;
+  MobileView: () => void;
+  TabletView: () => void;
+};
+```
+
+Returns a boolean value for each device type.
+
+#### Returns
+
+| Name        | Type         | Description                                                        |
+| ----------- | ------------ | ------------------------------------------------------------------ |
+| isMobile    | `boolean`    | A boolean value indicating whether the device is a mobile device.  |
+| isDesktop   | `boolean`    | A boolean value indicating whether the device is a desktop device. |
+| isTablet    | `boolean`    | A boolean value indicating whether the device is a tablet device.  |
+| DesktopView | `() => void` | A function that toggles the visibility of the desktop view.        |
+| MobileView  | `() => void` | A function that toggles the visibility of the mobile view.         |
+| TabletView  | `() => void` | A function that toggles the visibility of the tablet view.         |

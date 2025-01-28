@@ -1,0 +1,72 @@
+---
+title: useDebounceValue
+description: Debounces a value, updating it after a specified delay.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useDebounceValue
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useDebounceValue"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useDebounceValue } from "~/hooks/useDebounceValue";
+import { useState, useEffect } from "react";
+
+function Component() {
+  const [searchInput, setSearchInput] = useState<string>("");
+  const debouncedSearchInput = useDebounceValue(searchInput, 500);
+
+  useEffect(() => {
+    if (debouncedSearchInput)
+      console.log("Debounced Search Input:", debouncedSearchInput);
+  }, [debouncedSearchInput]);
+
+  return (
+    <div>
+      <h2>Debounced Search</h2>
+      <input
+        type="text"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        placeholder="Type something to search..."
+      />
+      <p>Search Input: {searchInput}</p>
+      <p>Debounced Input: {debouncedSearchInput}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useDebounceValue
+
+```ts title="useDebounceValue.ts"
+function useDebounceValue<T>(value: T, delay: number): T;
+```
+
+#### Parameters
+
+| Name  | Type     | Description                         |
+| ----- | -------- | ----------------------------------- |
+| value | `T`      | The value to debounce.              |
+| delay | `number` | The debounce delay in milliseconds. |
+
+#### Returns
+
+| Name           | Type | Description          |
+| -------------- | ---- | -------------------- |
+| debouncedValue | `T`  | The debounced value. |

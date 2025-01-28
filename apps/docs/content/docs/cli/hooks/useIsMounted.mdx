@@ -1,0 +1,54 @@
+---
+title: useIsMounted
+description: Returns a function to check if the component is currently mounted.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useIsMounted
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useIsMounted"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useIsMounted } from "~/hooks/useIsMounted";
+
+function Component() {
+  const isMounted = useIsMounted();
+
+  useEffect(() => {
+    if (isMounted()) {
+      // Do something when the component is mounted
+    }
+  }, [isMounted]);
+
+  return <div>Component</div>;
+}
+```
+
+## API
+
+### useIsMounted
+
+```ts title="useIsMounted.ts"
+function useIsMounted(): () => boolean;
+```
+
+Returns a function that returns a boolean indicating whether the component is currently mounted.
+
+#### Returns
+
+| Name      | Type            | Description                                                                              |
+| --------- | --------------- | ---------------------------------------------------------------------------------------- |
+| isMounted | `() => boolean` | A function that returns a boolean indicating whether the component is currently mounted. |

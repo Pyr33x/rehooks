@@ -1,0 +1,51 @@
+---
+title: useTitle
+description: Changes the page title dynamically.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useTitle
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useTitle" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useTitle } from "~/hooks/useTitle";
+
+function Component() {
+  const { title, changeTitle } = useTitle();
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      <button onClick={() => changeTitle("New Title")}>Change Title</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useTitle
+
+```ts title="useTitle.ts"
+function useTitle(): UseTitleResult;
+```
+
+Returns an object containing the current page title and a function to update both the state and the document title.
+
+#### Returns
+
+| Name        | Type                         | Description                          |
+| ----------- | ---------------------------- | ------------------------------------ |
+| title       | `string`                     | Current page title.                  |
+| changeTitle | `(newTitle: string) => void` | A function to update the page title. |

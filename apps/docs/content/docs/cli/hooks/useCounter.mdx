@@ -1,0 +1,66 @@
+---
+title: useCounter
+description: Returns a tuple with counter value and increment, decrement, reset functions.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useCounter
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useCounter"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useCounter } from "~/hooks/useCounter";
+
+function Component() {
+  const [count, { increment, decrement, reset }] = useCounter(0);
+
+  return (
+    <div>
+      <h2>Counter Example</h2>
+      <p>Current Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useCounter
+
+```ts title="useCounter.ts"
+function useCounter(initialValue?: number): CounterReturnType;
+```
+
+Returns a tuple with counter value and increment, decrement, reset functions.
+
+#### Parameters
+
+| Name          | Type     | Description                                             |
+| ------------- | -------- | ------------------------------------------------------- |
+| initialValue? | `number` | Optional initial value of the counter. Defaults to `0`. |
+
+#### Returns
+
+| Name      | Type         | Description                                           |
+| --------- | ------------ | ----------------------------------------------------- |
+| count     | `number`     | The current value of the counter.                     |
+| increment | `() => void` | A function to increment the counter by 1.             |
+| decrement | `() => void` | A function to decrement the counter by 1.             |
+| reset     | `() => void` | A function to reset the counter to the initial value. |
+| setCount  | `Dispatch`   | A function to set the counter to a new value.         |

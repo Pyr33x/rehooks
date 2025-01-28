@@ -1,0 +1,55 @@
+---
+title: useWindowSize
+description: Tracks and returns the current window size.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useWindowSize
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useWindowSize"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useWindowSize } from "~/hooks/useWindowSize";
+
+function Component() {
+  const { width, height } = useWindowSize();
+
+  return (
+    <div>
+      <h1>Window Size</h1>
+      <p>Width: {width}px</p>
+      <p>Height: {height}px</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useWindowSize
+
+```ts title="useWindowSize.ts"
+function useWindowSize(): WindowSize;
+```
+
+Custom hook that tracks and returns the current window size.
+
+#### Returns
+
+| Name   | Type         | Description                       |
+| ------ | ------------ | --------------------------------- |
+| width  | `WindowSize` | The current width of the window.  |
+| height | `WindowSize` | The current height of the window. |

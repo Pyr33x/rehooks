@@ -1,0 +1,48 @@
+---
+title: useIsClient
+description: Determines if the component is rendered on the client side.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useIsClient
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useIsClient"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useIsClient } from "~/hooks/useIsClient";
+
+function Component() {
+  const isClient = useIsClient();
+
+  return <div>{isClient ? "Client" : "Server"}</div>;
+}
+```
+
+## API
+
+### useIsClient
+
+```ts title="useIsClient.ts"
+function useIsClient(): boolean;
+```
+
+A custom React hook that determines if the component is being rendered on the client side.
+
+#### Returns
+
+| Name     | Type      | Description                                                              |
+| -------- | --------- | ------------------------------------------------------------------------ |
+| isClient | `boolean` | Returns true if the component is mounted on the client, false otherwise. |

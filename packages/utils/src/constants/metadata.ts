@@ -36,7 +36,8 @@ export const meta = {
     default: "Rehooks",
     template: "%s | Rehooks",
   },
-  description: "A CLI to insert hooks directly to your project.",
+  description:
+    "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   creator: "Mehdi Parandak",
   authors: {
     url: "https://github.com/pyr33x",

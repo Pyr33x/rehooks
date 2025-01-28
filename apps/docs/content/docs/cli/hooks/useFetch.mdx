@@ -1,0 +1,103 @@
+---
+title: useFetch
+description: Fetches data from a specified API endpoint.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useFetch
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useFetch" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useFetch } from "~/hooks/useFetch";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type ApiError = {
+  message: string;
+};
+
+function Component() {
+  const { data, error, isPending, isSuccess, isError, refetch } = useFetch<
+    User[],
+    ApiError
+  >("https://jsonplaceholder.typicode.com/users", {
+    method: "GET",
+  });
+
+  return (
+    <div>
+      <h1>User List</h1>
+
+      {isPending && <p>Loading...</p>}
+      {isError && error && (
+        <p style={{ color: "red" }}>Error: {error.message}</p>
+      )}
+
+      {isSuccess && data && (
+        <ul>
+          {data.map((user: User) => (
+            <li key={user.id}>
+              {user.name} - {user.email}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <button onClick={refetch} disabled={isPending}>
+        {isPending ? "Fetching..." : "Refetch Data"}
+      </button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useFetch
+
+```ts title="useFetch.ts"
+function useFetch<T, E = string>(
+  url: string,
+  reqOpt?: RequestInit,
+): UseFetchResult<T, E>;
+```
+
+Fetches data from the provided URL using the specified request options.
+
+This function uses `fetch` with an `AbortController` to allow for request cancellation if needed.
+Updates the state with the response data, error, or loading status based on the fetch result.
+
+#### Parameters
+
+| Name    | Type          | Description                                                           |
+| ------- | ------------- | --------------------------------------------------------------------- |
+| url     | `string`      | The URL of the API endpoint.                                          |
+| reqOpt? | `RequestInit` | Optional configuration for the fetch request (e.g., method, headers). |
+| T       | `T`           | Type of the data returned by the API.                                 |
+| E       | `E`           | Type of the error returned by the API (default is `string`).          |
+
+#### Returns
+
+| Name      | Type         | Description                                                               |
+| --------- | ------------ | ------------------------------------------------------------------------- |
+| data      | `T`          | The data returned by the API, or `null` if no data has been received yet. |
+| error     | `E`          | The error returned by the API, or `null` if no error has occurred.        |
+| isPending | `boolean`    | A boolean indicating whether the fetch request is currently in progress.  |
+| isSuccess | `boolean`    | A boolean indicating if the fetch request was successful.                 |
+| isError   | `boolean`    | A boolean indicating if the fetch request resulted in an error.           |
+| refetch   | `() => void` | A function to manually trigger the fetch request again.                   |

@@ -1,0 +1,79 @@
+---
+title: useDebounceCallback
+description: Debounces a callback, executing it only after a specified delay.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useDebounceCallback
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useDebounceCallback"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useDebounceCallback } from "~/hooks/useDebounceCallback";
+import { useState } from "react";
+
+function Component() {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const debouncedLog = useDebounceCallback((value: string) => {
+    console.log("Debounced Input Value:", value);
+  }, 500);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setInputValue(value);
+    debouncedLog(value);
+  };
+
+  return (
+    <div>
+      <h2>Debounced Callback Example</h2>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="Type something..."
+      />
+    </div>
+  );
+}
+```
+
+## API
+
+### useDebounceCallback
+
+```ts title="useDebounceCallback.ts"
+function useDebounceCallback<T extends (...args: any[]) => void>(
+  callback: T,
+  delay: number,
+): (...args: Parameters<T>) => void;
+```
+
+Returns a debounced version of the provided callback function.
+
+#### Parameters
+
+| Name     | Type     | Description                                            |
+| -------- | -------- | ------------------------------------------------------ |
+| callback | `T`      | The callback function that depends on external values. |
+| delay    | `number` | The debounce delay in milliseconds.                    |
+
+#### Returns
+
+| Name     | Type | Description                                            |
+| -------- | ---- | ------------------------------------------------------ |
+| callback | `T`  | A debounced version of the provided callback function. |

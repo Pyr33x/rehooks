@@ -1,0 +1,56 @@
+---
+title: useEventCallback
+description: Returns a memoized callback that remains stable across renders.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useEventCallback
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useEventCallback"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useEventCallback } from "~/hooks/useEventCallback";
+
+function Component() {
+  const handleClick = useEventCallback(() => {
+    console.log("Clicked!");
+  });
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+```
+
+## API
+
+### useEventCallback
+
+```ts title="useEventCallback.ts"
+function useEventCallback<T extends (...args: any[]) => any>(fn: T): T;
+```
+
+Returns a memoized version of the provided callback.
+
+#### Parameters
+
+| Name | Type | Description                                            |
+| ---- | ---- | ------------------------------------------------------ |
+| fn   | `T`  | The callback function that depends on external values. |
+
+#### Returns
+
+| Name | Type | Description                                |
+| ---- | ---- | ------------------------------------------ |
+| fn   | `T`  | A stable version of the provided callback. |

@@ -1,0 +1,54 @@
+---
+title: useScroll
+description: Tracks and returns the current scroll position, with a method to scroll to specific coordinates.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useScoll
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useScroll" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useScroll } from "~/hooks/useScroll";
+
+function Component() {
+  const { position, scrollTo } = useScroll();
+
+  return (
+    <div>
+      <h1>Scroll Position</h1>
+      <p>X: {position.x}</p>
+      <p>Y: {position.y}</p>
+      <button onClick={() => scrollTo({ top: 0 })}>Scroll to top</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useScroll
+
+```ts title="useScroll.ts"
+function useScroll(): {
+  position: ScrollPosition;
+  scrollTo: (options: ScrollToOptions) => void;
+};
+```
+
+#### Returns
+
+| Name     | Type                                 | Description                                  |
+| -------- | ------------------------------------ | -------------------------------------------- |
+| position | `ScrollPosition`                     | The current scroll position.                 |
+| scrollTo | `(options: ScrollToOptions) => void` | A function to scroll to a specific position. |
