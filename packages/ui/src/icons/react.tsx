@@ -1,16 +1,8 @@
-import type { SVGProps } from "react";
 import { motion } from "motion/react";
 
-export function ReactIcon(props: SVGProps<SVGSVGElement>) {
+export function ReactIcon({ className }: { className?: string }) {
   return (
-    <svg
-      width="1em"
-      height="1em"
-      viewBox="0 0 569 512"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      {...props}
-    >
+    <svg width="1em" height="1em" viewBox="0 0 569 512" className={className}>
       <g fill="none" fillRule="evenodd">
         <g transform="translate(-227, -256)" fill="#58C4DC" fillRule="nonzero">
           <g transform="translate(227, 256)">

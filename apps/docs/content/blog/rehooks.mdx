@@ -7,26 +7,65 @@ date: 2025-01-07
 
 # Getting Started
 
-Welcome to the very first post of Rehooks blog. This is a post to introduce and demonstrate the decisions made in the creation of Rehooks. So let's get started!
+Exploring a new approach to managing and distributing React hooks through a CLI-first experience that prioritizes developer workflow and codebase integration.
 
-## What is Rehooks?
+## The Problem with Traditional Hook Libraries
 
-Rehooks is CLI tool that helps you to insert custom production-ready hooks into your project. So basically, Rehooks is a reference that allows you to build your own custom hooks with ease instead of reinventing the wheel.
+Traditional hook libraries bundle all their hooks together, leading to several challenges:
 
-## Why did I build Rehooks?
+- Increased bundle size from unused hooks
+- Limited flexibility in customization
+- Version management across multiple projects
+- Tight coupling with the library's implementation
+
+## Introducing Rehooks: Hook Distribution Reimagined
+
+Rehooks takes a fundamentally different approach by providing a CLI tool that directly injects production-ready hooks into your codebase. This brings several key advantages:
+
+- **Zero Bundle Size Impact:** Only the hooks you select get added to your codebase
+- **Full Type Safety:** Hooks are written in TypeScript with comprehensive type definitions
+- **Complete Customization:** Since hooks are added to your codebase, you can modify them to fit your needs
+- **SOLID Principles:** Each hook follows SOLID design principles for maximum reusability
 
 I was looking for a way to streamline the process of creating custom hooks, and unfortunately, the dependecy wasn't the correct way, because I had to deal with the `limitation`, `bundle size`, `performance`, and `maintenance` issues. So I decided to create Rehooks to solve these problems.
 
-## How does Rehooks work?
+## How It Works
 
-Initially, we maintain a separate TypeScript library called `rehooks-ts`, which houses all our custom hooks. These hooks are then converted into a JSON file, effectively serving as an [API](/docs/api) for the `rehooks-cli`. In essence, when you need a hook, you simply choose from the curated list available through the [API](/docs/api), and the CLI handles the import directly into your project with ease. This streamlined process ensures seamless integration and rapid development.
+1. **Project Initialization:** Generate a configuration file that tells Rehooks where to inject hooks
+2. **Hook Collection:** Hooks are maintained in a dedicated directory with full TypeScript support
+3. **Rust-Powered Processing:** A Rust script processes the hooks directory into a structured JSON API
+4. **Smart CLI:** The CLI tool fetches available hooks from the API and handles the injection process
+5. **Multiple Selection:** Developers can select and install multiple hooks in one go
 
-## Why use Rehooks?
+## Technical Implementation
 
-You still want to deal with the `limitation`, `bundle size`, `performance`, and `maintenance` issues, but you don't want to deal with the `complexity` and `code duplication` issues. Rehooks is here to help you with all these issues.
+The project consists of the following components:
 
-By leveraging the Rehooks CLI, you can significantly streamline your codebase by eliminating unused and duplicated code. This powerful tool empowers you to enhance the reusability and maintainability of your custom hooks, allowing you to focus on building efficient and scalable applications. With Rehooks, you'll not only optimize your development workflow but also ensure a cleaner, more organized code structure for long-term success.
+1. **Core:** Collection of the hooks
+2. **Importer:** Converts hook implementations into a queryable JSON API
+3. **Checker:** A rust-based checker for hook health
+4. **CLI:** Provides the interface for hook selection and installation
+5. **Docs:** Comprehensive documentation for Rehooks
 
-## Next Steps
+## Benefits for Development Teams
 
-I'm excited to see what you'll create with Rehooks. If you have any questions or feedback, please don't hesitate to reach out to me. I'm always happy to help and support you in your journey. Happy coding!
+- **Consistency:** Standardized hook implementations across projects
+- **Maintainability:** Hooks become part of your codebase's version control
+- **Flexibility:** Easy customization for project-specific needs
+- **Performance:** No impact on bundle size from unused hooks
+
+## Future Plans
+
+- Community contributions for new hooks
+- Hook testing templates
+- Automated hook updates
+- VSCode extension for hook management
+
+## Conclusion
+
+Rehooks represents a shift in how we think about code reuse in React applications. By moving from bundled libraries to a CLI-first approach, we gain more control, better performance, and improved maintainability without sacrificing the convenience of pre-built solutions. The initialization-first approach ensures that hooks are always installed in the right place and configured correctly for your project's needs.
+
+## Resources
+
+- [Documentation](https://rehooks.pyr33x.ir)
+- [Repository](https://github.com/pyr33x/rehooks)

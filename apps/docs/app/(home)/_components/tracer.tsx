@@ -23,7 +23,7 @@ export function Tracer() {
         <Trace
           width={250}
           height={50}
-          gradientColors={["#3b82f6", "#3b82f6", "#2563eb"]}
+          gradientColors={["#58C4DC", "#58C4DC", "#67e8f9"]}
           animationDuration={2}
         />
         <div className="bg-fd-background border-fd-border pointer-events-none inline-flex items-center justify-center rounded-xl border p-2">
