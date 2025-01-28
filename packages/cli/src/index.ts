@@ -14,7 +14,7 @@ async function main() {
       "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
     )
     .version(
-      packageInfo.version ?? "4.2.2",
+      packageInfo.version ?? "4.5.0",
       "-v, --version",
       "Displays the current version of the CLI",
     );

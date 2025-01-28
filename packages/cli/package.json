@@ -1,6 +1,6 @@
 {
   "name": "rehooks-cli",
-  "version": "4.2.2",
+  "version": "4.5.0",
   "description": "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   "publishConfig": {
     "access": "public"
