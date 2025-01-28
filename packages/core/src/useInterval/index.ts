@@ -38,7 +38,7 @@ export function useInterval(
   options?: IntervalOptions,
 ): IntervalReturn {
   const savedCallback = useRef(callback);
-  const { immediate = false, autoStart = true } = options || {};
+  const { immediate = false, autoStart = true } = options ?? {};
   const [isRunning, setIsRunning] = useState(autoStart);
 
   useEffect(() => {

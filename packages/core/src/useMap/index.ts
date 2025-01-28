@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 
 const description =
   "Provides a reactive Map instance with common mutation methods for state management.";

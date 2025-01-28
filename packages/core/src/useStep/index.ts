@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const description =
   "Manages step-based navigation with imperative controls. Returns step navigation methods and state.";
@@ -49,9 +49,9 @@ export function useStep<T = number>(config: UseStepProps<T>): UseStepReturn<T> {
 
   const steps = useMemo(
     () =>
-      stepsConfig ||
+      stepsConfig ??
       Array.from(
-        { length: totalStepsConfig as number },
+        { length: totalStepsConfig! },
         (_, i) => (i + 1) as unknown as T,
       ),
     [stepsConfig, totalStepsConfig],
