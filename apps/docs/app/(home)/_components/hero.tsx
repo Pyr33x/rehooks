@@ -111,7 +111,14 @@ function Badge({
       </span>
       <div className="text-fd-muted-foreground flex items-center gap-1.5 p-1.5 pl-2.5">
         <span className="hidden text-sm sm:block">Read more</span>
-        <div className="rounded-full bg-blue-600 p-1 text-white">{icon}</div>
+        <motion.div
+          initial={{ rotate: 360 }}
+          animate={{ rotate: 0 }}
+          transition={{ delay: 0.25 }}
+          className="rounded-full bg-blue-600 p-1 text-white"
+        >
+          {icon}
+        </motion.div>
       </div>
     </motion.a>
   );
