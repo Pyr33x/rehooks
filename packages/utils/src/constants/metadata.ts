@@ -15,6 +15,7 @@ export const meta = {
     card: "summary_large_image",
     creator: "@pyr33x",
     site: "https://rehooks.pyr33x.ir",
+    images: "https://rehooks.pyr33x.ir/og.png",
   },
   /** OpenGraph */
 
