@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactIcon, RehooksIcon } from "@rehooks/ui/icons";
 import { Trace } from "@rehooks/ui/components";
 
