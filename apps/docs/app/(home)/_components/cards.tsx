@@ -8,6 +8,7 @@ import {
   Wrench,
   Sparkles,
   Hammer,
+  SparkleIcon,
 } from "@rehooks/ui/icons";
 import { Retro, Marquee, Text, Shimmer } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
@@ -55,6 +56,11 @@ const commits = [
   },
 ];
 
+type Sparkle = {
+  animate: number[];
+  className?: string;
+};
+
 export const features = [
   {
     Icon: Globe,
@@ -86,6 +92,7 @@ export const features = [
     background: (
       <div className="flex h-full w-full items-center justify-center">
         <Text text="<T>" className="absolute top-16" />
+        <SparkleIcon className="absolute right-32 top-14" />
       </div>
     ),
   },

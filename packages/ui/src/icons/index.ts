@@ -41,6 +41,7 @@ export {
   Sparkles,
   Hammer,
 };
+export * from "./sparkle";
 export * from "./rehooks";
 export * from "./github";
 export * from "./npm";
