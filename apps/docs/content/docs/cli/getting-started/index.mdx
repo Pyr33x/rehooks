@@ -14,23 +14,30 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 Initialize the `Rehooks` configuration by running the following command into your project's directory:
 
 ```bash title="Terminal"
-npx rehooks-cli init
+npx rehooks-cli@latest init
 ```
+
+<Callout type="info">
+  Make sure to put `@latest` in the command, as it will install the latest
+  version of the CLI.
+</Callout>
 
 Learn more about the [Initialization](/docs/getting-started/initialization) process.
 
 </Step>
-
 <Step>
 
 # Learn about the CLI
 
 <Cards>
-  <Card title="API" href="/docs/api">
-    How to use the API to get the details of the available hooks.
+  <Card title="Initialization" href="/docs/cli/getting-started/initialization">
+    Learn how to initialize and interact with the Rehooks CLI.
   </Card>
   <Card title="Configuration" href="/docs/cli/getting-started/configuration">
     Learn about `rehooks.json` file and how to configure Rehooks.
+  </Card>
+  <Card title="API" href="/docs/api">
+    How to use the API to get the details of the available hooks.
   </Card>
   <Card title="Legal" href="/docs/cli/legal">
     Discover the legal information and terms of service for Rehooks.
@@ -38,5 +45,4 @@ Learn more about the [Initialization](/docs/getting-started/initialization) proc
 </Cards>
 
 </Step>
-
 </Steps>
