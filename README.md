@@ -1,10 +1,4 @@
 <div align="center">
-  <img src="./assets/banner.png" alt="rehooks" />
-</div>
-
-<br />
-
-<div align="center">
   <h1>Rehooks</h1>
   <p>A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.</p>
 </div>
