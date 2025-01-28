@@ -1,15 +1,29 @@
 "use client";
 
-import { GithubIcon, ArrowRight } from "@rehooks/ui/icons";
+import { GithubIcon, ArrowRight, ArrowUpRight } from "@rehooks/ui/icons";
 import { Button, Shine, Shimmer } from "@rehooks/ui/components";
 import { GITHUB_LINK } from "@rehooks/utils";
 import { useClipboard } from "rehooks-ts";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 export function Hero() {
   return (
     <>
-      <div className="inline-flex">
+      <div className="mb-6">
+        <Badge
+          icon={
+            <ArrowUpRight className="size-3 transition-transform duration-100 group-hover:-translate-y-px group-hover:translate-x-px" />
+          }
+        >
+          Rehooks v4.5 Released!
+        </Badge>
+      </div>
+      <motion.div
+        initial={{ translateY: 15, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        className="inline-flex"
+      >
         <h1 className="max-w-lg text-balance text-center text-4xl font-black lg:text-6xl">
           Streamline Your{" "}
           <Shimmer
@@ -20,12 +34,20 @@ export function Hero() {
           />{" "}
           Hooks
         </h1>
-      </div>
-      <p className="text-fd-muted-foreground mt-2 max-w-xs text-pretty text-center text-lg font-normal lg:max-w-xl lg:text-xl">
+      </motion.div>
+      <motion.p
+        initial={{ translateY: 15, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        className="text-fd-muted-foreground mt-2 max-w-xs text-pretty text-center text-lg font-normal lg:max-w-xl lg:text-xl"
+      >
         A CLI to scaffold your react custom hooks, with a focus on performance,
         reusability, and type-safety.
-      </p>
-      <div className="mt-5 grid grid-cols-2 gap-y-2.5">
+      </motion.p>
+      <motion.div
+        initial={{ translateY: 15, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        className="mt-5 grid grid-cols-2 gap-y-2.5"
+      >
         <Link href="/docs/cli" className="group outline-none ring-0">
           <Button className="group rounded-full">
             <ArrowRight className="size-6 transform transition duration-300 group-hover:translate-x-0.5" />
@@ -51,7 +73,7 @@ export function Hero() {
         >
           <CopyButton />
         </Shine>
-      </div>
+      </motion.div>
     </>
   );
 }
@@ -67,5 +89,30 @@ function CopyButton() {
     >
       {isCopied ? "Copied to Clipboard!" : "$ npx rehooks-cli@latest init"}
     </Button>
+  );
+}
+
+function Badge({
+  children,
+  icon,
+}: {
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}) {
+  return (
+    <motion.a
+      initial={{ translateY: -50, opacity: 0 }}
+      animate={{ translateY: 0, opacity: 1 }}
+      href="#"
+      className="divide-fd-border border-fd-border bg-fd-background hover:bg-fd-secondary/50 group flex items-center rounded-full border text-xs font-medium drop-shadow-sm backdrop-blur-sm transition-colors duration-75 sm:divide-x"
+    >
+      <span className="text-fd-foreground py-1.5 pl-4 text-sm sm:pr-2.5">
+        {children}
+      </span>
+      <div className="text-fd-muted-foreground flex items-center gap-1.5 p-1.5 pl-2.5">
+        <span className="hidden text-sm sm:block">Read more</span>
+        <div className="rounded-full bg-blue-600 p-1 text-white">{icon}</div>
+      </div>
+    </motion.a>
   );
 }

@@ -2,6 +2,7 @@
 
 import { BorderBeam, CodeBlock } from "@rehooks/ui/components";
 import { Wrench, Settings } from "@rehooks/ui/icons";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const hookCode = `export function useToggle(
@@ -51,7 +52,11 @@ export function Editor() {
   const list = activeTab === "hook" ? hooksList : componentsList;
 
   return (
-    <div className="my-12">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="my-12"
+    >
       <div className="text-fd-foreground border-fd-border/50 relative flex h-auto max-w-[375px] flex-col overflow-hidden rounded-2xl border bg-neutral-100 shadow-[0_0px_100px_rgba(38,99,235,0.2)] sm:max-w-full dark:bg-neutral-950">
         <div className="flex select-none border-neutral-800">
           <TabButton
@@ -96,7 +101,7 @@ export function Editor() {
           duration={4}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
