@@ -1,12 +1,14 @@
+import { Tracer } from "@/app/(home)/_components/tracer";
 import { Editor } from "@/app/(home)/_components/editor";
 import { Grid } from "@/app/(home)/_components/bento";
 import { Hero } from "@/app/(home)/_components/hero";
 
 export default function HomePage() {
   return (
-    <div className="mx-8 my-12 flex min-h-screen flex-col items-center justify-center">
+    <div className="mx-8 flex min-h-screen flex-col items-center justify-center py-16">
       <Hero />
       <Editor />
+      <Tracer />
       <h2 className="text-fd-muted-foreground select-none text-xl font-medium uppercase">
         Features
       </h2>

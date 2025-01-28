@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { cn } from "@rehooks/utils";
 import { useId } from "react";
 
@@ -25,7 +28,9 @@ export function Grid({
   const id = useId();
 
   return (
-    <svg
+    <motion.svg
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
@@ -64,6 +69,6 @@ export function Grid({
           ))}
         </svg>
       ) : null}
-    </svg>
+    </motion.svg>
   );
 }
