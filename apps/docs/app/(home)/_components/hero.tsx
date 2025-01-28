@@ -1,7 +1,7 @@
 "use client";
 
 import { GithubIcon, ArrowRight } from "@rehooks/ui/icons";
-import { Button, Shine, AuroraText } from "@rehooks/ui/components";
+import { Button, Shine, Shimmer } from "@rehooks/ui/components";
 import { GITHUB_LINK } from "@rehooks/utils";
 import { useClipboard } from "rehooks-ts";
 import Link from "next/link";
@@ -11,7 +11,14 @@ export function Hero() {
     <>
       <div className="inline-flex">
         <h1 className="max-w-lg text-balance text-center text-4xl font-black lg:text-6xl">
-          Streamline Your <AuroraText>React</AuroraText> Hooks
+          Streamline Your{" "}
+          <Shimmer
+            className="text-4xl font-black lg:text-6xl"
+            text="React"
+            color="#2563eb"
+            midColor="#60a5fa"
+          />{" "}
+          Hooks
         </h1>
       </div>
       <p className="text-fd-muted-foreground mt-2 max-w-xs text-pretty text-center text-lg font-normal lg:max-w-xl lg:text-xl">
