@@ -1,6 +1,6 @@
 {
   "name": "rehooks-cli",
-  "version": "4.2.2",
+  "version": "4.5.0",
   "description": "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
-    "start": "node dist/index.js "
+    "start": "node dist/index.js ",
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@clack/prompts": "^0.9.0",
@@ -51,7 +52,8 @@
     "tsup": "^8.3.0",
     "type-fest": "^4.26.1",
     "typescript": "^5.6.3",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@rehooks/eslint-config": "workspace:*"
   },
   "dependencies": {
     "axios": "^1.7.7",

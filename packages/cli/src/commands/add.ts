@@ -3,17 +3,18 @@ import {
   intro,
   log,
   multiselect,
-  spinner,
   outro,
+  spinner,
 } from "@clack/prompts";
-import { API_ENDPOINT } from "~/utils/constants";
-import { cyan, green, red } from "colorette";
-import { getConfig } from "~/utils/config";
-import type { Hook } from "~/types/hook";
-import { Command } from "commander";
 import axios from "axios";
-import path from "path";
-import fs from "fs";
+import { cyan, green, red } from "colorette";
+import { Command } from "commander";
+import { existsSync, writeFileSync } from "fs";
+import { join } from "path";
+
+import type { Hook } from "~/schema/config.schema";
+import { getConfig } from "~/utils/config";
+import { BASE_URL } from "~/utils/constants";
 
 export const add = new Command()
   .name("add")
@@ -23,23 +24,25 @@ export const add = new Command()
   .action(async (hooks, options) => {
     intro("Adding hooks...");
 
+    // Check if project has rehooks.json
     const config = await getConfig(process.cwd());
-
     if (!config) {
       outro(red("Rehooks configuration not found or invalid."));
       return;
     }
 
+    // Get properties from rehooks.json
     const { directory, forceOverwrite } = config;
     const shouldForceOverwrite = options.force || forceOverwrite;
 
+    // Adding hooks
     const addedHooks: string[] = [];
     try {
       if (hooks.length > 0) {
         for (const hook of hooks) {
-          const hookFilePath = path.join(directory, `${hook}.ts`);
+          const hookFilePath = join(directory, `${hook}.ts`);
 
-          if (fs.existsSync(hookFilePath) && !shouldForceOverwrite) {
+          if (existsSync(hookFilePath) && !shouldForceOverwrite) {
             const overwrite = await confirm({
               message: `${hook}.ts already exists. Do you want to overwrite it?`,
               initialValue: false,
@@ -52,11 +55,11 @@ export const add = new Command()
           }
 
           const selectedHookResponse = await axios.get<Hook>(
-            `${API_ENDPOINT}/${hook}`,
+            `${BASE_URL}/hooks/${hook}`,
           );
 
-          let { content } = selectedHookResponse.data;
-          fs.writeFileSync(hookFilePath, content);
+          const { content } = selectedHookResponse.data;
+          writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
         }
 
@@ -71,7 +74,7 @@ export const add = new Command()
 
       const fetchSpinner = spinner();
       fetchSpinner.start("Fetching hooks...");
-      const res = await axios.get<Hook[]>(API_ENDPOINT);
+      const res = await axios.get<Hook[]>(`${BASE_URL}/hooks`);
       const hooksData = res.data;
       fetchSpinner.stop("Done.");
 
@@ -93,9 +96,9 @@ export const add = new Command()
       log.info(`Hooks Directory: ${directory}`);
 
       for (const hook of selectedHookArray) {
-        const hookFilePath = path.join(directory, `${hook}.ts`);
+        const hookFilePath = join(directory, `${hook}.ts`);
 
-        if (fs.existsSync(hookFilePath) && !shouldForceOverwrite) {
+        if (existsSync(hookFilePath) && !shouldForceOverwrite) {
           const overwrite = await confirm({
             message: `${hook}.ts already exists. Do you want to overwrite it?`,
             initialValue: false,
@@ -107,9 +110,11 @@ export const add = new Command()
           }
         }
 
-        const selectedHookResponse = await axios.get(`${API_ENDPOINT}/${hook}`);
-        let { content } = selectedHookResponse.data;
-        fs.writeFileSync(hookFilePath, content);
+        const selectedHookResponse = await axios.get(
+          `${BASE_URL}/hooks/${hook}`,
+        );
+        const { content } = selectedHookResponse.data;
+        writeFileSync(hookFilePath, content);
 
         addedHooks.push(hook);
       }
@@ -124,6 +129,8 @@ export const add = new Command()
         outro(red("No hooks were added."));
       }
     } catch (error) {
-      log.error(`Error adding hooks: ${error}`);
+      outro(
+        red(`Error adding hooks: make sure that ${cyan(directory)} exists`),
+      );
     }
   });

@@ -1,9 +1,6 @@
-import {
-  useState,
-  useCallback,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { useCallback, useState } from "react";
+
+import type { Dispatch, SetStateAction } from "react";
 
 const description = "Returns a stateful value with two functions to update it.";
 

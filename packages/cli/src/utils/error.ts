@@ -6,7 +6,6 @@ export function handleError(error: unknown) {
     error.issues.forEach((issue) => {
       log.error(issue.message);
     });
-
     process.exit(1);
   }
 

@@ -1,0 +1,63 @@
+---
+title: useSleep
+description: Resolves after a specified delay.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useSleep
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useSleep" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useSleep } from "~/hooks/useSleep";
+import { useState } from "react";
+
+function Component() {
+  const [isSleeping, setIsSleeping] = useState(false);
+  const sleep = useSleep();
+
+  const handleClick = () => {
+    setIsSleeping(true);
+    sleep(2000).then(() => setIsSleeping(false));
+  };
+
+  return (
+    <div>
+      <p>Is sleeping: {isSleeping ? "true" : "false"}</p>
+      <button onClick={handleClick}>Sleep</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useSleep
+
+```ts title="useSleep.ts"
+function useSleep(): (ms: number) => Promise<void>;
+```
+
+Resolves after a specified delay.
+
+#### Parameters
+
+| Name | Type     | Description                                          |
+| ---- | -------- | ---------------------------------------------------- |
+| ms   | `number` | The number of milliseconds to wait before resolving. |
+
+#### Returns
+
+| Name | Type            | Description                                        |
+| ---- | --------------- | -------------------------------------------------- |
+|      | `Promise<void>` | A promise that resolves after the specified delay. |

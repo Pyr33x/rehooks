@@ -9,9 +9,7 @@ const description = "Returns the current online/offline status of the client.";
  * @param {function} callback - Optional callback to run on status change.
  * @returns {boolean} - `true` if online, `false` if offline.
  */
-export function useOnlineStatus(
-  callback?: (isOnline: boolean) => void,
-): boolean {
+export function useStatus(callback?: (isOnline: boolean) => void): boolean {
   return useSyncExternalStore(
     (cb) => {
       const abortController = new AbortController();

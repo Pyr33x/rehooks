@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { getPackageInfo } from "~/utils/package";
-import { init } from "~/commands/init";
-import { add } from "~/commands/add";
 import { Command } from "commander";
+
+import { add } from "~/commands/add";
+import { init } from "~/commands/init";
+import { getPackageInfo } from "~/utils/package";
 
 async function main() {
   const packageInfo = await getPackageInfo();
@@ -13,9 +14,9 @@ async function main() {
       "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
     )
     .version(
-      packageInfo.version || "4.2.1",
+      packageInfo.version ?? "4.5.0",
       "-v, --version",
-      "Displays the version number",
+      "Displays the current version of the CLI",
     );
   program.addCommand(init);
   program.addCommand(add);

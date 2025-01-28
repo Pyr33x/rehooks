@@ -1,3 +1,3 @@
-export const API_ENDPOINT = "https://rehooks.pyr33x.ir/api/hooks";
-export const SRC_HOOKS_DIR = "./src/hooks";
-export const HOOKS_DIR = "./hooks";
+export const BASE_URL = "https://rehooks.pyr33x.ir/api";
+export const SRC_DIR_PLACEHOLDER = "./src/hooks";
+export const DIR_PLACEHOLDER = "./hooks";

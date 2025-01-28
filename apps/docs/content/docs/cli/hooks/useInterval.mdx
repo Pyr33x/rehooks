@@ -1,0 +1,78 @@
+---
+title: useInterval
+description: Sets up an interval with imperative controls. Returns start/stop methods and running state.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useInterval
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useInterval"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useInterval } from "~/hooks/useInterval";
+
+function Component() {
+  const { start, stop, toggle, isRunning } = useInterval(
+    () => {
+      console.log("Interval tick!");
+    },
+    1000,
+    { autoStart: true },
+  );
+
+  return (
+    <div>
+      <button onClick={start}>Start</button>
+      <button onClick={stop}>Stop</button>
+      <button onClick={toggle}>Toggle</button>
+      <p>Is running: {isRunning ? "Yes" : "No"}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+### useInterval
+
+```ts title="useInterval.ts"
+function useInterval(
+  callback: () => void,
+  delay: number | null,
+  options?: IntervalOptions,
+): IntervalReturn;
+```
+
+Sets up an interval with imperative controls. Returns start/stop methods and running state.
+
+#### Parameters
+
+| Name      | Type              | Description                                                                                            |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
+| callback  | `() => void`      | Function to execute at each interval tick (automatically uses latest version)                          |
+| delay     | `number \| null`  | Interval delay in milliseconds (null to clear interval)                                                |
+| options   | `IntervalOptions` | Optional configuration for the interval                                                                |
+| immediate | `boolean`         | If true, the callback function will be executed immediately after the interval starts (default: false) |
+| autoStart | `boolean`         | If true, the interval will start automatically (default: true)                                         |
+
+#### Returns
+
+| Name      | Type      | Description |
+| --------- | --------- | ----------- |
+| start     | `void`    |             |
+| stop      | `void`    |             |
+| toggle    | `void`    |             |
+| isRunning | `boolean` |             |

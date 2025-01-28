@@ -1,4 +1,6 @@
-import { useEffect, useRef, type RefObject } from "react";
+import { useEffect, useRef } from "react";
+
+import type { RefObject } from "react";
 
 const description =
   "Adds and cleans up an event listener on a specified target element.";
@@ -24,13 +26,16 @@ export function useEventListener<K extends keyof WindowEventMap>(
 
   useEffect(() => {
     const targetElement: HTMLElement | Window =
-      element && "current" in element ? element.current! : window;
+      element && "current" in element && element.current
+        ? element.current
+        : window;
 
     if (!targetElement) return;
 
     // Type assertion is added here to ensure TypeScript understands the event type correctly
-    const eventListener: EventListener = (event) =>
+    const eventListener: EventListener = (event) => {
       savedHandler.current(event as WindowEventMap[K]);
+    };
 
     targetElement.addEventListener(eventName, eventListener);
 

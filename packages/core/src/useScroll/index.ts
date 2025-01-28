@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const description =
   "Tracks and returns the current scroll position, with a method to scroll to specific coordinates.";

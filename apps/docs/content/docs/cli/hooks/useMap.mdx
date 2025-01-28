@@ -1,0 +1,91 @@
+---
+title: useMap
+description: Provides a reactive Map instance with common mutation methods for state management.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useMap
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useMap" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useMap } from "~/hooks/useMap";
+
+function Component() {
+  const map = useMap<string, number>([
+    ["a", 1],
+    ["b", 2],
+    ["c", 3],
+  ]);
+
+  const setValue = (key: string, value: number) => {
+    map.set(key, value);
+  };
+
+  const deleteValue = (key: string) => {
+    map.delete(key);
+  };
+
+  const clearValues = () => {
+    map.clear();
+  };
+
+  const initializeValues = () => {
+    map.initialize([
+      ["a", 1],
+      ["b", 2],
+      ["c", 3],
+    ]);
+  };
+
+  return (
+    <div>
+      <button onClick={() => setValue("d", 4)}>Set value</button>
+      <button onClick={() => deleteValue("b")}>Delete value</button>
+      <button onClick={clearValues}>Clear values</button>
+      <button onClick={initializeValues}>Initialize values</button>
+    </div>
+  );
+}
+```
+
+## API
+
+### useMap
+
+```ts title="useMap.ts"
+function useMap<K, V>(
+  initialEntries?: Iterable<[K, V]> | [] | (() => Iterable<[K, V]>),
+): [ReadonlyMap<K, V>, MapActions<K, V>];
+```
+
+Provides a reactive Map instance with common mutation methods for state management.
+
+#### Parameters
+
+| Name               | Type                                               | Description                                  |
+| ------------------ | -------------------------------------------------- | -------------------------------------------- |
+| initialEntries     | `Iterable<[K, V]> \| [] \| () => Iterable<[K, V]>` | Optional initial map entries (optional)      |
+| initialEntries.0   | `K`                                                | Map key to initialize                        |
+| initialEntries.1   | `V`                                                | Map value to initialize                      |
+| initialEntries.get | `() => Iterable<[K, V]>`                           | Initializes/replaces the entire map contents |
+
+#### Returns
+
+| Name       | Type   | Description |
+| ---------- | ------ | ----------- |
+| map        | `K`    |             |
+| set        | `void` |             |
+| delete     | `void` |             |
+| clear      | `void` |             |
+| initialize | `void` |             |

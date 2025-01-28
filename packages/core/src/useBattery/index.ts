@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const description =
   "Fetches and monitors device battery level and charging state.";

@@ -1,36 +1,33 @@
-import { resolveImport } from "./resolver";
-import { cosmiconfig } from "cosmiconfig";
-import { handleError } from "./error";
 import { log } from "@clack/prompts";
-import path from "path";
-import { z } from "zod";
-import fs from "fs";
+import { cosmiconfig } from "cosmiconfig";
 
-const explorer = cosmiconfig("rehooks", {
+import { handleError } from "./error";
+import type { RehooksConfig } from "~/schema/config.schema";
+import { configSchema } from "~/schema/config.schema";
+import type { TsConfig } from "~/schema/tsconfig.schema";
+import { tsConfigSchema } from "~/schema/tsconfig.schema";
+
+const configExplorer = cosmiconfig("rehooks", {
   searchPlaces: ["rehooks.json"],
 });
 
-export const rehooksSchema = z.object({
-  directory: z.string(),
-  forceOverwrite: z.boolean().default(false),
+const tsConfigExplorer = cosmiconfig("tsconfig", {
+  searchPlaces: ["tsconfig.json"],
 });
 
-export type RehooksConfig = z.infer<typeof rehooksSchema>;
-
 export async function getConfig(cwd: string): Promise<RehooksConfig | null> {
-  const config = await getRawConfig(cwd);
-
-  if (!config) {
-    log.error("Configuration not found.");
+  try {
+    const config = await getRawConfig(cwd);
+    return configSchema.parse(config);
+  } catch (error) {
+    log.error(`Error loading configuration: ${error}`);
     return null;
   }
-
-  return validateConfig(config);
 }
 
-export async function getRawConfig(cwd: string): Promise<unknown | null> {
+async function getRawConfig(cwd: string): Promise<unknown | null> {
   try {
-    const configResult = await explorer.search(cwd);
+    const configResult = await configExplorer.search(cwd);
 
     if (!configResult) {
       return null;
@@ -38,40 +35,34 @@ export async function getRawConfig(cwd: string): Promise<unknown | null> {
 
     return configResult.config;
   } catch (error) {
-    const errMsg = `Error loading configuration from ${cwd}/rehooks.json: ${error}`;
-    log.error(errMsg);
-    throw handleError(errMsg);
+    const errorMessage = `Error loading configuration from ${cwd}/rehooks.json: ${error}`;
+    log.error(errorMessage);
+    throw handleError(errorMessage);
   }
 }
 
-export function validateConfig(config: unknown): RehooksConfig {
-  return rehooksSchema.parse(config);
-}
-
-export async function resolveConfigPaths(cwd: string, config: RehooksConfig) {
-  const tsConfig = await getTsConfig(cwd);
-
-  if (!tsConfig) {
-    log.warn("TypeScript configuration not found.");
-    return config;
-  }
-
-  return {
-    ...config,
-    resolvedPaths: {
-      utils: await resolveImport(config.directory, tsConfig),
-    },
-  };
-}
-
-async function getTsConfig(cwd: string): Promise<any | null> {
-  const tsConfigPath = path.resolve(cwd, "tsconfig.json");
-
+export async function getTsConfig(cwd: string): Promise<TsConfig | null> {
   try {
-    const tsConfigContent = await fs.promises.readFile(tsConfigPath, "utf-8");
-    return JSON.parse(tsConfigContent);
+    const config = await getRawTsConfig(cwd);
+    return tsConfigSchema.parse(config);
   } catch (error) {
-    log.error(`Error reading tsconfig.json: ${error}`);
+    log.error(`Error loading TypeScript configuration: ${error}`);
     return null;
+  }
+}
+
+async function getRawTsConfig(cwd: string): Promise<unknown | null> {
+  try {
+    const configResult = await tsConfigExplorer.search(cwd);
+
+    if (!configResult) {
+      return null;
+    }
+
+    return configResult.config;
+  } catch (error) {
+    const errorMessage = `Error loading TypeScript configuration from ${cwd}/tsconfig.json: ${error}`;
+    log.error(errorMessage);
+    throw handleError(errorMessage);
   }
 }
