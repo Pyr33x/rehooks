@@ -1,0 +1,73 @@
+---
+title: useStep
+description: Manages step-based navigation with imperative controls. Returns step navigation methods and state.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useStep
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useStep" />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useStep } from "~/hooks/useStep";
+
+function Component() {
+  const { currentStep, nextStep, prevStep, jumpTo, isFirstStep, isLastStep } =
+    useStep({
+      totalSteps: 5,
+      initialStep: 2,
+    });
+
+  return (
+    <div>
+      <div>Current step: {currentStep}</div>
+      <button onClick={prevStep}>Prev</button>
+      <button onClick={nextStep}>Next</button>
+      <button onClick={() => jumpTo(3)}>Jump to 3</button>
+      <button onClick={() => jumpTo(0)}>Jump to 0</button>
+      <button onClick={() => jumpTo(4)}>Jump to 4</button>
+      <div>Is first step: {isFirstStep ? "yes" : "no"}</div>
+      <div>Is last step: {isLastStep ? "yes" : "no"}</div>
+    </div>
+  );
+}
+```
+
+## API
+
+### useStep
+
+```ts title="useStep.ts"
+function useStep<T = number>(config: UseStepProps<T>): UseStepReturn<T>;
+```
+
+Manages step-based navigation with imperative controls. Returns step navigation methods and state.
+
+#### Parameters
+
+| Name               | Type           | Description                                                            |
+| ------------------ | -------------- | ---------------------------------------------------------------------- |
+| config             | `UseStepProps` | The configuration for the step management.                             |
+| config.totalSteps  | `number`       | Total number of steps (required if steps not provided)                 |
+| config.steps       | `T[]`          | Array of custom step identifiers (required if totalSteps not provided) |
+| config.initialStep | `T`            | Initial step identifier (defaults to first step)                       |
+
+#### Returns
+
+| Name        | Type      | Description |
+| ----------- | --------- | ----------- |
+| currentStep | `T`       |             |
+| nextStep    | `void`    |             |
+| prevStep    | `void`    |             |
+| jumpTo      | `void`    |             |
+| isFirstStep | `boolean` |             |
