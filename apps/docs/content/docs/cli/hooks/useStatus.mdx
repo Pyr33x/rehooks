@@ -1,41 +1,38 @@
 ---
-title: useOnlineStatus
+title: useStatus
 description: Returns the current online/offline status of the client.
 ---
 
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
-# useOnlineStatus
+# useStatus
 
 ## Installation
 
 <Tabs items={["CLI"]}>
   <Tab value="CLI">
-    <DynamicCodeBlock
-      lang="bash"
-      code="npx rehooks-cli@latest add useOnlineStatus"
-    />
+    <DynamicCodeBlock lang="bash" code="npx rehooks-cli@latest add useStatus" />
   </Tab>
 </Tabs>
 
 ## Usage
 
 ```tsx title="Component.tsx"
-import { useOnlineStatus } from "~/hooks/useOnlineStatus";
+import { useStatus } from "~/hooks/useStatus";
 
 function Component() {
-  const isOnline = useOnlineStatus();
+  const isOnline = useStatus();
   return <p>Is online: {isOnline ? "Yes" : "No"}</p>;
 }
 ```
 
 ## API
 
-### useOnlineStatus
+### useStatus
 
-```ts title="useOnlineStatus.ts"
-function useOnlineStatus(callback?: (isOnline: boolean) => void): boolean;
+```ts title="useStatus.ts"
+function useStatus(callback?: (isOnline: boolean) => void): boolean;
 ```
 
 #### Parameters
