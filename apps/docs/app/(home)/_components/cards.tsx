@@ -13,6 +13,7 @@ import {
 import { Retro, Marquee, Text, Shimmer } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
 import type { ReactNode } from "react";
+import { APICard } from "@/app/(home)/_components/api";
 
 function CommitCard({
   className,
@@ -79,14 +80,18 @@ export const features = [
   },
   {
     Icon: Braces,
-    name: "TypeScript Support",
+    name: "Rehooks API",
     description:
-      "Rehooks is written in TypeScript, ensuring type safety and maintainability throughout the codebase.",
+      "Rehooks provides a structured API that allows you to easily access the hooks you need.",
     className:
       "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-2 lg:rounded-br-2xl lg:rounded-tr-none border-b-[0.5px] lg:border-b-[1px] border-r-[1px] border-t-[0.5px] border-l-[1px] lg:border-l-[0.5px]",
     background: (
       <div className="flex h-full w-full items-center justify-center">
-        <Text text="<T>" className="absolute top-14" />
+        <APICard
+          className="absolute top-20"
+          method="GET"
+          endpoint="/api/hooks/:title"
+        />
       </div>
     ),
   },
