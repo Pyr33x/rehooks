@@ -1,0 +1,50 @@
+---
+title: useIsomorphicLayoutEffect
+description: Conditionally invokes useLayoutEffect on the server and useEffect on the client.
+---
+
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# useIsomorphicLayoutEffect
+
+## Installation
+
+<Tabs items={["CLI"]}>
+  <Tab value="CLI">
+    <DynamicCodeBlock
+      lang="bash"
+      code="npx rehooks-cli@latest add useIsomorphicLayoutEffect"
+    />
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="Component.tsx"
+import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
+
+function Component() {
+  useIsomorphicLayoutEffect(() => {
+    console.log("useIsomorphicLayoutEffect");
+  }, []);
+
+  return <div>Component</div>;
+}
+```
+
+## API
+
+### useIsomorphicLayoutEffect
+
+```ts title="useIsomorphicLayoutEffect.ts"
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+```
+
+#### Parameters
+
+| Name     | Type             | Description                                                                                                            |
+| -------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| callback | `EffectCallback` | The function to execute on each render.                                                                                |
+| deps?    | `any[]`          | An array of values that indicate when the effect should update. If none of the values change, the effect will not run. |
