@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import React, { useId } from "react";
+import { useId } from "react";
 
 interface TraceProps {
   width: number;
@@ -12,14 +12,14 @@ interface TraceProps {
   strokeWidth?: number;
 }
 
-export const Trace: React.FC<TraceProps> = ({
+export function Trace({
   width,
   height,
   baseColor = "#525252",
   gradientColors = ["#2EB9DF", "#2EB9DF", "#9E00FF"],
   animationDuration = 2,
   strokeWidth = 2,
-}) => {
+}: TraceProps) {
   const gradientId = `pulse-${useId()}`;
 
   return (
@@ -70,4 +70,4 @@ export const Trace: React.FC<TraceProps> = ({
       </svg>
     </div>
   );
-};
+}
