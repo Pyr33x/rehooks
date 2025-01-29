@@ -1,11 +1,11 @@
 name: Quality
 
 on:
-  - push
   - pull_request
 
 jobs:
   lint:
+    name: ESLint
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +31,7 @@ jobs:
         run: pnpm run lint
 
   prettier:
+    name: Prettier
     runs-on: ubuntu-latest
 
     steps:
