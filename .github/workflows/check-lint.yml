@@ -1,11 +1,11 @@
-name: Check Lint
+name: Quality / ESLint
 
 on:
   - push
   - pull_request
 
 jobs:
-  check-lint:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +27,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check lint
+      - name: Run lint
         run: pnpm run lint

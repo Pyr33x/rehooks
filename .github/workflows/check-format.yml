@@ -1,11 +1,11 @@
-name: Check Format
+name: Quality / Format
 
 on:
   - push
   - pull_request
 
 jobs:
-  check-format:
+  prettier:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +27,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check format
+      - name: Run Prettier
         run: pnpm run format:check
