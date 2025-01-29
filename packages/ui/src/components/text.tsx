@@ -16,13 +16,13 @@ export function Text({
     >
       <text
         className="text-fd-muted-foreground/30 transform font-mono text-7xl font-bold transition-colors ease-in-out group-hover:text-blue-600"
-        x="50%"
-        y="50%"
-        textAnchor="middle"
         dominantBaseline="middle"
         fill="none"
         stroke="currentColor"
         strokeWidth="1"
+        textAnchor="middle"
+        x="50%"
+        y="50%"
       >
         {text}
       </text>
