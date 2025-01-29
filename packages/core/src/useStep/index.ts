@@ -51,7 +51,7 @@ export function useStep<T = number>(config: UseStepProps<T>): UseStepReturn<T> {
     () =>
       stepsConfig ??
       Array.from(
-        { length: totalStepsConfig! },
+        { length: totalStepsConfig ?? 0 },
         (_, i) => (i + 1) as unknown as T,
       ),
     [stepsConfig, totalStepsConfig],
