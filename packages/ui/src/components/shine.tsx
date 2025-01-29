@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useMemo, memo, CSSProperties } from "react";
+import type { ReactNode, CSSProperties } from "react";
+import { useMemo, memo } from "react";
 import { cn } from "@rehooks/utils";
 
 type TColorProp = string | string[];

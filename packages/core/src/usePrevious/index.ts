@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const description =
   "Tracks the previous value of a variable. Returns the previous value on every render.";

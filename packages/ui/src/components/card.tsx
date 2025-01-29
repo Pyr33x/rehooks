@@ -1,24 +1,23 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { highlight } from "sugar-high";
 import { cn } from "@rehooks/utils";
-import React from "react";
+import { forwardRef } from "react";
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    className={cn(
-      "bg-fd-card text-fd-foreground border-fd-border rounded-2xl border",
-      className,
-    )}
-    ref={ref}
-    {...props}
-  />
-));
+const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      className={cn(
+        "bg-fd-card text-fd-foreground border-fd-border rounded-2xl border",
+        className,
+      )}
+      ref={ref}
+      {...props}
+    />
+  ),
+);
 Card.displayName = "Card";
 
-const CardHeader = React.forwardRef<
+const CardHeader = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -30,7 +29,7 @@ const CardHeader = React.forwardRef<
 ));
 CardHeader.displayName = "CardHeader";
 
-const CardLabel = React.forwardRef<
+const CardLabel = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -45,7 +44,7 @@ const CardLabel = React.forwardRef<
 ));
 CardLabel.displayName = "CardLabel";
 
-const CardTitle = React.forwardRef<
+const CardTitle = forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -60,7 +59,7 @@ const CardTitle = React.forwardRef<
 ));
 CardTitle.displayName = "CardTitle";
 
-const CardContent = React.forwardRef<
+const CardContent = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (

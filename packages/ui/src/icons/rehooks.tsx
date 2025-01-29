@@ -7,11 +7,11 @@ export function RehooksIcon({
 }) {
   return (
     <svg
-      width="148"
-      height="148"
-      viewBox="0 0 148 148"
       className={className}
       fill="none"
+      height="148"
+      viewBox="0 0 148 148"
+      width="148"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
