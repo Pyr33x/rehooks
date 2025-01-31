@@ -2,7 +2,7 @@
 
 import { GithubIcon, ArrowRight, ArrowUpRight } from "@rehooks/ui/icons";
 import { Button, Shine, Shimmer } from "@rehooks/ui/components";
-import { GITHUB_LINK } from "@rehooks/utils";
+import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
 import { useClipboard } from "rehooks-ts";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -103,7 +103,7 @@ function Badge({
     <motion.a
       initial={{ translateY: -50, opacity: 0 }}
       animate={{ translateY: 0, opacity: 1 }}
-      href="#"
+      href={REHOOKS_NPM}
       className="divide-fd-border border-fd-border bg-fd-background hover:bg-fd-secondary/50 group flex items-center rounded-full border text-xs font-medium drop-shadow-sm backdrop-blur-sm transition-colors duration-75 sm:divide-x"
     >
       <span className="text-fd-foreground py-1.5 pl-4 text-sm sm:pr-2.5">
