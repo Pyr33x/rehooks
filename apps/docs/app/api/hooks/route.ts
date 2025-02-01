@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getClientIp, type Hook } from "@rehooks/utils";
 import { ratelimit } from "@/lib/redis/ratelimit";
-import path from "path";
-import fs from "fs";
+import { join } from "path";
+import { readFile } from "fs";
 
 export const dynamic = "force-dynamic";
 
-const filePath = path.join(process.cwd(), "lib", "hooks.json");
+const filePath = join(process.cwd(), "lib", "hooks.json");
 
 async function loadData(): Promise<Hook[]> {
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf8", (err, data) => {
+    readFile(filePath, "utf8", (err, data) => {
       if (err) {
         console.error("Error loading data:", err);
         reject(err);
