@@ -1,12 +1,13 @@
-import { Command } from "commander";
-import { getConfig } from "~/utils/config";
-import { cancel, isCancel, log, outro, intro, spinner } from "@clack/prompts";
-import { green, red, bold } from "colorette";
-import { BASE_URL } from "~/utils/constants";
-import { Hook } from "~/schema/config.schema";
-import { trancute } from "~/utils/trancute";
+import { cancel, intro, isCancel, log, outro, spinner } from "@clack/prompts";
 import axios from "axios";
+import { bold, green, red } from "colorette";
+import { Command } from "commander";
+
+import type { Hook } from "~/schema/config.schema";
+import { getConfig } from "~/utils/config";
+import { BASE_URL } from "~/utils/constants";
 import { sleep } from "~/utils/sleep";
+import { trancute } from "~/utils/trancute";
 
 export const list = new Command()
   .name("list")

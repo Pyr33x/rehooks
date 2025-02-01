@@ -1,4 +1,4 @@
-export function trancute(text: string, length: number = 24): string {
+export function trancute(text: string, length = 24): string {
   const words = text.split(" ");
   const truncatedWords = words.slice(0, length).join(" ");
 
