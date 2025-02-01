@@ -46,6 +46,9 @@ export const add = new Command()
     const addedHooks: string[] = [];
     try {
       if (hooks.length > 0) {
+        const addSpinner = spinner();
+        addSpinner.start("Adding hooks...");
+
         for (const hook of hooks) {
           const hookFilePath = join(directory, `${hook}.ts`);
 
@@ -79,6 +82,8 @@ export const add = new Command()
           writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
         }
+
+        addSpinner.stop(green("Hooks added successfully!"));
 
         outro(
           green(
@@ -117,6 +122,10 @@ export const add = new Command()
 
       log.info(`Hooks Directory: ${directory}`);
 
+      // Writing hooks
+      const addSpinner = spinner();
+      addSpinner.start("Adding hooks...");
+
       for (const hook of selectedHookArray) {
         const hookFilePath = join(directory, `${hook}.ts`);
 
@@ -151,6 +160,8 @@ export const add = new Command()
 
         addedHooks.push(hook);
       }
+
+      addSpinner.stop(green("Hooks added successfully!"));
 
       if (addedHooks.length > 0) {
         outro(
