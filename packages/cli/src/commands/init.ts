@@ -1,11 +1,11 @@
 import {
+  cancel,
   confirm,
   intro,
+  isCancel,
   log,
   outro,
   text,
-  cancel,
-  isCancel,
 } from "@clack/prompts";
 import { bold, cyan, green, red, yellow } from "colorette";
 import { Command } from "commander";

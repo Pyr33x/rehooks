@@ -1,12 +1,12 @@
 import {
+  cancel,
   confirm,
   intro,
+  isCancel,
   log,
   multiselect,
   outro,
   spinner,
-  cancel,
-  isCancel,
 } from "@clack/prompts";
 import axios from "axios";
 import { cyan, green, red } from "colorette";
@@ -114,7 +114,7 @@ export const add = new Command()
         process.exit(0);
       }
 
-      const selectedHookArray = selectedHooks as string[];
+      const selectedHookArray = selectedHooks;
 
       log.success(
         `Selected ${selectedHookArray.length.toString()} ${selectedHookArray.length > 1 ? "hooks" : "hook"}.`,
