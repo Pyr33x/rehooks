@@ -1,6 +1,8 @@
 import {
+  cancel,
   confirm,
   intro,
+  isCancel,
   log,
   multiselect,
   outro,
@@ -31,6 +33,11 @@ export const add = new Command()
       return;
     }
 
+    if (isCancel(config)) {
+      cancel(red("Operation Cancelled."));
+      process.exit(0);
+    }
+
     // Get properties from rehooks.json
     const { directory, forceOverwrite } = config;
     const shouldForceOverwrite = options.force || forceOverwrite;
@@ -39,6 +46,9 @@ export const add = new Command()
     const addedHooks: string[] = [];
     try {
       if (hooks.length > 0) {
+        const addSpinner = spinner();
+        addSpinner.start("Adding hooks...");
+
         for (const hook of hooks) {
           const hookFilePath = join(directory, `${hook}.ts`);
 
@@ -52,16 +62,28 @@ export const add = new Command()
               log.info(`Skipping ${cyan(hook)}.`);
               continue;
             }
+
+            if (isCancel(overwrite)) {
+              cancel(red("Operation Cancelled."));
+              process.exit(0);
+            }
           }
 
           const selectedHookResponse = await axios.get<Hook>(
             `${BASE_URL}/hooks/${hook}`,
           );
 
+          if (isCancel(selectedHookResponse)) {
+            cancel(red("Operation Cancelled."));
+            process.exit(0);
+          }
+
           const { content } = selectedHookResponse.data;
           writeFileSync(hookFilePath, content);
           addedHooks.push(hook);
         }
+
+        addSpinner.stop(green("Hooks added successfully!"));
 
         outro(
           green(
@@ -87,13 +109,22 @@ export const add = new Command()
         required: true,
       });
 
-      const selectedHookArray = selectedHooks as string[];
+      if (isCancel(selectedHooks)) {
+        cancel(red("Operation Cancelled."));
+        process.exit(0);
+      }
+
+      const selectedHookArray = selectedHooks;
 
       log.success(
         `Selected ${selectedHookArray.length.toString()} ${selectedHookArray.length > 1 ? "hooks" : "hook"}.`,
       );
 
       log.info(`Hooks Directory: ${directory}`);
+
+      // Writing hooks
+      const addSpinner = spinner();
+      addSpinner.start("Adding hooks...");
 
       for (const hook of selectedHookArray) {
         const hookFilePath = join(directory, `${hook}.ts`);
@@ -104,6 +135,11 @@ export const add = new Command()
             initialValue: false,
           });
 
+          if (isCancel(overwrite)) {
+            cancel(red("Operation Cancelled."));
+            process.exit(0);
+          }
+
           if (!overwrite) {
             log.info(`Skipping ${cyan(hook)}.`);
             continue;
@@ -113,11 +149,19 @@ export const add = new Command()
         const selectedHookResponse = await axios.get(
           `${BASE_URL}/hooks/${hook}`,
         );
+
+        if (isCancel(selectedHookResponse)) {
+          cancel(red("Operation Cancelled."));
+          process.exit(0);
+        }
+
         const { content } = selectedHookResponse.data;
         writeFileSync(hookFilePath, content);
 
         addedHooks.push(hook);
       }
+
+      addSpinner.stop(green("Hooks added successfully!"));
 
       if (addedHooks.length > 0) {
         outro(
