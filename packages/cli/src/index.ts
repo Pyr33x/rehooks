@@ -4,6 +4,7 @@ import { Command } from "commander";
 
 import { add } from "~/commands/add";
 import { init } from "~/commands/init";
+import { list } from "~/commands/list";
 import { getPackageInfo } from "~/utils/package";
 
 async function main() {
@@ -20,6 +21,7 @@ async function main() {
     );
   program.addCommand(init);
   program.addCommand(add);
+  program.addCommand(list);
   program.parse();
 }
 
