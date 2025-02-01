@@ -5,6 +5,8 @@ import {
   multiselect,
   outro,
   spinner,
+  cancel,
+  isCancel,
 } from "@clack/prompts";
 import axios from "axios";
 import { cyan, green, red } from "colorette";
@@ -31,6 +33,11 @@ export const add = new Command()
       return;
     }
 
+    if (isCancel(config)) {
+      cancel(red("Operation Cancelled."));
+      process.exit(0);
+    }
+
     // Get properties from rehooks.json
     const { directory, forceOverwrite } = config;
     const shouldForceOverwrite = options.force || forceOverwrite;
@@ -52,11 +59,21 @@ export const add = new Command()
               log.info(`Skipping ${cyan(hook)}.`);
               continue;
             }
+
+            if (isCancel(overwrite)) {
+              cancel(red("Operation Cancelled."));
+              process.exit(0);
+            }
           }
 
           const selectedHookResponse = await axios.get<Hook>(
             `${BASE_URL}/hooks/${hook}`,
           );
+
+          if (isCancel(selectedHookResponse)) {
+            cancel(red("Operation Cancelled."));
+            process.exit(0);
+          }
 
           const { content } = selectedHookResponse.data;
           writeFileSync(hookFilePath, content);
@@ -87,6 +104,11 @@ export const add = new Command()
         required: true,
       });
 
+      if (isCancel(selectedHooks)) {
+        cancel(red("Operation Cancelled."));
+        process.exit(0);
+      }
+
       const selectedHookArray = selectedHooks as string[];
 
       log.success(
@@ -104,6 +126,11 @@ export const add = new Command()
             initialValue: false,
           });
 
+          if (isCancel(overwrite)) {
+            cancel(red("Operation Cancelled."));
+            process.exit(0);
+          }
+
           if (!overwrite) {
             log.info(`Skipping ${cyan(hook)}.`);
             continue;
@@ -113,6 +140,12 @@ export const add = new Command()
         const selectedHookResponse = await axios.get(
           `${BASE_URL}/hooks/${hook}`,
         );
+
+        if (isCancel(selectedHookResponse)) {
+          cancel(red("Operation Cancelled."));
+          process.exit(0);
+        }
+
         const { content } = selectedHookResponse.data;
         writeFileSync(hookFilePath, content);
 
