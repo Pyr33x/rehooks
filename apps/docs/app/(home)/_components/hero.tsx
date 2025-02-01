@@ -16,7 +16,7 @@ export function Hero() {
             <ArrowUpRight className="size-3 transition-transform duration-100 group-hover:-translate-y-px group-hover:translate-x-px" />
           }
         >
-          Rehooks v4.5 Released!
+          Rehooks v4.6 Released!
         </Badge>
       </div>
       <motion.div
@@ -103,6 +103,8 @@ function Badge({
     <motion.a
       initial={{ translateY: -50, opacity: 0 }}
       animate={{ translateY: 0, opacity: 1 }}
+      target="_blank"
+      rel="noopener noreferrer"
       href={REHOOKS_NPM}
       className="divide-fd-border border-fd-border bg-fd-background hover:bg-fd-secondary/50 group flex items-center rounded-full border text-xs font-medium drop-shadow-sm backdrop-blur-sm transition-colors duration-75 sm:divide-x"
     >

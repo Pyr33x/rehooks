@@ -49,6 +49,24 @@ If you want to pass hooks manually, you can do so by running the following comma
 npx rehooks-cli add useFocus useFetch useWindowSize useEventListener
 ```
 
+## List
+
+To list all available hooks in the API, you can run the following command:
+
+```bash title="Terminal"
+npx rehooks-cli list
+```
+
+The result will be displayed in the terminal with the description of each hook.
+
+```bash title="Terminal"
+Total Hooks: 32
+
+Hooks List (32):
+useFocus: Tracks the focus state of a specified element.
+...
+```
+
 ## Options
 
 These are the options available in the CLI.
@@ -64,6 +82,7 @@ These are the options available in the CLI.
 | ----------------------- | ------------------------------------ |
 | `init [options] [path]` | Initialize the Rehooks configuration |
 | `add [options] [hooks]` | Add custom hooks to your project     |
+| `list`                  | List all available hooks in the API  |
 | `help [command]`        | Displays help for a specific command |
 
 ### Init

@@ -53,34 +53,45 @@ export const add = new Command()
           const hookFilePath = join(directory, `${hook}.ts`);
 
           if (existsSync(hookFilePath) && !shouldForceOverwrite) {
+            // Stop the spinner before showing the prompt
+            addSpinner.stop();
+
             const overwrite = await confirm({
               message: `${hook}.ts already exists. Do you want to overwrite it?`,
               initialValue: false,
             });
+
+            if (isCancel(overwrite)) {
+              cancel(red("Operation Cancelled."));
+              process.exit(0);
+            }
 
             if (!overwrite) {
               log.info(`Skipping ${cyan(hook)}.`);
               continue;
             }
 
-            if (isCancel(overwrite)) {
+            // Restart the spinner after the prompt is resolved
+            addSpinner.start("Adding hooks...");
+          }
+
+          try {
+            const selectedHookResponse = await axios.get<Hook>(
+              `${BASE_URL}/hooks/${hook}`,
+            );
+
+            if (isCancel(selectedHookResponse)) {
               cancel(red("Operation Cancelled."));
               process.exit(0);
             }
+
+            const { content } = selectedHookResponse.data;
+            writeFileSync(hookFilePath, content);
+            addedHooks.push(hook);
+          } catch (error) {
+            addSpinner.stop(red(`Failed to add ${hook}.`));
+            throw error; // Re-throw the error to handle it in the outer catch block
           }
-
-          const selectedHookResponse = await axios.get<Hook>(
-            `${BASE_URL}/hooks/${hook}`,
-          );
-
-          if (isCancel(selectedHookResponse)) {
-            cancel(red("Operation Cancelled."));
-            process.exit(0);
-          }
-
-          const { content } = selectedHookResponse.data;
-          writeFileSync(hookFilePath, content);
-          addedHooks.push(hook);
         }
 
         addSpinner.stop(green("Hooks added successfully!"));
@@ -94,6 +105,7 @@ export const add = new Command()
         return;
       }
 
+      // Fetch hooks if no specific hooks are provided
       const fetchSpinner = spinner();
       fetchSpinner.start("Fetching hooks...");
       const res = await axios.get<Hook[]>(`${BASE_URL}/hooks`);
@@ -124,12 +136,14 @@ export const add = new Command()
 
       // Writing hooks
       const addSpinner = spinner();
-      addSpinner.start("Adding hooks...");
 
       for (const hook of selectedHookArray) {
         const hookFilePath = join(directory, `${hook}.ts`);
 
         if (existsSync(hookFilePath) && !shouldForceOverwrite) {
+          // Stop the spinner before showing the prompt
+          addSpinner.stop();
+
           const overwrite = await confirm({
             message: `${hook}.ts already exists. Do you want to overwrite it?`,
             initialValue: false,
@@ -144,21 +158,31 @@ export const add = new Command()
             log.info(`Skipping ${cyan(hook)}.`);
             continue;
           }
+
+          // Restart the spinner after the prompt is resolved
+          addSpinner.start("Adding hooks...");
         }
 
-        const selectedHookResponse = await axios.get(
-          `${BASE_URL}/hooks/${hook}`,
-        );
+        addSpinner.start(`Adding ${hook}...`);
 
-        if (isCancel(selectedHookResponse)) {
-          cancel(red("Operation Cancelled."));
-          process.exit(0);
+        try {
+          const selectedHookResponse = await axios.get(
+            `${BASE_URL}/hooks/${hook}`,
+          );
+
+          if (isCancel(selectedHookResponse)) {
+            cancel(red("Operation Cancelled."));
+            process.exit(0);
+          }
+
+          const { content } = selectedHookResponse.data;
+          writeFileSync(hookFilePath, content);
+          addedHooks.push(hook);
+
+          addSpinner.stop(green(`${hook} added successfully.`));
+        } catch (error) {
+          addSpinner.stop(red(`Failed to add ${hook}.`));
         }
-
-        const { content } = selectedHookResponse.data;
-        writeFileSync(hookFilePath, content);
-
-        addedHooks.push(hook);
       }
 
       addSpinner.stop(green("Hooks added successfully!"));
