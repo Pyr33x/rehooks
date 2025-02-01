@@ -1,4 +1,12 @@
-import { confirm, intro, log, outro, text } from "@clack/prompts";
+import {
+  confirm,
+  intro,
+  log,
+  outro,
+  text,
+  cancel,
+  isCancel,
+} from "@clack/prompts";
 import { bold, cyan, green, red, yellow } from "colorette";
 import { Command } from "commander";
 import {
@@ -31,10 +39,20 @@ export const init = new Command()
       return;
     }
 
+    if (isCancel(isReactCompatible)) {
+      cancel(red("Operation Cancelled."));
+      process.exit(0);
+    }
+
     // Organize the configuration file
     const configPath = options.config
       ? resolve(process.cwd(), options.config)
       : resolve(process.cwd(), "rehooks.json");
+
+    if (isCancel(configPath)) {
+      cancel(red("Operation Cancelled."));
+      process.exit(0);
+    }
 
     if (existsSync(configPath) && statSync(configPath).isDirectory()) {
       log.error(red(`Error: ${configPath} is a directory, not a file.`));
@@ -73,6 +91,10 @@ export const init = new Command()
           outro(red("Initialization aborted."));
           return;
         }
+        if (isCancel(overwriteConfig)) {
+          cancel(red("Operation Cancelled."));
+          process.exit(0);
+        }
       }
 
       // Check if hooks directory exists
@@ -96,6 +118,11 @@ export const init = new Command()
         initialValue: true,
       });
 
+      if (isCancel(hasSrc)) {
+        cancel(red("Operation Cancelled."));
+        process.exit(0);
+      }
+
       if (hasSrc) {
         directory = SRC_DIR_PLACEHOLDER;
       } else {
@@ -104,6 +131,11 @@ export const init = new Command()
             "Where would you like to create the hooks directory? (e.g., 'hooks', 'src/hooks', 'custom/path')",
           placeholder: DIR_PLACEHOLDER,
         });
+
+        if (isCancel(customDir)) {
+          cancel(red("Operation Cancelled."));
+          process.exit(0);
+        }
 
         if (typeof customDir === "string" && customDir.trim()) {
           directory = customDir.trim();
