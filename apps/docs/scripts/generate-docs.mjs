@@ -1,7 +1,7 @@
 import { generateFiles } from "fumadocs-openapi";
 import { rimrafSync } from "rimraf";
 
-const out = "./content/docs/api-reference";
+const out = "./content/docs/api/list";
 
 rimrafSync(out, {
   filter(v) {
