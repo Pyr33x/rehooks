@@ -1,5 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "React";
 import { getStars } from "@rehooks/utils";
-import { cn } from "@rehooks/utils";
 
 type StarsProps = {
   owner: string;
@@ -7,7 +9,12 @@ type StarsProps = {
   className?: string;
 };
 
-export async function Stars({ owner, repo, className }: StarsProps) {
-  const stars = await getStars({ owner, repo });
-  return <span className={cn("select-none", className)}>{stars}</span>;
+export function Stars({ owner, repo }: StarsProps) {
+  const [stars, setStars] = useState<number>(0);
+
+  useEffect(() => {
+    getStars({ owner, repo }).then(setStars);
+  }, []);
+
+  return `${stars}`;
 }
