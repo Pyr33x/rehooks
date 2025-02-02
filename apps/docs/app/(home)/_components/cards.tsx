@@ -8,9 +8,8 @@ import {
   Wrench,
   Sparkles,
   Hammer,
-  SparkleIcon,
 } from "@rehooks/ui/icons";
-import { Retro, Marquee, Text, Shimmer } from "@rehooks/ui/components";
+import { Retro, Marquee, Shimmer } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
 import type { ReactNode } from "react";
 import { APICard } from "@/app/(home)/_components/api";

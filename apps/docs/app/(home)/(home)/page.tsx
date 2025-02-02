@@ -1,7 +1,7 @@
 import { Tracer } from "@/app/(home)/_components/tracer";
 import { Editor } from "@/app/(home)/_components/editor";
 import { Grid } from "@/app/(home)/_components/bento";
-import { Hero } from "@/app/(home)/_components/hero";
+import { Hero } from "@/components/layout/hero";
 
 export default function HomePage() {
   return (
