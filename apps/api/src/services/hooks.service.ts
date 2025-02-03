@@ -8,28 +8,45 @@ type QueryParams = {
   limit?: number;
 };
 
-type LimitError = {
-  message: string;
-  code: number;
-};
+type Response = Hook[];
 
-async function getHooks({
-  search,
-  limit,
-}: QueryParams): Promise<Hook[] | LimitError> {
-  const hooks: Hook[] = await file.json();
-
-  if (search) {
-    return hooks.filter((hook) =>
-      hook.title.toLowerCase().includes(search.toLowerCase()),
-    );
+class HttpError extends Error {
+  statusCode: number;
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
   }
-
-  if (limit) {
-    return hooks.slice(0, limit);
-  }
-
-  return hooks;
 }
 
-export { getHooks };
+const createFilter =
+  <T extends keyof Hook>(key: T) =>
+  (search: string) =>
+  (hook: Hook) => {
+    const value = hook[key];
+    if (typeof value === "string") {
+      return value.toLowerCase().includes(search.toLowerCase());
+    }
+    return false;
+  };
+
+const createLimit = (limit: number) => (hooks: Hook[]) => hooks.slice(0, limit);
+
+async function getHooks({ search, limit }: QueryParams): Promise<Response> {
+  const hooks: Hook[] = await file.json();
+
+  const applySearch = search ? createFilter("title")(search) : () => true;
+
+  const filteredHooks = hooks.filter(applySearch);
+
+  const limitedHooks = limit
+    ? createLimit(limit)(filteredHooks)
+    : filteredHooks;
+
+  if (!limitedHooks.length) {
+    throw new HttpError("Couldn't find the requested hook.", 404);
+  }
+
+  return limitedHooks;
+}
+
+export { getHooks, HttpError };
