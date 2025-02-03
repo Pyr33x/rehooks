@@ -1,4 +1,5 @@
-import { getHooks, HttpError } from "~/services/hooks.service";
+import { getHooks } from "~/services/hooks.service";
+import { HttpError } from "~/classes/error";
 import { Elysia, t } from "elysia";
 
 export const root = new Elysia().get(

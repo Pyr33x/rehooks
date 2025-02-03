@@ -1,3 +1,4 @@
+import { HttpError } from "~/classes/error";
 import type { Hook } from "~/types/hook";
 
 const path = "hooks.json";
@@ -9,14 +10,6 @@ type QueryParams = {
 };
 
 type Response = Hook[];
-
-class HttpError extends Error {
-  statusCode: number;
-  constructor(message: string, statusCode: number) {
-    super(message);
-    this.statusCode = statusCode;
-  }
-}
 
 const createFilter =
   <T extends keyof Hook>(key: T) =>
