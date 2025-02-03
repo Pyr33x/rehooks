@@ -1,6 +1,6 @@
 import { RootProvider } from "fumadocs-ui/provider";
 import { Analytics } from "@vercel/analytics/react";
-import { inter, jetbrains } from "./fonts";
+import { inter, jetbrains } from "@/lib/fonts";
 import type { ReactNode } from "react";
 import { meta } from "@rehooks/utils";
 import type { Metadata } from "next";

@@ -1,6 +1,6 @@
 import { HomeLayout } from "fumadocs-ui/layouts/home";
-import Footer from "@/app/(home)/_components/footer";
 import { baseOptions } from "@/app/layout.config";
+import Footer from "@/components/layout/footer";
 import type { ReactNode } from "react";
 
 export default function BlogLayout({

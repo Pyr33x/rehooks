@@ -1,8 +1,8 @@
 "use client";
 
-import { GithubIcon, ArrowRight, ArrowUpRight } from "@rehooks/ui/icons";
+import { ArrowRight, ArrowUpRight, GithubIcon } from "@rehooks/ui/icons";
 import { Button, Shine, Shimmer } from "@rehooks/ui/components";
-import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils";
+import { REHOOKS_NPM, GITHUB_LINK } from "@rehooks/utils";
 import { useClipboard } from "rehooks-ts";
 import { motion } from "motion/react";
 import Link from "next/link";

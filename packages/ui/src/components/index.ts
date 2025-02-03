@@ -6,6 +6,5 @@ export * from "./beam";
 export * from "./bento";
 export * from "./retro";
 export * from "./marquee";
-export * from "./text";
 export * from "./shimmer";
 export * from "./trace";
