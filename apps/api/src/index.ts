@@ -1,7 +1,19 @@
+import { swagger } from "@elysiajs/swagger";
+import { Server } from "~/classes/server";
+import { cors } from "@elysiajs/cors";
+import { ENV } from "~/schema/server";
 import { Elysia } from "elysia";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
-
-console.log(
-  `🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`,
+const server = new Server(
+  Number(ENV.PORT),
+  `http://localhost:${ENV.PORT}`,
+  `http://localhost:${ENV.PORT}/swagger`,
 );
+
+const app = new Elysia()
+  .use(cors())
+  .use(swagger())
+  .get("/:title", ({ params: { title } }) => title)
+  .listen(server.port);
+
+console.table(server);

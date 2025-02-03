@@ -7,10 +7,14 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/swagger": "^1.2.0",
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.1"
   },
   "module": "src/index.js"
 }
