@@ -8,12 +8,22 @@ import { Elysia } from "elysia";
 const server = new Server(
   Number(ENV.PORT),
   `http://localhost:${ENV.PORT}`,
-  `http://localhost:${ENV.PORT}/swagger`,
+  `http://localhost:${ENV.PORT}/docs`,
 );
 
 const app = new Elysia()
+  .use(
+    swagger({
+      path: "/docs",
+      documentation: {
+        info: {
+          title: "Rehooks API",
+          version: "1.0.0",
+        },
+      },
+    }),
+  )
   .use(cors())
-  .use(swagger())
   .use(root)
   .listen(server.port);
 
