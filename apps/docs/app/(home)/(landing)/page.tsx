@@ -1,6 +1,6 @@
-import { Tracer } from "@/app/(home)/_components/tracer";
-import { Editor } from "@/app/(home)/_components/editor";
-import { Grid } from "@/app/(home)/_components/bento";
+import { Tracer } from "@/components/landing/tracer";
+import { Editor } from "@/components/landing/editor";
+import { Grid } from "@/components/landing/bento";
 import { Hero } from "@/components/layout/hero";
 
 export default function HomePage() {

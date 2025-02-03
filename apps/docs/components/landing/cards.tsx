@@ -12,7 +12,7 @@ import {
 import { Retro, Marquee, Shimmer } from "@rehooks/ui/components";
 import { cn, hooks } from "@rehooks/utils";
 import type { ReactNode } from "react";
-import { APICard } from "@/app/(home)/_components/api";
+import { APICard } from "@/components/landing/api";
 
 function CommitCard({
   className,
