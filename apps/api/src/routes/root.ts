@@ -3,10 +3,10 @@ import { Elysia, t } from "elysia";
 
 export const root = new Elysia().get(
   "/",
-  ({ query }) => getHooks({ title: query.title }),
+  ({ query }) => getHooks({ search: query.search }),
   {
     query: t.Object({
-      title: t.Optional(t.String()),
+      search: t.Optional(t.String()),
     }),
   },
 );
