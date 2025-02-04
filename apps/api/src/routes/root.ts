@@ -12,4 +12,4 @@ export const root = new Elysia()
       }),
     },
   )
-  .get("/:title", ({ params }) => getHooks({ search: params.title }));
+  .get("/react/:title", ({ params }) => getHooks({ search: params.title }));
