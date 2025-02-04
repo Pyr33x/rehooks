@@ -12,13 +12,19 @@
 
 <br />
 
-<h1 align="center">🪄 Usage</h1>
+<h1 align="center">🪄 Initialization</h1>
 <p align="center">
 Initialize the Rehooks configuration easily.
 </p>
 <div align="center">
   <pre>npx <a href="https://www.npmjs.com/package/rehooks-cli">rehooks-cli@latest init</a></pre>
 </div>
+
+<div align="center">
+<h1>✨ Adding Hooks</h1>
+<p>Get the list of available hooks and add them to your project.</p>
+<pre>npx <a href="https://www.npmjs.com/package/rehooks-cli">rehooks-cli@latest add</a></pre>
+  </div>
 
 <h1 align="center">📦 Packages</h1>
 <p align="center"><a href="https://www.npmjs.com/package/rehooks-ts"><code>rehooks-ts</code></a> - <a href="https://www.npmjs.com/package/rehooks-cli"><code>rehooks-cli</code></a></p>

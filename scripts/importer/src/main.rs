@@ -2,7 +2,7 @@ use importer::{import_hooks_from_src, write_hooks_to_json};
 
 fn main() {
     let src_directory = "../../packages/core/src";
-    let output_path = "../../apps/docs/lib/hooks.json";
+    let output_path = "../../apps/api/hooks.json";
 
     match import_hooks_from_src(src_directory) {
         Ok(mut hooks) => {
