@@ -1,4 +1,4 @@
-import { getHooks } from "~/services/hooks.service";
+import { getHooks } from "../services/hooks.service";
 import { Elysia, t } from "elysia";
 
 export const react = new Elysia()

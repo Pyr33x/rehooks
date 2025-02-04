@@ -1,4 +1,4 @@
-import type { Server as ServerInterface } from "~/types/server";
+import type { Server as ServerInterface } from "../types/server";
 
 export class Server implements ServerInterface {
   public readonly port: number;

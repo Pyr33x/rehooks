@@ -1,8 +1,8 @@
 import { swagger } from "@elysiajs/swagger";
-import { Server } from "~/classes/server";
-import { react, root } from "~/routes";
+import { Server } from "./classes/server";
+import { react, root } from "./routes";
+import { ENV } from "./schema/server";
 import { cors } from "@elysiajs/cors";
-import { ENV } from "~/schema/server";
 import { Elysia } from "elysia";
 
 const server = new Server(

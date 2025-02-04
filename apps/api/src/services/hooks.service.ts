@@ -1,5 +1,5 @@
-import { createFilter, createLimit } from "~/utilities/creators";
-import type { Hook } from "~/types/hook";
+import { createFilter, createLimit } from "../utilities/creators";
+import type { Hook } from "../types/hook";
 
 const path = "src/data/hooks.json";
 const file = Bun.file(path);
