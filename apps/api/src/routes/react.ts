@@ -1,9 +1,9 @@
 import { getHooks } from "~/services/hooks.service";
 import { Elysia, t } from "elysia";
 
-export const root = new Elysia()
+export const react = new Elysia()
   .get(
-    "/",
+    "/react",
     ({ query }) => getHooks({ search: query.search, limit: query.limit }),
     {
       query: t.Object({

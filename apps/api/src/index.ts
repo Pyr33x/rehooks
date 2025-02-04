@@ -2,7 +2,7 @@ import { swagger } from "@elysiajs/swagger";
 import { Server } from "~/classes/server";
 import { cors } from "@elysiajs/cors";
 import { ENV } from "~/schema/server";
-import { root } from "~/routes";
+import { react } from "~/routes";
 import { Elysia } from "elysia";
 
 const server = new Server(
@@ -24,7 +24,7 @@ const app = new Elysia()
     }),
   )
   .use(cors())
-  .use(root)
+  .use(react)
   .listen(server.port);
 
 console.table(server);
