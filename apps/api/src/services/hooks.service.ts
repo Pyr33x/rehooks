@@ -1,8 +1,7 @@
 import { createFilter, createLimit } from "~/utilities/creators";
-import { HttpError } from "~/classes/error";
 import type { Hook } from "~/types/hook";
 
-const path = "hooks.json";
+const path = "src/data/hooks.json";
 const file = Bun.file(path);
 
 type QueryParams = {
@@ -22,9 +21,10 @@ async function getHooks({ search, limit }: QueryParams): Promise<Response> {
     : filteredHooks;
 
   if (!limitedHooks.length) {
-    throw new HttpError("Couldn't find the requested hook.", 404);
+    throw new Error("Couldn't find the requsted hook.");
   }
+
   return limitedHooks;
 }
 
-export { getHooks, HttpError };
+export { getHooks };
