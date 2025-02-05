@@ -49,7 +49,7 @@ export async function generateMetadata(props: {
     description: page.data.description,
     openGraph: {
       siteName: "Rehooks",
-      url: `${DOCS_URL}/${page.slugs.join("/")}`,
+      url: `${DOCS_URL}/docs/${page.slugs.join("/")}`,
     },
   });
 }
