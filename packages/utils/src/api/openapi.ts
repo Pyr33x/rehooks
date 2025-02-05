@@ -178,7 +178,7 @@ const openApiDocument = generator.generateDocument({
   },
   servers: [
     {
-      url: "https://rehooks.pyr33x.ir/api",
+      url: "https://rehooks.dev/api",
       description: "Production server",
     },
   ],
