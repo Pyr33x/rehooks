@@ -1,9 +1,14 @@
 import { createOpenAPI, attachFile } from "fumadocs-openapi/server";
+import { defineConfig } from "fumadocs-mdx/config";
 import { docs, meta, blogPosts } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import { icons } from "@rehooks/ui/icons";
 import { createElement } from "react";
+
+export default defineConfig({
+  lastModifiedTime: "git",
+});
 
 export const source = loader({
   baseUrl: "/docs",
