@@ -5,9 +5,10 @@ import {
   DocsDescription,
 } from "fumadocs-ui/page";
 import { source, openapi } from "@/lib/docs/source";
-import defaultMdxComponents from "fumadocs-ui/mdx";
 import { metadataImage } from "@/lib/docs/metadata";
+import defaultMdxComponents from "fumadocs-ui/mdx";
 import { notFound } from "next/navigation";
+import { DOCS_URL } from "@rehooks/utils";
 
 export default async function Page({
   params,
@@ -46,5 +47,9 @@ export async function generateMetadata(props: {
   return metadataImage.withImage(page.slugs, {
     title: page.data.title,
     description: page.data.description,
+    openGraph: {
+      siteName: "Rehooks",
+      url: `${DOCS_URL}/${page.slugs.join("/")}`,
+    },
   });
 }
