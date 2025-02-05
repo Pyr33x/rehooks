@@ -5,7 +5,7 @@ type QueryParams<T extends Record<string, unknown>> = {
 };
 
 export function getQueries<T extends Record<string, unknown>>(
-  searchParams: URLSearchParams | { [key: string]: string | string[] },
+  searchParams: URLSearchParams | Record<string, string | string[]>,
 ): QueryParams<T> {
   const params: Partial<QueryParams<T>> = {};
 
