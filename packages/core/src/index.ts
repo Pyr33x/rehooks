@@ -31,3 +31,6 @@ export * from "./react/useTitle";
 export * from "./react/useToggle";
 export * from "./react/useUnmount";
 export * from "./react/useWindowSize";
+
+// Next
+export * from "./next/useGetQueries";
