@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://rehooks.pyr33x.ir/api",
+  baseURL: "https://rehooks.dev/api",
 });
 
 export const fetcher = async <T>(url: string) => {

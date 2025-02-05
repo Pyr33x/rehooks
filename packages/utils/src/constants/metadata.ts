@@ -2,20 +2,25 @@ import { keywords } from "./keywords";
 import type { Metadata } from "next";
 
 export const meta = {
-  metadataBase: new URL("https://rehooks.pyr33x.ir"),
+  metadataBase: new URL("https://rehooks.dev"),
   /** OpenGraph */
   openGraph: {
     siteName: "Rehooks",
-    url: "https://rehooks.pyr33x.ir",
+    url: "https://rehooks.dev",
     locale: "en_US",
-    images: "https://rehooks.pyr33x.ir/og.png",
+    images: "https://rehooks.dev/og.png",
+    creators: ["@pyr33x"],
+    description:
+      "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   },
   twitter: {
     title: "Rehooks",
     card: "summary_large_image",
     creator: "@pyr33x",
-    site: "https://rehooks.pyr33x.ir",
-    images: "https://rehooks.pyr33x.ir/og.png",
+    site: "https://rehooks.dev",
+    images: "https://rehooks.dev/og.png",
+    description:
+      "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   },
   /** OpenGraph */
 
@@ -65,6 +70,9 @@ export const meta = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION_CODE ?? undefined,
   },
   /** Robots */
 } satisfies Metadata;
