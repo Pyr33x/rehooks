@@ -34,3 +34,4 @@ export * from "./react/useWindowSize";
 
 // Next
 export * from "./next/useGetQueries";
+export * from "./next/useActiveLink";
