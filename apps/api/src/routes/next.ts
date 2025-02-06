@@ -1,11 +1,11 @@
 import { getHooks } from "../services/hooks.service";
 import { Elysia, t } from "elysia";
 
-export const react = new Elysia()
+export const next = new Elysia()
   .get(
-    "/react",
+    "/next",
     ({ query }) =>
-      getHooks({ search: query.search, limit: query.limit, type: "react" }),
+      getHooks({ search: query.search, limit: query.limit, type: "next" }),
     {
       query: t.Object({
         search: t.Optional(t.String()),
@@ -13,6 +13,6 @@ export const react = new Elysia()
       }),
     },
   )
-  .get("/react/:title", ({ params }) =>
-    getHooks({ search: params.title, type: "react" }),
+  .get("/next/:title", ({ params }) =>
+    getHooks({ search: params.title, type: "next" }),
   );

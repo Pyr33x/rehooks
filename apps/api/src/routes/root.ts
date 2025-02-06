@@ -6,6 +6,7 @@ const returnRoot = {
   version: "1.0.0",
   endpoints: {
     react: ["/react", "/react/:title"],
+    next: ["/next", "/next/:title"],
   },
 };
 

@@ -1,9 +1,9 @@
-import type { Hook } from "~/types/hook";
+import type { CondHooks } from "~/types/hook";
 
 const createFilter =
-  <T extends keyof Hook>(key: T) =>
+  <T extends keyof CondHooks>(key: T) =>
   (search: string) =>
-  (hook: Hook) => {
+  (hook: CondHooks) => {
     const value = hook[key];
     if (typeof value === "string") {
       return value.toLowerCase().includes(search.toLowerCase());
@@ -11,6 +11,7 @@ const createFilter =
     return false;
   };
 
-const createLimit = (limit: number) => (hooks: Hook[]) => hooks.slice(0, limit);
+const createLimit = (limit: number) => (hooks: CondHooks[]) =>
+  hooks.slice(0, limit);
 
 export { createFilter, createLimit };
