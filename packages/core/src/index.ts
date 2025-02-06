@@ -33,5 +33,5 @@ export * from "./react/useUnmount";
 export * from "./react/useWindowSize";
 
 // Next
-export * from "./next/useGetQueries";
 export * from "./next/useActiveRoute";
+export * from "./next/useGetQueries";

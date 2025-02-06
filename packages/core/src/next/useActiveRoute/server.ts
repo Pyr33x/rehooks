@@ -5,7 +5,7 @@ type Route<T = {}> = (
   T;
 
 type Props<T = {}> = {
-  routes: Array<Route<T>>;
+  routes: Route<T>[];
   pathname: string;
 };
 
