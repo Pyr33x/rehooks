@@ -12,7 +12,7 @@ type Props<T = {}> = {
   routes: Array<Route<T>>;
 };
 
-export function useActiveLink<T = {}>({ routes }: Props<T>): boolean {
+export function useActiveRoute<T = {}>({ routes }: Props<T>): boolean {
   const pathname = usePathname();
 
   const isActive = routes.some((route) => {
