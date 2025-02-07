@@ -4,8 +4,7 @@ import { Elysia, t } from "elysia";
 export const react = new Elysia()
   .get(
     "/react",
-    ({ query }) =>
-      getHooks({ search: query.search, limit: query.limit, type: "react" }),
+    ({ query }) => getHooks({ search: query.search, limit: query.limit }),
     {
       query: t.Object({
         search: t.Optional(t.String()),
@@ -13,6 +12,4 @@ export const react = new Elysia()
       }),
     },
   )
-  .get("/react/:title", ({ params }) =>
-    getHooks({ search: params.title, type: "react" }),
-  );
+  .get("/react/:title", ({ params }) => getHooks({ search: params.title }));

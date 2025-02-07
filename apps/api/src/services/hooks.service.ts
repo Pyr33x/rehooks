@@ -9,7 +9,7 @@ const nextFile = Bun.file(nextPath);
 type QueryParams = {
   search?: string;
   limit?: number;
-  type: "react" | "next";
+  type?: "react" | "next";
 };
 
 type Response = CondHooks[];
@@ -17,7 +17,7 @@ type Response = CondHooks[];
 async function getHooks({
   search,
   limit,
-  type,
+  type = "react",
 }: QueryParams): Promise<Response> {
   let hooks: CondHooks[];
   if (type === "react") {
