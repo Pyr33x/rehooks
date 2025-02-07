@@ -8,8 +8,8 @@ COPY bun.lockb bun.lockb
 RUN bun install
 
 COPY ./src ./src
-COPY react.json react.json
-COPY next.json next.json
+COPY react.json ./react.json
+COPY next.json ./next.json
 
 ENV NODE_ENV=production
 
@@ -26,6 +26,8 @@ FROM gcr.io/distroless/base
 WORKDIR /app
 
 COPY --from=build /app/server server
+COPY --from=build /app/react.json ./react.json
+COPY --from=build /app/next.json ./next.json
 
 ENV NODE_ENV=production
 
