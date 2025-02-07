@@ -12,6 +12,7 @@
     "elysia": "latest"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.2",
     "bun-types": "latest",
     "dotenv": "^16.4.7",
     "zod": "^3.24.1"

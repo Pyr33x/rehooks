@@ -1,6 +1,6 @@
+import { react, root, next } from "./routes";
 import { swagger } from "@elysiajs/swagger";
 import { Server } from "./classes/server";
-import { react, root } from "./routes";
 import { ENV } from "./schema/server";
 import { cors } from "@elysiajs/cors";
 import { Elysia } from "elysia";
@@ -26,6 +26,7 @@ const app = new Elysia()
   .use(cors())
   .use(root)
   .use(react)
+  .use(next)
   .listen(server.port);
 
 console.table(server);

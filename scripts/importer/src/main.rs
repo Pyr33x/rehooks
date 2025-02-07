@@ -1,15 +1,30 @@
 use importer::{import_hooks_from_src, write_hooks_to_json};
 
 fn main() {
-    let src_directory = "../../packages/core/src";
-    let output_path = "../../apps/api/hooks.json";
+    let react_dir = "../../packages/core/src/react";
+    let next_dir = "../../packages/core/src/next";
 
-    match import_hooks_from_src(src_directory) {
-        Ok(mut hooks) => {
-            hooks.sort_by(|a, b| a.title.cmp(&b.title));
-            match write_hooks_to_json(hooks, output_path) {
-                Ok(_) => println!("Hooks successfully written to {}", output_path),
-                Err(e) => eprintln!("Error writing hooks to JSON: {}", e),
+
+    let react_output_path = "../../apps/api/react.json";
+    let next_output_path = "../../apps/api/next.json";
+
+
+    match import_hooks_from_src(react_dir, next_dir) {
+        Ok((react_hooks, next_hooks)) => {
+            let mut sorted_react_hooks = react_hooks;
+            sorted_react_hooks.sort_by(|a, b| a.title.cmp(&b.title));
+
+            let mut sorted_next_hooks = next_hooks;
+            sorted_next_hooks.sort_by(|a, b| a.title.cmp(&b.title));
+
+            match write_hooks_to_json(sorted_react_hooks, react_output_path) {
+                Ok(_) => println!("React hooks successfully written to {}", react_output_path),
+                Err(e) => eprintln!("Error writing React hooks to JSON: {}", e),
+            }
+
+            match write_hooks_to_json(sorted_next_hooks, next_output_path) {
+                Ok(_) => println!("Next hooks successfully written to {}", next_output_path),
+                Err(e) => eprintln!("Error writing Next hooks to JSON: {}", e),
             }
         }
         Err(e) => eprintln!("Error importing hooks: {}", e),
