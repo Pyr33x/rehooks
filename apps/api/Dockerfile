@@ -8,6 +8,8 @@ COPY bun.lockb bun.lockb
 RUN bun install
 
 COPY ./src ./src
+COPY react.json react.json
+COPY next.json next.json
 
 ENV NODE_ENV=production
 
