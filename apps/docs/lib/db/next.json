@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "useActiveRoute",
+    "description": "Checks if current pathname is equal to the routes array object that we passed in.",
+    "content": {
+      "server": "type Route<T = {}> = (\n  | { path: string; href?: never }\n  | { href: string; path?: never }\n) &\n  T;\n\ntype Props<T = {}> = {\n  routes: Route<T>[];\n  pathname: string;\n};\n\nexport function isActiveRoute<T = {}>({ routes, pathname }: Props<T>): boolean {\n  const isActive = routes.some((route) => {\n    const routePath = route.path || route.href;\n    return routePath === pathname;\n  });\n\n  return isActive;\n}\n",
+      "client": "\"use client\";\n\nimport { usePathname } from \"next/navigation\";\n\ntype Route<T = {}> = (\n  | { path: string; href?: never }\n  | { href: string; path?: never }\n) &\n  T;\n\ntype Props<T = {}> = {\n  routes: Route<T>[];\n};\n\nexport function useActiveRoute<T = {}>({ routes }: Props<T>): boolean {\n  const pathname = usePathname();\n\n  const isActive = routes.some((route) => {\n    const routePath = route.path || route.href;\n    return routePath === pathname;\n  });\n\n  return isActive;\n}\n"
+    }
+  },
+  {
+    "id": 2,
+    "title": "useGetQueries",
+    "description": "Returns the query params from the URL with both Server and Client support.",
+    "content": {
+      "server": "import { URLSearchParams } from \"url\";\n\ntype QueryParams<T extends Record<string, unknown>> = {\n  [K in keyof T]: T[K];\n};\n\nexport function getQueries<T extends Record<string, unknown>>(\n  searchParams: URLSearchParams | Record<string, string | string[]>,\n): QueryParams<T> {\n  const params: Partial<QueryParams<T>> = {};\n\n  const paramsObject =\n    searchParams instanceof URLSearchParams\n      ? Object.fromEntries(searchParams.entries())\n      : searchParams;\n\n  for (const [key, value] of Object.entries(paramsObject)) {\n    const stringValue = Array.isArray(value) ? value.join(\",\") : value;\n\n    if (stringValue === \"true\") {\n      params[key as keyof T] = true as T[keyof T];\n    } else if (stringValue.includes(\",\")) {\n      params[key as keyof T] = stringValue.split(\",\") as T[keyof T];\n    } else {\n      params[key as keyof T] = stringValue as T[keyof T];\n    }\n  }\n\n  return params as QueryParams<T>;\n}\n",
+      "client": "\"use client\";\n\nimport { useSearchParams } from \"next/navigation\";\n\ntype QueryParams<T extends Record<string, unknown>> = {\n  [K in keyof T]: T[K];\n};\n\nexport function useGetQueries<\n  T extends Record<string, unknown>,\n>(): QueryParams<T> {\n  const searchParams = useSearchParams();\n  const params: Partial<QueryParams<T>> = {};\n\n  searchParams.forEach((value, key) => {\n    if (value === \"true\") {\n      params[key as keyof T] = true as T[keyof T];\n    } else if (value.includes(\",\")) {\n      params[key as keyof T] = value.split(\",\") as T[keyof T];\n    } else {\n      params[key as keyof T] = value as T[keyof T];\n    }\n  });\n\n  return params as QueryParams<T>;\n}\n"
+    }
+  }
+]

@@ -5,8 +5,8 @@ fn main() {
     let next_dir = "../../packages/core/src/next";
 
 
-    let react_output_path = "../../apps/api/react.json";
-    let next_output_path = "../../apps/api/next.json";
+    let react_output_path = "../../apps/docs/lib/db/react.json";
+    let next_output_path = "../../apps/docs/lib/db/next.json";
 
 
     match import_hooks_from_src(react_dir, next_dir) {

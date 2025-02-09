@@ -1,12 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
 import { getClientIp, type Hook } from "@rehooks/utils";
 import { ratelimit } from "@/lib/redis/ratelimit";
+import { NextResponse } from "next/server";
 import { join } from "path";
 import { readFile } from "fs";
 
-export const dynamic = "force-dynamic";
-
-const filePath = join(process.cwd(), "lib", "hooks.json");
+const filePath = join(process.cwd(), "lib", "db", "next.json");
 
 async function loadData(): Promise<Hook[]> {
   return new Promise((resolve, reject) => {
@@ -21,8 +19,14 @@ async function loadData(): Promise<Hook[]> {
   });
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  request: Request,
+  { params }: { params: { title: string } },
+) {
+  const { title } = params;
+
   const clientIp = await getClientIp();
+
   const identifier = clientIp;
   const rateLimitResult = await ratelimit.limit(identifier);
 
@@ -36,26 +40,14 @@ export async function GET(req: NextRequest) {
   );
 
   try {
-    const url = new URL(req.url);
-    const limit = url.searchParams.get("limit");
-    const search = url.searchParams.get("search");
     const data: Hook[] = await loadData();
-    let result = data;
-    if (search) {
-      result = data.filter((hook) =>
-        hook.title.toLowerCase().includes(search.toLowerCase()),
-      );
-    }
+    const hook = data.find((hook) => hook.title === title);
 
-    if (limit) {
-      const parsedLimit = Number(limit);
-      if (isNaN(parsedLimit) || parsedLimit <= 0) {
-        return NextResponse.json(
-          { error: "Invalid limit. It must be a positive number." },
-          { status: 400 },
-        );
-      }
-      result = result.slice(0, parsedLimit);
+    if (!hook) {
+      return NextResponse.json(
+        { error: "Couldn't find the requested hook." },
+        { status: 404 },
+      );
     }
 
     if (!rateLimitResult.success) {
@@ -65,7 +57,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    return NextResponse.json(result, {
+    return NextResponse.json(hook, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -77,9 +69,7 @@ export async function GET(req: NextRequest) {
     console.error("Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      {
-        status: 500,
-      },
+      { status: 500 },
     );
   }
 }
