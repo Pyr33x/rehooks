@@ -1,5 +1,6 @@
 import { log } from "@clack/prompts";
 import { cosmiconfig } from "cosmiconfig";
+import * as jsonc from "jsonc-parser";
 
 import { handleError } from "./error";
 import type { RehooksConfig } from "~/schema/config.schema";
@@ -7,12 +8,31 @@ import { configSchema } from "~/schema/config.schema";
 import type { TsConfig } from "~/schema/tsconfig.schema";
 import { tsConfigSchema } from "~/schema/tsconfig.schema";
 
+function jsonLoader(filepath: string, content: string) {
+  const errors: jsonc.ParseError[] = [];
+  const result = jsonc.parse(content, errors, {
+    allowTrailingComma: true,
+  });
+
+  if (errors.length > 0) {
+    throw new Error(`Error parsing JSON: ${JSON.stringify(errors)}`);
+  }
+
+  return result;
+}
+
 const configExplorer = cosmiconfig("rehooks", {
   searchPlaces: ["rehooks.json"],
+  loaders: {
+    ".json": jsonLoader,
+  },
 });
 
 const tsConfigExplorer = cosmiconfig("tsconfig", {
   searchPlaces: ["tsconfig.json"],
+  loaders: {
+    ".json": jsonLoader,
+  },
 });
 
 export async function getConfig(cwd: string): Promise<RehooksConfig | null> {
