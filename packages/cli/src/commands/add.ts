@@ -14,10 +14,10 @@ import { Command } from "commander";
 import { existsSync, writeFileSync } from "fs";
 import { join } from "path";
 
+import { nextSchema } from "~/schema/next.schema";
+import { reactSchema } from "~/schema/react.schema";
 import { getConfig } from "~/utils/config";
 import { BASE_URL } from "~/utils/constants";
-import { reactSchema } from "~/schema/react.schema";
-import { nextSchema } from "~/schema/next.schema";
 
 const fetchHookContent = async (
   hook: string,
@@ -122,7 +122,7 @@ export const add = new Command()
         directory,
         forceOverwrite,
       }: { directory: string; forceOverwrite: boolean } = config;
-      const shouldForceOverwrite = options.force || forceOverwrite;
+      const shouldForceOverwrite = options.force ?? forceOverwrite;
       const currentURL = options.next
         ? `${BASE_URL}/next`
         : `${BASE_URL}/react`;
@@ -142,7 +142,7 @@ export const add = new Command()
             if (added) addedHooks.push(hook);
           }
         } else {
-          const res = await axios.get(`${currentURL}`);
+          const res = await axios.get(currentURL);
           const hooksData = res.data; // Assuming this is an array of hooks
           const selectedHooks = (await multiselect({
             message: "Pick hooks to add:",
