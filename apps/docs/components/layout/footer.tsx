@@ -1,11 +1,9 @@
 import { NpmIcon, GithubIcon, RehooksIcon } from "@rehooks/ui/icons";
 import { GITHUB_LINK, REHOOKS_NPM } from "@rehooks/utils/constants";
-import { getStars } from "@rehooks/utils/functions";
 import { cn } from "@rehooks/utils/functions";
 import Link from "next/link";
 
 export default async function Footer({ className }: { className?: string }) {
-  const stars = await getStars({ owner: "pyr33x", repo: "rehooks" });
   const legal = [
     { title: "Terms of Service", link: "/docs/cli/legal/terms" },
     { title: "Privacy Policy", link: "/docs/cli/legal/privacy-policy" },

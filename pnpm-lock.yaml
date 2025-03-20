@@ -289,10 +289,6 @@ importers:
         version: 5.5.4
 
   packages/utils:
-    dependencies:
-      next:
-        specifier: ^14.2.8
-        version: 14.2.15(react-dom@18.3.1(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@asteasolutions/zod-to-openapi':
         specifier: ^7.3.0
@@ -300,9 +296,6 @@ importers:
       '@rehooks/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
-      axios:
-        specifier: ^1.7.7
-        version: 1.7.7
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -8462,31 +8455,6 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@14.2.15(react-dom@18.3.1(react@19.0.0))(react@19.0.0):
-    dependencies:
-      '@next/env': 14.2.15
-      '@swc/helpers': 0.5.5
-      busboy: 1.6.0
-      caniuse-lite: 1.0.30001668
-      graceful-fs: 4.2.11
-      postcss: 8.4.31
-      react: 19.0.0
-      react-dom: 18.3.1(react@19.0.0)
-      styled-jsx: 5.1.1(react@19.0.0)
-    optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.15
-      '@next/swc-darwin-x64': 14.2.15
-      '@next/swc-linux-arm64-gnu': 14.2.15
-      '@next/swc-linux-arm64-musl': 14.2.15
-      '@next/swc-linux-x64-gnu': 14.2.15
-      '@next/swc-linux-x64-musl': 14.2.15
-      '@next/swc-win32-arm64-msvc': 14.2.15
-      '@next/swc-win32-ia32-msvc': 14.2.15
-      '@next/swc-win32-x64-msvc': 14.2.15
-    transitivePeerDependencies:
-      - '@babel/core'
-      - babel-plugin-macros
-
   next@15.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 15.1.6
@@ -8846,12 +8814,6 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
       react: 18.3.1
-      scheduler: 0.23.2
-
-  react-dom@18.3.1(react@19.0.0):
-    dependencies:
-      loose-envify: 1.4.0
-      react: 19.0.0
       scheduler: 0.23.2
 
   react-hook-form@7.54.2(react@18.3.1):
@@ -9408,11 +9370,6 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
-
-  styled-jsx@5.1.1(react@19.0.0):
-    dependencies:
-      client-only: 0.0.1
-      react: 19.0.0
 
   styled-jsx@5.1.6(react@18.3.1):
     dependencies:
