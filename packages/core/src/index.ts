@@ -1,4 +1,3 @@
-// React
 export * from "./react/useBattery";
 export * from "./react/useClipboard";
 export * from "./react/useCountDown";
@@ -31,7 +30,3 @@ export * from "./react/useTitle";
 export * from "./react/useToggle";
 export * from "./react/useUnmount";
 export * from "./react/useWindowSize";
-
-// Next
-export * from "./next/useActiveRoute";
-export * from "./next/useGetQueries";
