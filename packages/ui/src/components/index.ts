@@ -8,3 +8,4 @@ export * from "./retro";
 export * from "./marquee";
 export * from "./shimmer";
 export * from "./trace";
+export * from "./tooltip";

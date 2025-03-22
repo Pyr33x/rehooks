@@ -2,6 +2,7 @@ import { Tracer } from "@/components/landing/tracer";
 import { Editor } from "@/components/landing/editor";
 import { Grid } from "@/components/landing/bento";
 import { Hero } from "@/components/layout/hero";
+import { Contributors } from "@/components/landing/contributors";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
           <Grid />
         </div>
       </section>
+      <Contributors />
     </div>
   );
 }
