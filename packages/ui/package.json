@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "@rehooks/eslint-config": "workspace:*",
     "@rehooks/tsconfig": "workspace:*",
     "@rehooks/utils": "workspace:*",
