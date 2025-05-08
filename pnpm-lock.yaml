@@ -221,9 +221,6 @@ importers:
       tsdown:
         specifier: ^0.11.1
         version: 0.11.1(typescript@5.6.3)
-      tsup:
-        specifier: ^8.3.0
-        version: 8.3.0(jiti@2.4.2)(postcss@8.4.47)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.5.1)
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
