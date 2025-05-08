@@ -23,8 +23,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "check-types": "tsc --noEmit",
     "lint": "eslint src --ext .ts"
   },
@@ -44,7 +44,7 @@
     "@rehooks/tsconfig": "workspace:*",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "tsup": "^8.3.0",
+    "tsdown": "^0.11.1",
     "typescript": "^5.6.3",
     "ua-parser-js": "^1.0.39"
   },
