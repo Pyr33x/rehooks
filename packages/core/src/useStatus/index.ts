@@ -13,6 +13,12 @@ export function useStatus(callback?: (isOnline: boolean) => void): boolean {
   return useSyncExternalStore(
     (cb) => {
       const abortController = new AbortController();
+      const supportsAbortSignal = typeof AbortController !== "undefined";
+      if (!supportsAbortSignal) {
+        console.warn(
+          "AbortController is not supported in this environment. The event listeners will not be removed.",
+        );
+      }
       window.addEventListener(
         "online",
         () => {

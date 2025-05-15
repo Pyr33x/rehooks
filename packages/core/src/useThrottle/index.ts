@@ -10,12 +10,6 @@ const description = "Returns a throttled version of the provided function.";
  * @property {boolean} [trailing=true] - Specify invoking on the trailing edge of the timeout
  */
 
-type ThrottleOptions = {
-  wait?: number;
-  leading?: boolean;
-  trailing?: boolean;
-};
-
 /**
  * Returns a throttled version of the provided function.
  * The throttled function will only execute at most once per every `wait` milliseconds.
@@ -29,6 +23,13 @@ type ThrottleOptions = {
  *
  * @returns {(...args: Parameters<T>) => void} A throttled version of the provided function
  */
+
+type ThrottleOptions = {
+  wait?: number;
+  leading?: boolean;
+  trailing?: boolean;
+};
+
 export function useThrottle<T extends (...args: unknown[]) => void>(
   fn: T,
   options: ThrottleOptions = {},
@@ -38,11 +39,17 @@ export function useThrottle<T extends (...args: unknown[]) => void>(
   const timeoutRef = useRef<number | null>(null);
   const lastRunRef = useRef<number>(0);
   const lastArgsRef = useRef<Parameters<T> | null>(null);
+  const fnRef = useRef(fn);
+  const isFirstCall = useRef(true);
+
+  useEffect(() => {
+    fnRef.current = fn;
+  }, [fn]);
 
   useEffect(() => {
     return () => {
       if (timeoutRef.current !== null) {
-        window.clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current);
       }
     };
   }, []);
@@ -51,28 +58,31 @@ export function useThrottle<T extends (...args: unknown[]) => void>(
     (...args: Parameters<T>) => {
       const now = Date.now();
       const elapsed = now - lastRunRef.current;
-
       lastArgsRef.current = args;
 
       const execute = () => {
         if (lastArgsRef.current) {
-          fn(...lastArgsRef.current);
+          fnRef.current(...lastArgsRef.current);
+          lastRunRef.current = Date.now();
+          timeoutRef.current = null;
         }
-        lastRunRef.current = Date.now();
       };
 
-      if (timeoutRef.current !== null) {
-        window.clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-
-      if (elapsed > wait) {
+      if (isFirstCall.current) {
+        isFirstCall.current = false;
         if (leading) {
           execute();
-        } else if (trailing) {
+          return;
+        }
+      }
+
+      if (elapsed >= wait) {
+        if (leading) {
+          execute();
+        } else if (trailing && timeoutRef.current === null) {
           timeoutRef.current = window.setTimeout(execute, wait);
         }
-      } else if (trailing) {
+      } else if (trailing && timeoutRef.current === null) {
         timeoutRef.current = window.setTimeout(execute, wait - elapsed);
       }
     },
