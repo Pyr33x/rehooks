@@ -1,8 +1,9 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 const configSchema = z.object({
   directory: z.string(),
   forceOverwrite: z.boolean().default(false),
+  case: z.literal(["kebab", "camel"]),
 });
 
 type RehooksConfig = z.infer<typeof configSchema>;

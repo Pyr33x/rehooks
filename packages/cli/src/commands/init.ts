@@ -5,6 +5,7 @@ import {
   isCancel,
   log,
   outro,
+  select,
   text,
 } from "@clack/prompts";
 import { bold, cyan, green, red, yellow } from "colorette";
@@ -145,7 +146,39 @@ export const init = new Command()
 
     // Write rehooks.json file
     log.info(cyan("Creating rehooks.json configuration file..."));
-    const defaultConfig = { directory, forceOverwrite: false };
+    type DefaultConfig = {
+      directory: string;
+      forceOverwrite: boolean;
+      case: string;
+    };
+
+    const defaultConfig = {
+      directory,
+      forceOverwrite: false,
+      case: "camel",
+    } satisfies DefaultConfig;
+
+    const chooseCase = await select({
+      message: "In what case do you want your hook file names to be written?",
+      options: [
+        {
+          label: "camelCase",
+          value: "camel",
+          hint: "Camel",
+        },
+        {
+          label: "kebab_case",
+          value: "kebab",
+          hint: "Kebab",
+        },
+      ],
+    });
+
+    if (chooseCase.toString() === "camel") {
+      defaultConfig.case = "camel";
+    } else {
+      defaultConfig.case = "kebab";
+    }
 
     try {
       writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2));
