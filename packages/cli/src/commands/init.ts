@@ -19,8 +19,8 @@ import {
   writeFileSync,
 } from "fs";
 import { resolve } from "path";
-import type { RehooksConfig } from "~/schema/config.schema";
 
+import type { RehooksConfig } from "~/schema/config.schema";
 import { checkReactVersion } from "~/utils/checker";
 import { getConfig, getTsConfig } from "~/utils/config";
 import { DIR_PLACEHOLDER, SRC_DIR_PLACEHOLDER } from "~/utils/constants";
