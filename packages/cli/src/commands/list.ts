@@ -40,5 +40,5 @@ export const list = new Command()
       outro(red(`Error listing hooks: ${error}`));
     }
 
-    outro(green("Hooks listed successfully!"));
+    outro(green("Done."));
   });
