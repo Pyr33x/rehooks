@@ -19,6 +19,7 @@ import {
   writeFileSync,
 } from "fs";
 import { resolve } from "path";
+import type { RehooksConfig } from "~/schema/config.schema";
 
 import { checkReactVersion } from "~/utils/checker";
 import { getConfig, getTsConfig } from "~/utils/config";
@@ -146,17 +147,12 @@ export const init = new Command()
 
     // Write rehooks.json file
     log.info(cyan("Creating rehooks.json configuration file..."));
-    type DefaultConfig = {
-      directory: string;
-      forceOverwrite: boolean;
-      case: string;
-    };
 
-    const defaultConfig = {
+    const defaultConfig: RehooksConfig = {
       directory,
       forceOverwrite: false,
       case: "camel",
-    } satisfies DefaultConfig;
+    };
 
     const chooseCase = await select({
       message: "In what case do you want your hook file names to be written?",
