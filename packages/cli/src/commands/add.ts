@@ -17,6 +17,7 @@ import { join } from "path";
 import type { Hook } from "~/schema/config.schema";
 import { getConfig } from "~/utils/config";
 import { BASE_URL } from "~/utils/constants";
+import { splitter } from "~/utils/splitter";
 
 export const add = new Command()
   .name("add")
@@ -86,6 +87,7 @@ export const add = new Command()
             }
 
             const { content } = selectedHookResponse.data;
+            log.info("heyy");
             writeFileSync(hookFilePath, content);
             addedHooks.push(hook);
           } catch (error) {
@@ -138,7 +140,16 @@ export const add = new Command()
       const addSpinner = spinner();
 
       for (const hook of selectedHookArray) {
-        const hookFilePath = join(directory, `${hook}.ts`);
+        let currentHook: string = hook;
+
+        if (config.case === "kebab") {
+          const words = splitter(currentHook);
+          currentHook = words.join("_");
+        } else {
+          currentHook = hook;
+        }
+
+        const hookFilePath = join(directory, `${currentHook}.ts`);
 
         if (existsSync(hookFilePath) && !shouldForceOverwrite) {
           // Stop the spinner before showing the prompt
@@ -184,8 +195,6 @@ export const add = new Command()
           addSpinner.stop(red(`Failed to add ${hook}.`));
         }
       }
-
-      addSpinner.stop(green("Hooks added successfully!"));
 
       if (addedHooks.length > 0) {
         outro(

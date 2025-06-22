@@ -1,6 +1,6 @@
 {
   "name": "rehooks-cli",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "A CLI to scaffold your react custom hooks, with a focus on performance, reusability, and type-safety.",
   "publishConfig": {
     "access": "public"
@@ -53,7 +53,7 @@
     "tsup": "^8.3.0",
     "type-fest": "^4.26.1",
     "typescript": "^5.6.3",
-    "zod": "^3.23.8"
+    "zod": "^3.25.67"
   },
   "dependencies": {
     "axios": "^1.7.7",
